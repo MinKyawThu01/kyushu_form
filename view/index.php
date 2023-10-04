@@ -36,19 +36,25 @@ $kyushu->storeArray($_POST, $_FILES);
                         <div class="name_contact for_top">
                             <label for="name" class="label_name">Full Name</label>
                             <div class="fullname">
-                            <div class="fname">
-                                    <input type="text" id="name" class="fname" placeholder="First Name" />
-                                    
+                                <div class="fname">
+                                    <input type="text" id="name" class="fname" placeholder="First Name" name="first_name" />
                                     <?php if (isset($_SESSION['first_name'])) {
-                                ?>
-                                    <span class="for_err"> <?php echo $_SESSION['first_name']; ?></span>
-                                <?php
-                                }
-                                ?>
+                                    ?>
+                                        <span class="for_err"> <?php echo $_SESSION['first_name']; ?></span>
+                                    <?php
+                                    }
+                                    unset($_SESSION['first_name']);
+                                    ?>
                                 </div>
                                 <div class="lname">
-                                    <input type="text" placeholder="Last Name" />
-                                    <span class="for_err">This is Error</span>
+                                    <input type="text" placeholder="Last Name" name="last_name" />
+                                    <?php if (isset($_SESSION['last_name'])) {
+                                    ?>
+                                        <span class="for_err"> <?php echo $_SESSION['last_name']; ?></span>
+                                    <?php
+                                    }
+                                    unset($_SESSION['last_name']);
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -56,6 +62,13 @@ $kyushu->storeArray($_POST, $_FILES);
                         <div class="dob_contact for_top">
                             <label for="dateOfBirth" class="label_name">Date of Birth</label>
                             <input type="date" id="dateOfBirth" class="full_width" name="dob" />
+                            <?php if (isset($_SESSION['dob'])) {
+                                    ?>
+                                        <span class="for_err"> <?php echo $_SESSION['dob']; ?></span>
+                                    <?php
+                                    }
+                                    unset($_SESSION['dob']);
+                                    ?>
                         </div>
                         <!-- Gender -->
                         <div class="gender_contact for_top">

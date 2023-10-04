@@ -28,11 +28,11 @@ class Kyushu extends DB
                     $sns_username = htmlspecialchars($post['sns_username']);
                     $japan_before = $post['japan_before'];
                     $region = $post['region'];
-                    $restiriction = htmlspecialchars($post['restriction']);
+                    $restriction = htmlspecialchars($post['restriction']);
                     $email = htmlspecialchars($post['email']);
                     $ph_num = htmlspecialchars($post['ph_num']);
 
-                    //trabel compainon 01
+                    //travel companion 01
                     $first_name_tc = htmlspecialchars($post['first_name_tc']);
                     $last_name_tc = htmlspecialchars($post['last_name_tc']);
                     $dob_tc = htmlspecialchars($post['dob_tc']);
@@ -81,17 +81,18 @@ class Kyushu extends DB
                             'sns_username' => $sns_username,
                             'japan_before' => $japan_before,
                             'region' => $region,
-                            'restiriction' => $restiriction,
+                            'restriction' => $restriction,
                             'email' => $email,
                             'ph_num' => $ph_num,
-                            'first_name_travel_compainon' => $first_name_tc,
-                            'last_name_travel_compainon' => $last_name_tc,
-                            'dob_travel_compainon' => $dob_tc,
-                            'gender_travel_compainon' => $gender_tc,
-                            'nationality_travel_compainon' => $custom_data_tc,
-                            'relationship_travel_compainon' => $relationship_tc,
-                            'restriction_travel_compainon' => $restriction_tc,
+                            'first_name_travel_companion' => $first_name_tc,
+                            'last_name_travel_companion' => $last_name_tc,
+                            'dob_travel_companion' => $dob_tc,
+                            'gender_travel_companion' => $gender_tc,
+                            'nationality_travel_companion' => $custom_data_tc,
+                            'relationship_travel_companion' => $relationship_tc,
+                            'restriction_travel_companion' => $restriction_tc,
                             'uploaded_image' => $imgData,
+                            'first_name_japan_gift' => $first_name_jp,
                             'last_name_japan_gift' => $last_name_jp,
                             'travel_period' => $period,
                             'video_upload' => $video_upload,
@@ -136,9 +137,21 @@ class Kyushu extends DB
             }
 
             if (empty($post['first_name'])) {
-                $_SESSION['first_name'] = "Eror";
+                $_SESSION['first_name'] = "Please fills the required field.";
                 $no_error = false;
             }
+
+            if (empty($post['last_name'])) {
+                $_SESSION['last_name'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (empty($post['dob'])) {
+                $_SESSION['dob'] = "Please fills the required field.";
+                $no_error = false;
+            }
+            
+           
 
             return $no_error;
         } catch (PDOException $e) {
