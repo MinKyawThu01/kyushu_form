@@ -1,0 +1,464 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
+}
+@font-face {
+    font-family: Proxima-Nova;
+    src: url(../fonts/flood-std/www.dafontfree.net.url);
+  }
+.f_container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.inner_container {
+    max-width: 628px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    /* background-color: aqua; */
+}
+/* common */
+.for_err {
+    color: red;
+    padding-top: 15px;
+    display: block;
+}
+image {
+    line-height: 0;
+}
+input {
+    padding: 16px 5px 16px 25px;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    font-size: 20px;
+    outline: none;
+    margin-top: 18px;
+    box-sizing: border-box;
+}
+.label_name, .radio_p {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+}
+.full_width{
+    width: 100%;
+}
+.for_top {
+    margin-top: 70px;
+}
+.for_ul_top {
+    margin-top: 18px;
+}
+.label_rt {
+    font-weight: normal;
+    margin-left: 25px;
+}
+ul{
+    list-style: none;
+}
+ul li {
+    width: fit-content;
+}
+/* title */
+.container .f_container .inner_container .req,.container .f_container .inner_container .represent {
+    font-weight: bold;
+    text-align: center;
+}
+.f_container .inner_container .req {
+    font-size: 20px;
+}
+.f_container .inner_container .represent {
+    font-size: 30px;
+    margin-top: 65px;
+}
+/* Full Name & person Name */
+.fullname {
+    display: flex;
+    justify-content: space-between;
+}
+.fullname input {
+    width: 296px;
+}
+.fullname .fname {
+    margin-right: 36px;
+}
+.container .form_container .f_container .inner_container .gender_contact  label, .f_container  .form_container.inner_container .been_jp  label, .all_checks_contact label{
+    font-size: 20px;
+}
+.container .form_container .f_container .inner_container .gender_contact input, .f_container  .form_container.inner_container .been_jp input {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    margin-right: 15px;
+    cursor: pointer;
+    user-select: none;
+}
+/* gender */
+/* Nationality & compaign */
+.others {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.others input {
+    margin: 0;
+    width: 486px;
+    margin-left: 34px;
+}
+/* disabled input with class dim */
+.dim {
+    background-color:#DADADA ;
+    pointer-events: none;
+}
+/* Occupation */
+/* Religion & SNS username*/
+.reli_sns {
+    font-size: 22px;
+    color: #2d2d2d;
+}
+.reli_sns_input {
+    margin-top: 15px;
+}
+/* Region(s) visited in past Japan travels */
+.container .form_container .f_container .inner_container .visited_japan {
+    width: 100%;
+}
+.container .form_container .f_container .inner_container .visited_japan .all_checks_contact {
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.all_checks_input {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    margin-right: 20px;
+}
+.all_checks_contact li {
+    margin-right: 40px;
+}
+
+/* for custom checkbox */
+.all_checks_label, .all_checks_radio {
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.all_checks_label input, .all_checks_radio input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.all_checks_label .checkmark, .all_checks_radio .checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 25px;
+width: 25px;
+background-color: #fff;
+border: 1px solid #dddddd;
+}
+.all_checks_label:hover input ~ .checkmark {
+background-color: #fff;
+}
+.all_checks_label input:checked ~ .checkmark {
+background-color: #B71F2C;
+}
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.all_checks_label .checkmark:after, .all_checks_radio .checkmark:after  {
+content: "";
+position: absolute;
+display: none;
+}
+.all_checks_label input:checked ~ .checkmark:after, .all_checks_radio input:checked ~ .checkmark:after {
+display: block;
+}
+.all_checks_label .checkmark:after {
+left: 9px;
+top: 5px;
+width: 5px;
+height: 10px;
+border: 1px solid #fff;
+border-width: 0 3px 3px 0;
+-webkit-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+transform: rotate(45deg);
+}
+/* for radio checkbox */
+.all_checks_radio {
+padding-left: 35px;
+}
+.all_checks_radio .checkmark {
+border-radius: 50%;
+}
+/* On mouse-over, add a grey background color */
+.all_checks_radio:hover input ~ .checkmark {
+background-color: #fff;
+}
+/* When the radio button is checked, add a red background */
+.all_checks_radio input:checked ~ .checkmark {
+background-color: #fff;
+}
+/* Style the indicator (dot/circle) */
+.all_checks_radio .checkmark:after {
+top:4px;
+left: 4px;
+width: 15px;
+height: 15px;
+border-radius: 50%;
+background: #B71F2C;
+}
+/* region common */
+.form_container .f_container .inner_container .visited_japan .region_p {
+font-size: 18px;
+font-weight: bold;
+margin-top: 30px;
+}
+hr.for_top {
+    border-top: 3px dotted #949494;
+}
+/* file upload */
+.container .form_container .files_upload {
+width: 100%;
+background-color: #efefef;
+padding: 70px 0px;
+margin-top: 100px;
+}
+.container .form_container .files_upload .inner_container {
+    padding-top: 100px;
+}
+.container .form_container .files_upload .img_upload input {
+background-color: #fff;
+border-radius: 5px;
+}
+.container .form_container .files_upload .upload_label {
+font-size: 26px;
+font-weight: bold;
+}
+.container .form_container .files_upload input::file-selector-button {
+padding: 10px;
+border: thin solid grey;
+border-radius: 3px;
+}
+.container .form_container .files_upload .f_container .inner_container .traveling_period .click_upload{
+padding: 10px;
+background-color: #fff;
+border: 1px solid #727272;
+font-weight: bold;
+font-size: 20px;
+display: inline-block;
+margin-top: 27px;
+cursor: pointer;
+user-select: none;
+}
+.container .form_container .files_upload .f_container .inner_container .traveling_period .intro_vd {
+font-size: 20px;
+margin: 25px 0px;
+}
+/* summit contact */
+.container .form_container .summit_contact {
+margin: 60px 0 120px;
+}
+.container .form_container .summit_contact .f_container .inner_container .inner_submit {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.container .form_container .summit_contact .f_container .inner_container .inner_submit .policy {
+padding: 0PX 70px;
+margin-bottom: 70px;
+}
+.container .form_container .summit_contact .f_container .inner_container .inner_submit .all_checks_label{
+font-size: 16px;
+}
+.container .form_container .summit_contact .f_container .inner_container a {
+color: #d14800;
+text-decoration: underline;
+}
+.container .form_container .summit_contact .f_container .inner_container a:hover {
+opacity: 0.7;
+}
+.container .form_container .summit_contact .f_container .inner_container .submit_btn {
+padding: 36px 253px;
+font-size: 30px;
+background-color: #808080;
+color: #fff;
+border: none;
+cursor: pointer;
+font-weight: bold;
+}
+.container .form_container .summit_contact .f_container .inner_container .submit_btn:hover {
+opacity: 0.9;
+}
+/* covid contact */
+.container .covid_contact {
+background-color: #9D9D9D;
+padding: 60px 0px;
+}
+.container .covid_contact .f_container  {
+text-align: center;
+}
+.container .covid_contact .f_container  p {
+font-size: 22px;
+color: #fff;
+padding: 20px 0px;
+font-weight: bold;
+}
+.container .covid_contact .f_container  a {
+padding: 30px 90px;
+background-color: #fff;
+display: inline-block;
+color: #000000;
+text-decoration: none;
+font-size: 20px;
+font-weight: bold;
+}
+.covid_contact p {
+text-align: center;
+}
+/* jnto */
+.container .jnto {
+background-color: #2B2B2B;
+}
+.container .jnto {
+background-color: #2b2b2b;
+padding: 42px 0px;
+}
+  .container .jnto .f_container {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.container .jnto ul {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+padding: 10px;
+}
+.container .jnto .contact a {
+text-decoration: none;
+padding: 11px;
+color: #7e7e7e;
+font-size: 20px;
+}
+.container .jnto .logo {
+width: 6.924%;
+max-width: 72px;
+}
+.container .jnto .social {
+display: flex;
+align-items: center;
+}
+.container .jnto .social .facebook {
+margin-right: 20px;
+}
+/* home contact */
+.container .home_contact {
+background-color: #333;
+overflow: hidden;
+}
+.container .home_contact .f_container {
+overflow-y: hidden;
+}
+.container .home_contact .f_container .nav {
+white-space: nowrap;
+padding: 15px 0px;
+}
+.container .home_contact .f_container .nav li {
+display: inline-block;
+position: relative;
+}
+.container .home_contact .f_container .nav li a {
+text-decoration: none;
+color: #919191;
+padding-right: 5px;
+font-weight: bold;
+}
+.container .home_contact .f_container .nav li a:hover {
+opacity: 0.6;
+}
+.container .home_contact .f_container .nav li::after {
+content: ">";
+color: #919191;
+}
+.container .home_contact .f_container .nav li:first-child {
+text-transform: uppercase;
+}
+.container .home_contact .f_container .nav li:last-child {
+padding-right: 0;
+}
+.container .home_contact .f_container .nav li:last-child::after {
+display: none;
+}
+ /* footer */
+.container .footer {
+background-color: #000000;
+}
+.container .footer .f_container {
+color: #9c9c9c;
+font-size: 16px;
+text-align: center;
+padding: 50px 0;
+}
+/* video uploader */
+.container .pr_vdo_uploader {
+position: fixed;
+z-index: 1;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+display: block;
+}
+.container .pr_vdo_uploader::after {
+content: "";
+display: block;
+width: 100%;
+height: 100%;
+background-color: #000000;
+opacity: 0.5;
+position: fixed;
+top: 0;
+left: 0;
+}
+.container .pr_vdo_uploader .pr_modal_inner {
+position: relative;
+max-width: 502px;
+width: 100%;
+height: 100%;
+padding: 43px 0 54px;
+margin: 70px auto 0;
+z-index: 1;
+}
+.container .pr_vdo_uploader .pr_modal_inner .pr_vdo_item {
+width: 100%;
+overflow-y: auto;
+height: 67%;
+background-color: #fff;
+}
+.container .pr_vdo_uploader .pr_modal_inner .pr_vdo_item::-webkit-scrollbar {
+width: 8px;
+}
+.container .pr_vdo_uploader .pr_modal_inner .pr_vdo_item::-webkit-scrollbar-thumb {
+background: #c1c1c1;
+border-radius: 4px;
+}
+.container .pr_vdo_uploader .pr_modal_inner .pr_vdo_item iframe {
+width: 100%;
+font-size: 100%;
+}
