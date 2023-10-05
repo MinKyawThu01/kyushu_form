@@ -22,7 +22,7 @@
 }
 /* common */
 .for_err {
-    color: red;
+    color: #FF0000;
     padding-top: 15px;
     display: block;
 }
@@ -416,6 +416,9 @@ text-align: center;
 padding: 50px 0;
 }
 /* video uploader */
+.show{
+    display: block;
+}
 .container .pr_vdo_uploader {
 position: fixed;
 z-index: 1;
@@ -423,7 +426,7 @@ width: 100%;
 height: 100%;
 top: 0;
 left: 0;
-display: block;
+display: none;
 }
 .container .pr_vdo_uploader::after {
 content: "";
@@ -450,6 +453,16 @@ width: 100%;
 overflow-y: auto;
 height: 67%;
 background-color: #fff;
+}
+.container .pr_vdo_uploader .pr_modal_inner .close {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: flex-end;
+    background: url("../img/close_icon.svg");
+    margin-left: auto;
 }
 .container .pr_vdo_uploader .pr_modal_inner .pr_vdo_item::-webkit-scrollbar {
 width: 8px;

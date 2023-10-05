@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" >
+        <div class="f_container">
+            <div class="inner_container">
+                <p class="req">Please complete the application form below.</p>
+                <p class="represent">Representative Applicant</p>
+            </div>
+        </div>
+        <div class="form_container">
+            <form action="">
+                <div class="f_container">
+                    <div class="inner_container">
+                        <!-- Name -->
+                        <div class="name_contact for_top">
+                            <label  for="name" class="label_name">Full Name</label>
+                            <div class="fullname">
+                                <div class="fname">
+                                    <input type="text" id="name" class="fname" placeholder="First Name" />
+                                    <span class="for_err">This is Error</span>
+                                </div>
+                                <div class="lname">
+                                    <input type="text" placeholder="Last Name" />
+                                    <span class="for_err">This is Error</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Date of Birth -->
+                        <div class="dob_contact for_top">
+                            <label  for="dateOfBirth" class="label_name">Date of Birth</label>
+                            <input type="date" id="dateOfBirth" class="full_width" />
+                        </div>
+                        <!-- Gender -->
+                        <div class="gender_contact for_top">  
+                            <p class="radio_p">Gender</p> 
+                            <ul class="for_ul_top">
+                                <li>
+                                    <label class="all_checks_radio">Male
+                                        <input type="radio" name="g_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="all_checks_radio">Female
+                                        <input type="radio" name="g_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="all_checks_radio">Other
+                                        <input type="radio" name="g_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Nationality -->
+                        <div class="nation_contact for_top">
+                            <h4 class="radio_p">Nationality</h4>
+                            <ul class="for_ul_top">
+                                <li>
+                                    <label class="all_checks_radio">Singaporean
+                                        <input type="radio" name="n_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <div class="others">
+                                        <label class="all_checks_radio">Other:
+                                            <input type="radio" name="n_radio" >
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <input type="text" class="dim">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Occupation -->
+                        <div class="occupation for_top">
+                            <label  for="occupation" class="label_name">Occupation</label>
+                            <input type="text" id="occupation" class="full_width" placeholder="Type..."/>
+                        </div>
+                        <!-- Religion -->
+                        <div class="religion for_top">
+                            <label  for="religion" class="label_name">Religion</label>
+                            <p class="for_ul_top reli_sns">(We will try to caster to religion preferences, but should you not wish to specify, please answer "prefer not to say")</p>
+                            <input type="text" id="religion" class="full_width reli_sns_input" placeholder="Type..."/>
+                        </div>
+                        <!-- SNS username -->
+                        <div class="sns_username for_top">
+                            <label  for="sns" class="label_name">SNS username <span class="label_rt">(Facebook/Instagram/Tiktok/Youtube)</span></label>
+                            <p class="for_ul_top reli_sns">*Leave the option blank if you do not have any Social Media account</p>
+                            <input type="text" id="sns" class="full_width reli_sns_input" placeholder="Type..."/>
+                        </div>
+                        <!-- have been to japan -->
+                        <div class="been_jp for_top">  
+                            <p class="radio_p">Have you been to Japan before?</p> 
+                            <ul class="for_ul_top">
+                                <li>
+                                    <label class="all_checks_radio">Never
+                                        <input type="radio" name="j_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="all_checks_radio">One
+                                        <input type="radio" name="j_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="all_checks_radio">Twice
+                                        <input type="radio" name="j_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="all_checks_radio">Thrice
+                                        <input type="radio" name="j_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="all_checks_radio">More than 3 times
+                                        <input type="radio" name="j_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Region visited in past Japan travels -->
+                        <div class="visited_japan for_top">
+                            <h4 class="radio_p">Region(s) visited in past Japan travels</h4>
+                            <div class="hokkaido">
+                                <h5 class="region_p">Hokkaido / Tohoku region</h5> 
+                                <ul class="for_ul_top all_checks_contact">
+                                    <li>
+                                        <label class="all_checks_label">Hokkaido
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Aomori
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Iwate
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Miyagi
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Akita
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li><li>
+                                        <label class="all_checks_label">Yamagata
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Fukushima
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="kanto">
+                                <h5 class="region_p">Kanto region</h5> 
+                                <ul class="for_ul_top all_checks_contact">
+                                    <li>
+                                        <label class="all_checks_label">Ibaraki
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Tochigi
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Gunma
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Saitama
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Chiba
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Tokyo
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Kanagawa
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="Hokuriku Shinetesu region">
+                                <h5 class="region_p">Hokuriku Shinetesu region</h5> 
+                                <ul class="for_ul_top all_checks_contact">
+                                    <li>
+                                        <label class="all_checks_label">Niigata
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Toyama
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Ishikawa
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Yamanashi
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Nagano
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="Chubu region">
+                                <h5 class="region_p">Chubu region</h5> 
+                                <ul class="for_ul_top all_checks_contact">
+                                    <li>
+                                        <label class="all_checks_label">Shizuoka
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Aichi
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Gifu
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Mie
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Fukui
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="Kinki region">
+                                <h5 class="region_p">Kinki region</h5> 
+                                <ul class="for_ul_top all_checks_contact">
+                                    <li>
+                                        <label class="all_checks_label">Shiga
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Kyoto
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Osaka
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Hyogo
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Nara
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Wakayama
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="Chugoku region">
+                                <h5 class="region_p">Chugoku region</h5> 
+                                <ul class="for_ul_top all_checks_contact">
+                                    <li>
+                                        <label class="all_checks_label">Tottori
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Shimane
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Okayama
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Hiroshima
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Yamaguchi
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="Shikoku region">
+                                <h5 class="region_p">Shikoku region</h5> 
+                                <ul class="for_ul_top all_checks_contact">
+                                    <li>
+                                        <label class="all_checks_label">Tokushima
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Kagawa
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Ehima
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Kochi
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="Kyushu/Okinawa region">
+                                <h5 class="region_p">Kyushu / Okinawa region</h5> 
+                                <ul class="for_ul_top all_checks_contact">
+                                    <li>
+                                        <label class="all_checks_label">Fukuoka
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Saga
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Nagasaki
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Kumamoto
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Oita
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Miyazaki
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Kagoshima
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Okinawa
+                                            <input type="checkbox" name = "check">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Dietary  Restrictions-->
+                        <div class="dietary for_top">
+                            <label  for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
+                            <input type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..."/>
+                        </div>
+                        <!-- Email -->
+                        <div class="email for_top">
+                            <label  for="email" class="label_name">Email Address</label>
+                            <input type="email" id="email" class="full_width" placeholder="Email"/>
+                        </div>
+                        <!-- Phone Number -->
+                        <div class="phone for_top">
+                            <label  for="phone" class="label_name">Phone Number</label>
+                            <input type="text" id="phone" class="full_width" placeholder="Phone Number"/>
+                        </div>
+                        <hr class="for_top">
+                        <!-- Travel Companion 01 -->
+                        <p class="represent">Travel Companion 01</p>
+                        <!-- Name -->
+                        <div class="name_contact for_top">
+                            <label  for="name" class="label_name">Full Name</label>
+                            <div class="fullname">
+                                <input type="text" id="name" class="fname" placeholder="First Name" />
+                                <input type="text" placeholder="Last Name" />
+                            </div>
+                        </div>
+                        <!-- Date of Birth -->
+                        <div class="dob_contact for_top">
+                            <label  for="dateOfBirth" class="label_name">Date of Birth</label>
+                            <input type="date" id="dateOfBirth" class="full_width" />
+                        </div>
+                        <!-- Gender -->
+                        <div class="gender_contact for_top">  
+                            <p class="radio_p">Gender</p> 
+                            <ul class="for_ul_top">
+                                <li>
+                                    <label class="all_checks_radio">Male
+                                        <input type="radio" name="sg_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="all_checks_radio">Female
+                                        <input type="radio" name="sg_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="all_checks_radio">Other
+                                        <input type="radio" name="sg_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Nationality -->
+                        <div class="nation_contact for_top">
+                            <h4 class="radio_p">Nationality</h4>
+                            <ul class="for_ul_top">
+                                <li>
+                                    <label class="all_checks_radio">Singaporean
+                                        <input type="radio" name="sn_radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <div class="others">
+                                        <label class="all_checks_radio">Other:
+                                            <input type="radio" name="sn_radio" >
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <input type="text" class="dim">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Relationship with applicate -->
+                        <div class="relationship for_top">
+                            <label  for="relationship" class="label_name">Relationship with applicate</label>
+                            <input type="text" id="relationship" class="full_width" placeholder="Type"/>
+                        </div>
+                        <!-- Dietary  Restrictions-->
+                        <div class="dietary for_top">
+                            <label  for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
+                            <input type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..."/>
+                        </div>
+                    </div>
+                </div>
+                <div class="files_upload">
+                   <div class="f_container">
+                        <div class="inner_container">
+                            <div class="img_upload">
+                                <label for="upload_avatar"  class="upload_label">Please upload a photo that shows all applicate in the photo</label>
+                                <input type="file" name="upload_avatar" accept="image/png, image/jpeg" class="full_width" />
+                            </div>
+                            <div class="person_name for_top">
+                                <label  for="person" class="upload_label">The full name of the name who will receives the trip to Japan as their birthday gift</label>
+                                <div class="fullname">
+                                    <input type="text" id="person" class="fname" placeholder="First Name" />
+                                    <input type="text" placeholder="Last Name" />
+                                </div>
+                            </div>
+                            <div class="traveling_period for_top">
+                                <p class="upload_label">Please let us know your preferred traveling period</p> 
+                                <ul class="for_ul_top">
+                                    <li>
+                                        <label class="all_checks_label">Early January 2024
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Mid January 2024
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Late January 2024
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="traveling_period for_top">
+                                <p class="upload_label">Please upload your introductory video below</p>
+                                <span class="click_upload">Click here to upload</span>
+                                <p class="intro_vd">Have you uploaded your introductory video?</p>
+                                <div class="option">
+                                <label class="all_checks_label">Yes
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            </div>
+                            <div class="pr_vdo_uploader">
+                                <div class="pr_modal_inner">
+                                    <span class="close"></span>
+                                    <div class="pr_vdo_item">
+                                        <iframe src="https://app.box.com/f/c29a6af23f4049a09cde0f088f728b93" height="550" width="800"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="traveling_period for_top">
+                                <p class="upload_label">Please let us know how you came across this campaign</p> 
+                                <ul class="for_ul_top">
+                                    <li>
+                                        <label class="all_checks_label">JNTO's Website (japan.travel)
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">JNTO's Facebook (Visit Japan Now)
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">JNTO's Instagram (@visitjapansg)
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">JAPAN by Japan EDM
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Japan Travel Fair
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Social media
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Online news sites
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Radio
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="all_checks_label">Friends/Family
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <div class="others">
+                                            <label class="all_checks_label">Other:
+                                                <input type="checkbox" class="selected" >
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <input type="text" class="dim remove_dim">
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+                <div class="summit_contact">
+                    <div class="f_container">
+                        <div class="inner_container">
+                            <div class="inner_submit">
+                                <div class="policy">
+                                    <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="submit_btn">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="covid_contact">
+                <div class="f_container">
+                    <p>Get Advisory Information COVID-19 situation in Japan</p>
+                    <a href="#" class="all_bt">Go to Advisory Information website</a>
+                </div>
+            </div>
+            <div class="home_contact">
+                <div class="f_container">
+                    <ul class="nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Gift an unforgettable birthday in Japan​!</a></li>
+                        <li><a href="#">Application form for Hiroshima and Sanin route</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="jnto ">
+                <div class="f_container">
+                  <a href="#"><figure class="logo"><img src="img/JNTO_logo.png" alt="JNTO" /></figure></a>
+                  <ul class="contact">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a> </li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">JbyJ intro</a></li>
+                  </ul>
+                  <div class="social">
+                    <a href="#" class="facebook">
+                      <figure><img src="img/facebook_logo.jpg" alt="facebook" />
+                      </figure>
+                    </a>
+                    <a href="#" class="instagram">
+                      <figure><img src="img/ig.png" alt="instagram"></figure>
+                    </a>
+                  </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="f_container">
+                    <p>Copyright @ Japan National Tourists Organization. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/common.js"></script>
+</body>
+</html>
