@@ -63,12 +63,12 @@ $kyushu->storeArray($_POST, $_FILES);
                             <label for="dateOfBirth" class="label_name">Date of Birth</label>
                             <input type="date" id="dateOfBirth" class="full_width" name="dob" />
                             <?php if (isset($_SESSION['dob'])) {
-                                    ?>
-                                        <span class="for_err"> <?php echo $_SESSION['dob']; ?></span>
-                                    <?php
-                                    }
-                                    unset($_SESSION['dob']);
-                                    ?>
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['dob']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['dob']);
+                            ?>
                         </div>
                         <!-- Gender -->
                         <div class="gender_contact for_top">
@@ -93,6 +93,13 @@ $kyushu->storeArray($_POST, $_FILES);
                                     </label>
                                 </li>
                             </ul>
+                            <?php if (isset($_SESSION['gender'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['gender']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['gender']);
+                            ?>
                         </div>
                         <!-- Nationality -->
                         <div class="nation_contact for_top">
@@ -114,23 +121,51 @@ $kyushu->storeArray($_POST, $_FILES);
                                     </div>
                                 </li>
                             </ul>
+                            <?php if (isset($_SESSION['nationality'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['nationality']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['nationality']);
+                            ?>
                         </div>
                         <!-- Occupation -->
                         <div class="occupation for_top">
                             <label for="occupation" class="label_name">Occupation</label>
                             <input type="text" id="occupation" class="full_width" placeholder="Type..." name="occupation" />
+                            <?php if (isset($_SESSION['occupation'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['occupation']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['occupation']);
+                            ?>
                         </div>
                         <!-- Religion -->
                         <div class="religion for_top">
                             <label for="religion" class="label_name">Religion</label>
                             <p class="for_ul_top reli_sns">(We will try to caster to religion preferences, but should you not wish to specify, please answer "prefer not to say")</p>
                             <input type="text" id="religion" class="full_width reli_sns_input" placeholder="Type..." name="religion" />
+                            <?php if (isset($_SESSION['religion'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['religion']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['religion']);
+                            ?>
                         </div>
                         <!-- SNS username -->
                         <div class="sns_username for_top">
                             <label for="sns" class="label_name">SNS username <span class="label_rt">(Facebook/Instagram/Tiktok/Youtube)</span></label>
                             <p class="for_ul_top reli_sns">*Leave the option blank if you do not have any Social Media account</p>
                             <input type="text" id="sns" class="full_width reli_sns_input" placeholder="Type..." name="sns_username" />
+                            <?php if (isset($_SESSION['sns_username'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['sns_username']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['sns_username']);
+                            ?>
                         </div>
                         <!-- have been to japan -->
                         <div class="been_jp for_top">
@@ -167,6 +202,13 @@ $kyushu->storeArray($_POST, $_FILES);
                                     </label>
                                 </li>
                             </ul>
+                            <?php if (isset($_SESSION['japan_before'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['japan_before']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['japan_before']);
+                            ?>
                         </div>
                         <!-- Region visited in past Japan travels -->
                         <div class="visited_japan for_top">
@@ -492,22 +534,50 @@ $kyushu->storeArray($_POST, $_FILES);
                                         </label>
                                     </li>
                                 </ul>
+                                <?php if (isset($_SESSION['region'])) {
+                                ?>
+                                    <span class="for_err"> <?php echo $_SESSION['region']; ?></span>
+                                <?php
+                                }
+                                unset($_SESSION['region']);
+                                ?>
                             </div>
                         </div>
                         <!-- Dietary  Restrictions-->
                         <div class="dietary for_top">
                             <label for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
                             <input type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..." name="restriction" />
+                            <?php if (isset($_SESSION['restriction'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['restriction']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['restriction']);
+                            ?>
                         </div>
                         <!-- Email -->
                         <div class="email for_top">
                             <label for="email" class="label_name">Email Address</label>
                             <input type="email" id="email" class="full_width" placeholder="Email" name="email" />
+                            <?php if (isset($_SESSION['email'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['email']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['email']);
+                            ?>
                         </div>
                         <!-- Phone Number -->
                         <div class="phone for_top">
                             <label for="phone" class="label_name">Phone Number</label>
                             <input type="text" id="phone" class="full_width" placeholder="Phone Number" name="ph_num" />
+                            <?php if (isset($_SESSION['ph_num'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['ph_num']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['ph_num']);
+                            ?>
                         </div>
 
                         <hr class="for_top">
@@ -518,14 +588,39 @@ $kyushu->storeArray($_POST, $_FILES);
                         <div class="name_contact for_top">
                             <label for="name" class="label_name">Full Name</label>
                             <div class="fullname">
-                                <input type="text" id="name" class="fname" placeholder="First Name" name="first_name_tc" />
-                                <input type="text" placeholder="Last Name" name="last_name_tc" />
+                                <div class="fname">
+                                    <input type="text" id="name" class="fname" placeholder="First Name" name="first_name_tc" />
+                                    <?php if (isset($_SESSION['first_name_tc'])) {
+                                    ?>
+                                        <span class="for_err"> <?php echo $_SESSION['first_name_tc']; ?></span>
+                                    <?php
+                                    }
+                                    unset($_SESSION['first_name_tc']);
+                                    ?>
+                                </div>
+                                <div class="lname">
+                                    <input type="text" placeholder="Last Name" name="last_name_tc" />
+                                    <?php if (isset($_SESSION['last_name_tc'])) {
+                                    ?>
+                                        <span class="for_err"> <?php echo $_SESSION['last_name_tc']; ?></span>
+                                    <?php
+                                    }
+                                    unset($_SESSION['last_name_tc']);
+                                    ?>
+                                </div>
                             </div>
                         </div>
                         <!-- Date of Birth -->
                         <div class="dob_contact for_top">
                             <label for="dateOfBirth" class="label_name">Date of Birth</label>
                             <input type="date" id="dateOfBirth" class="full_width" name="dob_tc" />
+                            <?php if (isset($_SESSION['dob_tc'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['dob_tc']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['dob_tc']);
+                            ?>
                         </div>
                         <!-- Gender -->
                         <div class="gender_contact for_top">
@@ -550,6 +645,13 @@ $kyushu->storeArray($_POST, $_FILES);
                                     </label>
                                 </li>
                             </ul>
+                            <?php if (isset($_SESSION['gender_tc'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['gender_tc']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['gender_tc']);
+                            ?>
                         </div>
                         <!-- Nationality -->
                         <div class="nation_contact for_top">
@@ -571,16 +673,37 @@ $kyushu->storeArray($_POST, $_FILES);
                                     </div>
                                 </li>
                             </ul>
+                            <?php if (isset($_SESSION['nationality_tc'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['nationality_tc']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['nationality_tc']);
+                            ?>
                         </div>
                         <!-- Relationship with applicate -->
                         <div class="relationship for_top">
                             <label for="relationship" class="label_name">Relationship with applicate</label>
                             <input type="text" id="relationship" class="full_width" placeholder="Type" name="relationship_tc" />
+                            <?php if (isset($_SESSION['relationship_tc'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['relationship_tc']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['relationship_tc']);
+                            ?>
                         </div>
                         <!-- Dietary  Restrictions-->
                         <div class="dietary for_top">
                             <label for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
                             <input type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..." name="restriction_tc" />
+                            <?php if (isset($_SESSION['restriction_tc'])) {
+                            ?>
+                                <span class="for_err"> <?php echo $_SESSION['restriction_tc']; ?></span>
+                            <?php
+                            }
+                            unset($_SESSION['restriction_tc']);
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -596,13 +719,32 @@ $kyushu->storeArray($_POST, $_FILES);
                                     <p> <?php echo $_SESSION['image']; ?></p>
                                 <?php
                                 }
+                                unset($_SESSION['image']);
                                 ?>
                             </div>
                             <div class="person_name for_top">
                                 <label for="person" class="upload_label">The full name of the name who will receives the trip to Japan as their birthday gift</label>
                                 <div class="fullname">
-                                    <input type="text" id="person" class="fname" placeholder="First Name" name="first_name_jp" />
-                                    <input type="text" placeholder="Last Name" name="last_name_jp" />
+                                    <div class="fname">
+                                        <input type="text" id="person" class="fname" placeholder="First Name" name="first_name_jp" />
+                                        <?php if (isset($_SESSION['first_name_jp'])) {
+                                        ?>
+                                            <span class="for_err"> <?php echo $_SESSION['first_name_jp']; ?></span>
+                                        <?php
+                                        }
+                                        unset($_SESSION['first_name_jp']);
+                                        ?>
+                                    </div>
+                                    <div class="lname">
+                                        <input type="text" placeholder="Last Name" name="last_name_jp" />
+                                        <?php if (isset($_SESSION['last_name_jp'])) {
+                                        ?>
+                                            <span class="for_err"> <?php echo $_SESSION['last_name_jp']; ?></span>
+                                        <?php
+                                        }
+                                        unset($_SESSION['last_name_jp']);
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                             <div class="traveling_period for_top">
@@ -627,6 +769,13 @@ $kyushu->storeArray($_POST, $_FILES);
                                         </label>
                                     </li>
                                 </ul>
+                                <?php if (isset($_SESSION['period'])) {
+                                ?>
+                                    <span class="for_err"> <?php echo $_SESSION['period']; ?></span>
+                                <?php
+                                }
+                                unset($_SESSION['period']);
+                                ?>
                             </div>
                             <div class="traveling_period for_top">
                                 <p class="upload_label">Please upload your introductory video below</p>
@@ -636,6 +785,13 @@ $kyushu->storeArray($_POST, $_FILES);
                                     <input type="checkbox" name="video_upload" value="yes">
                                     <span class="checkmark"></span>
                                 </label>
+                                <?php if (isset($_SESSION['video_upload'])) {
+                                ?>
+                                    <span class="for_err"> <?php echo $_SESSION['video_upload']; ?></span>
+                                <?php
+                                }
+                                unset($_SESSION['video_upload']);
+                                ?>
                             </div>
                             <div class="traveling_period for_top">
                                 <p class="upload_label">Please let us know how you came across this campaign</p>
@@ -704,6 +860,13 @@ $kyushu->storeArray($_POST, $_FILES);
                                         </div>
                                     </li>
                                 </ul>
+                                <?php if (isset($_SESSION['campaign'])) {
+                                ?>
+                                    <span class="for_err"> <?php echo $_SESSION['campaign']; ?></span>
+                                <?php
+                                }
+                                unset($_SESSION['campaign']);
+                                ?>
                             </div>
                         </div>
                     </div>

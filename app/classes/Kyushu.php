@@ -97,8 +97,7 @@ class Kyushu extends DB
                             'travel_period' => $period,
                             'video_upload' => $video_upload,
                             'know_campaign' => $campaign,
-                            'terms&conditions' => $termsCondition
-
+                            // 'terms&conditions' => $termsCondition
                         ];
                     echo "<pre>";
                     var_dump($user_data);
@@ -121,6 +120,7 @@ class Kyushu extends DB
         try {
             $no_error = true;
 
+            //Image Validate Start
             $image_size = $files['image']['size'];
             $image_name = $files['image']['name'];
             $image_ext = pathinfo($files["image"]["name"], PATHINFO_EXTENSION);
@@ -135,6 +135,7 @@ class Kyushu extends DB
                 $_SESSION['image'] = 'Image Error';
                 $no_error=false;
             }
+            //image validate end
 
             if (empty($post['first_name'])) {
                 $_SESSION['first_name'] = "Please fills the required field.";
@@ -151,7 +152,49 @@ class Kyushu extends DB
                 $no_error = false;
             }
             
-           
+           if (empty($post['gender'])) {
+            $_SESSION['gender'] = "Please fills the required field.";
+           }
+            
+           if (empty($post['nationality'])) {
+            $_SESSION['nationality'] = "Please fills the required field.";
+           }
+            
+           if (empty($post['occupation'])) {
+            $_SESSION['occupation'] = "Please fills the required field.";
+           }
+            
+           if (empty($post['religion'])) {
+            $_SESSION['religion'] = "Please fills the required field.";
+           }
+            
+           if (empty($post['japan_before'])) {
+            $_SESSION['japan_before'] = "Please fills the required field.";
+           }
+            
+           if (empty($post['region'])) {
+            $_SESSION['region'] = "Please fills the required field.";
+           }
+            
+           if (empty($post['restriction'])) {
+            $_SESSION['restriction'] = "Please fills the required field.";
+           }
+            
+           if (empty($post['email'])) {
+            $_SESSION['email'] = "Please fills the required field.";
+           }
+            
+           if (empty($post['ph_num'])) {
+            $_SESSION['ph_num'] = "Please fills the required field.";
+           }
+            
+           if (empty($post['ph_num'])) {
+            $_SESSION['ph_num'] = "Please fills the required field.";
+           }
+            
+           if (empty($post['ph_num'])) {
+            $_SESSION['ph_num'] = "Please fills the required field.";
+           }
 
             return $no_error;
         } catch (PDOException $e) {
