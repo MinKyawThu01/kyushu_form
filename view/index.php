@@ -777,22 +777,34 @@ $kyushu->storeArray($_POST, $_FILES);
                                 unset($_SESSION['period']);
                                 ?>
                             </div>
+                            
                             <div class="traveling_period for_top">
                                 <p class="upload_label">Please upload your introductory video below</p>
-                                <input type="file"><span class="click_upload">Click here to upload</span>
+                                <span class="click_upload">Click here to upload</span>
                                 <p class="intro_vd">Have you uploaded your introductory video?</p>
-                                <label class="all_checks_label">Yes
-                                    <input type="checkbox" name="video_upload" value="yes">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <?php if (isset($_SESSION['video_upload'])) {
-                                ?>
-                                    <span class="for_err"> <?php echo $_SESSION['video_upload']; ?></span>
-                                <?php
-                                }
-                                unset($_SESSION['video_upload']);
-                                ?>
+                                <div class="option">
+                                    <label class="all_checks_label">Yes
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <?php if (isset($_SESSION['video_upload'])) {
+                                    ?>
+                                        <span class="for_err"> <?php echo $_SESSION['video_upload']; ?></span>
+                                    <?php
+                                    }
+                                    unset($_SESSION['video_upload']);
+                                    ?>
+                                </div>
                             </div>
+                            <div class="pr_vdo_uploader">
+                                <div class="pr_modal_inner">
+                                    <span class="close"></span>
+                                    <div class="pr_vdo_item">
+                                        <iframe src="https://app.box.com/f/c29a6af23f4049a09cde0f088f728b93" height="550" width="800"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="traveling_period for_top">
                                 <p class="upload_label">Please let us know how you came across this campaign</p>
                                 <ul class="for_ul_top">
@@ -932,6 +944,7 @@ $kyushu->storeArray($_POST, $_FILES);
             </div>
         </div>
     </div>
+    <script src="../assets/js/common.js"></script>
 </body>
 
 </html>
