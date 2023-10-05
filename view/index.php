@@ -37,7 +37,7 @@ $kyushu->storeArray($_POST, $_FILES);
                             <label for="name" class="label_name">Full Name</label>
                             <div class="fullname">
                                 <div class="fname">
-                                    <input type="text" id="name" class="fname" placeholder="First Name" name="first_name" />
+                                    <input type="text" id="name" class="fname" placeholder="First Name" name="first_name" value="<?php if(isset($_SESSION['old_fn'])) { echo $_SESSION['old_fn'];} ?>"/>
                                     <?php if (isset($_SESSION['first_name'])) {
                                     ?>
                                         <span class="for_err"> <?php echo $_SESSION['first_name']; ?></span>
@@ -47,7 +47,7 @@ $kyushu->storeArray($_POST, $_FILES);
                                     ?>
                                 </div>
                                 <div class="lname">
-                                    <input type="text" placeholder="Last Name" name="last_name" />
+                                    <input type="text" placeholder="Last Name" name="last_name" value="<?php if(isset($_SESSION['old_ln'])) { echo $_SESSION['old_ln'];} ?>" />
                                     <?php if (isset($_SESSION['last_name'])) {
                                     ?>
                                         <span class="for_err"> <?php echo $_SESSION['last_name']; ?></span>
@@ -60,8 +60,8 @@ $kyushu->storeArray($_POST, $_FILES);
                         </div>
                         <!-- Date of Birth -->
                         <div class="dob_contact for_top">
-                            <label for="dateOfBirth" class="label_name">Date of Birth</label>
-                            <input type="date" id="dateOfBirth" class="full_width" name="dob" />
+                            <label for="dateOfBirth" class="label_name">Date of Birth <?= var_dump($_POST['dob']) ?> </label>
+                            <input type="date" id="dateOfBirth" class="full_width" name="dob" value="<?php if(isset($_SESSION['old_dob'])) { echo $_SESSION['old_dob'];} ?>" />
                             <?php if (isset($_SESSION['dob'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['dob']; ?></span>
@@ -74,24 +74,49 @@ $kyushu->storeArray($_POST, $_FILES);
                         <div class="gender_contact for_top">
                             <p class="radio_p">Gender</p>
                             <ul class="for_ul_top">
+                                <?php if(isset($_SESSION['old_gender'])) {
+                                    ?>
+                                    
                                 <li>
                                     <label class="all_checks_radio">Male
-                                        <input type="radio" name="gender" value="male">
+                                        <input type="radio" name="gender" value="male" <?php if($_SESSION['old_gender'] == 'male') {echo 'checked';} ?> >
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="all_checks_radio">Female
-                                        <input type="radio" name="gender" value="female">
+                                        <input type="radio" name="gender" value="female" <?php if($_SESSION['old_gender'] == 'female') {echo 'checked';} ?> >
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="all_checks_radio">Other
-                                        <input type="radio" name="gender" value="other">
+                                        <input type="radio" name="gender" value="other" <?php if($_SESSION['old_gender'] == 'other') {echo 'checked';} ?> >
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
+                                <?php
+                                } else {
+                                    ?>
+                                     <li>
+                                    <label class="all_checks_radio">Male
+                                        <input type="radio" name="gender" value="male" >
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="all_checks_radio">Female
+                                        <input type="radio" name="gender" value="female" >
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="all_checks_radio">Other
+                                        <input type="radio" name="gender" value="other"  >
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                    <?php }?>
                             </ul>
                             <?php if (isset($_SESSION['gender'])) {
                             ?>
@@ -105,6 +130,26 @@ $kyushu->storeArray($_POST, $_FILES);
                         <div class="nation_contact for_top">
                             <h4 class="radio_p">Nationality</h4>
                             <ul class="for_ul_top">
+                                <?php if(isset($_SESSION['old_nati']) || isset($_SESSION['old_nati_cc'])) {
+                                    ?>
+                                <li>
+                                    <label class="all_checks_radio">Singaporean
+                                        <input type="radio" name="nationality" value="singaporean" <?php if($_SESSION['old_nati'] == 'singaporean') {echo 'checked';}?>>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <div class="others">
+                                        <label class="all_checks_radio">Other:
+                                            <input type="radio" name="nationality" value="other" <?php if($_SESSION['old_nati'] == 'other') {echo 'checked';}?>>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <input type="text" class="dim" name="custom_country" disabled <?php echo $_SESSION['old_nati_cc'] ?>>
+                                    </div>
+                                </li>
+                                <?php
+                             } else {
+                                ?>
                                 <li>
                                     <label class="all_checks_radio">Singaporean
                                         <input type="radio" name="nationality" value="singaporean">
@@ -117,9 +162,10 @@ $kyushu->storeArray($_POST, $_FILES);
                                             <input type="radio" name="nationality" value="other">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <input type="text" class="dim" name="custom_country">
+                                        <input type="text" class="dim" name="custom_country" disabled>
                                     </div>
                                 </li>
+                                <?php } ?>
                             </ul>
                             <?php if (isset($_SESSION['nationality'])) {
                             ?>
@@ -558,7 +604,7 @@ $kyushu->storeArray($_POST, $_FILES);
                         <!-- Email -->
                         <div class="email for_top">
                             <label for="email" class="label_name">Email Address</label>
-                            <input type="email" id="email" class="full_width" placeholder="Email" name="email" />
+                            <input type="text" id="email" class="full_width" placeholder="Email" name="email" />
                             <?php if (isset($_SESSION['email'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['email']; ?></span>
@@ -669,7 +715,7 @@ $kyushu->storeArray($_POST, $_FILES);
                                             <input type="radio" name="nationality_tc" value="other">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <input type="text" class="dim" name="custom_country_tc">
+                                        <input type="text" class="dim" name="custom_country_tc" disabled>
                                     </div>
                                 </li>
                             </ul>
@@ -784,7 +830,7 @@ $kyushu->storeArray($_POST, $_FILES);
                                 <p class="intro_vd">Have you uploaded your introductory video?</p>
                                 <div class="option">
                                     <label class="all_checks_label">Yes
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="video_upload" value="yes">
                                         <span class="checkmark"></span>
                                     </label>
                                     <?php if (isset($_SESSION['video_upload'])) {
@@ -865,10 +911,10 @@ $kyushu->storeArray($_POST, $_FILES);
                                     <li>
                                         <div class="others">
                                             <label class="all_checks_label">Other:
-                                                <input type="checkbox" name="campaign[]" value="other">
+                                                <input type="checkbox" class="selected" name="campaign[]" value="other">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class="dim">
+                                            <input type="text" class="dim remove_dim" name="custom_campaign" >
                                         </div>
                                     </li>
                                 </ul>

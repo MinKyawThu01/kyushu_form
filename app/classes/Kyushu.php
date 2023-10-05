@@ -15,8 +15,8 @@ class Kyushu extends DB
     {
         try {
 
-            if (isset($post['submit'])) { 
-                if ($this->validate($post, $files)){
+            if (isset($post['submit'])) {
+                if ($this->validate($post, $files)) {
                     $first_name = htmlspecialchars($post['first_name']);
                     $last_name = htmlspecialchars($post['last_name']);
                     $dob = htmlspecialchars($post['dob']);
@@ -46,7 +46,8 @@ class Kyushu extends DB
                     $period = $post['period'];
                     $video_upload = $post['video_upload'];
                     $campaign = $post['campaign'];
-                    $termsCondition = $post['termsConditions'];
+                    $custom_campaign = $post['custom_campaign'];
+                    // $termsCondition = $post['termsConditions'];
 
                     // image to base64 code
                     $tmp_img_name = $files['image']['tmp_name'];
@@ -63,6 +64,12 @@ class Kyushu extends DB
                         $custom_data_tc = $custom_country_tc;
                     } else {
                         $custom_data_tc = $nationality_tc;
+                    }
+
+                    if ($campaign == "other" && isset($custom_campaign)) {
+                        $custom_data_cp = $custom_campaign;
+                    } else {
+                        $custom_data_cp = $campaign;
                     }
 
                     if (!empty($files['image']['name'])) {
@@ -96,7 +103,8 @@ class Kyushu extends DB
                             'last_name_japan_gift' => $last_name_jp,
                             'travel_period' => $period,
                             'video_upload' => $video_upload,
-                            'know_campaign' => $campaign,
+                            'know_campaign' => $custom_data_cp,
+                            'custom_know_campaign' => $custom_campaign
                             // 'terms&conditions' => $termsCondition
                         ];
                     echo "<pre>";
@@ -105,10 +113,9 @@ class Kyushu extends DB
                     die();
                     return $user_data;
                 }
-            } 
+            }
 
             return false;
-
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -131,70 +138,306 @@ class Kyushu extends DB
                 $no_error = false;
             }
 
-            if ($image_size > 40000000 ) {
+            if ($image_size > 40000000) {
                 $_SESSION['image'] = 'Image Error';
-                $no_error=false;
+                $no_error = false;
             }
             //image validate end
 
+            //date 
+            $dob = new DateTime($post['dob']);
+            $dob_tc = new DateTime($post['dob_tc']);
+            $current  = new DateTime('today');
+            $age = $dob->diff($current)->y;
+            $age_tc = $dob_tc->diff($current)->y;
+
             if (empty($post['first_name'])) {
                 $_SESSION['first_name'] = "Please fills the required field.";
+                $_SESSION['old_fn'] = $post['first_name'];
+                $no_error = false;
+            } else {
+                $_SESSION['old_fn'] = $post['first_name'];
                 $no_error = false;
             }
 
+            if (is_numeric($post['first_name'])) {
+                $_SESSION['first_name'] = "First name cannot be number.";
+                $no_error = false;
+            }
+
+            if (strlen($post['first_name']) > 128) {
+                $_SESSION['first_name'] = "First Name character can't be more than 128.";
+                $no_error = false;
+            }
+
+
             if (empty($post['last_name'])) {
                 $_SESSION['last_name'] = "Please fills the required field.";
+                $_SESSION['old_ln'] = $post['last_name'];
+                $no_error = false;
+            } else {
+                $_SESSION['old_ln'] = $post['last_name'];
+                $no_error = false;
+            }
+
+            if (is_numeric($post['last_name'])) {
+                $_SESSION['last_name'] = "First name cannot be number.";
+                $no_error = false;
+            }
+
+            if (strlen($post['last_name']) > 128) {
+                $_SESSION['last_name'] = "Last Name character can't be more than 128.";
                 $no_error = false;
             }
 
             if (empty($post['dob'])) {
                 $_SESSION['dob'] = "Please fills the required field.";
+                $_SESSION['old_dob'] = $post['dob'];
+                $no_error = false;
+            } else {
+                $_SESSION['old_dob'] = $post['dob'];
                 $no_error = false;
             }
-            
-           if (empty($post['gender'])) {
-            $_SESSION['gender'] = "Please fills the required field.";
-           }
-            
-           if (empty($post['nationality'])) {
-            $_SESSION['nationality'] = "Please fills the required field.";
-           }
-            
-           if (empty($post['occupation'])) {
-            $_SESSION['occupation'] = "Please fills the required field.";
-           }
-            
-           if (empty($post['religion'])) {
-            $_SESSION['religion'] = "Please fills the required field.";
-           }
-            
-           if (empty($post['japan_before'])) {
-            $_SESSION['japan_before'] = "Please fills the required field.";
-           }
-            
-           if (empty($post['region'])) {
-            $_SESSION['region'] = "Please fills the required field.";
-           }
-            
-           if (empty($post['restriction'])) {
-            $_SESSION['restriction'] = "Please fills the required field.";
-           }
-            
-           if (empty($post['email'])) {
-            $_SESSION['email'] = "Please fills the required field.";
-           }
-            
-           if (empty($post['ph_num'])) {
-            $_SESSION['ph_num'] = "Please fills the required field.";
-           }
-            
-           if (empty($post['ph_num'])) {
-            $_SESSION['ph_num'] = "Please fills the required field.";
-           }
-            
-           if (empty($post['ph_num'])) {
-            $_SESSION['ph_num'] = "Please fills the required field.";
-           }
+
+            if ($age > 120) {
+                $_SESSION ['dob'] = 'You cannot be older than 120 years.';
+                $no_error = true;
+            }
+
+            if ($post['dob'] >= date('Y-m-d')) {
+                $_SESSION ['dob'] = 'Date of birth cannot be today or future.';
+                $no_error = true;
+            }
+
+            if (empty($post['gender'])) {
+                $_SESSION['gender'] = "Please fills the required field.";
+                $no_error = false;
+            } else {
+                $_SESSION['old_gender'] = $post['gender'];
+                $no_error = false;
+            }
+
+            if (empty($post['nationality'])) {
+                $_SESSION['nationality'] = "Please fills the required field.";
+                $_SESSION['old_nati'] = $post['nationality'] ;
+                $no_error = false;
+            } else if ($post['nationality'] == 'other' && empty($post['custom_country'])) {
+                $_SESSION['nationality'] = "Please fills your nationality in other field.";
+                $no_error = false;
+            } else if (strlen($post['custom_country']) > 128) {
+                $_SESSION['nationality'] = "Nationality character can't be more than 128.";
+                $no_error = false;
+            } else if ($post['nationality'] == 'other') {
+                $_SESSION['old_nati_cc'] = $post['custom_country'];
+                $no_error = false;
+            } else {
+                $_SESSION['old_nati'] = $post['nationality'] ;
+                $no_error = false;
+            }
+
+            if (empty($post['occupation'])) {
+                $_SESSION['occupation'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (strlen($post['occupation']) > 400) {
+                $_SESSION['occupation'] = "Occupation character can't be more than 400.";
+                $no_error = false;
+            }
+
+            if (empty($post['religion'])) {
+                $_SESSION['religion'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (strlen($post['religion']) > 400) {
+                $_SESSION['religion'] = "Religion character can't be more than 400.";
+                $no_error = false;
+            }
+
+            if (strlen($post['sns_username']) > 128) {
+                $_SESSION['religion'] = "Username character can't be more than 128.";
+                $no_error = false;
+            }
+
+
+            if (empty($post['japan_before'])) {
+                $_SESSION['japan_before'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (empty($post['region'])) {
+                $_SESSION['region'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (empty($post['restriction'])) {
+                $_SESSION['restriction'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (strlen($post['restriction']) > 400) {
+                $_SESSION['restriction'] = "Character can't be more than 400.";
+                $no_error = false;
+            }
+
+            if (empty($post['email'])) {
+                $_SESSION['email'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL) && !empty($post['email'])) {
+                $_SESSION['email'] = "Please fills valid Email address.";
+                $no_error = false;
+            }
+
+            if (empty($post['ph_num'])) {
+                $_SESSION['ph_num'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (!preg_match('/^([0-9]{10})$/', $post['ph_num']) && !empty($post['ph_num'])) {
+                $_SESSION['ph_num'] = "Please fills the valid phone number.";
+                $no_error = false;
+            }
+
+            if (empty($post['first_name_tc'])) {
+                $_SESSION['first_name_tc'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (is_numeric($post['first_name_tc'])) {
+                $_SESSION['first_name_tc'] = "First name can't be number.";
+                $no_error = false;
+            }
+
+            if (strlen($post['first_name_tc']) > 128) {
+                $_SESSION['first_name_tc'] = "Last Name character can't be more than 128.";
+                $no_error = false;
+            }
+
+            if (empty($post['last_name_tc'])) {
+                $_SESSION['last_name_tc'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (is_numeric($post['last_name_tc'])) {
+                $_SESSION['last_name_tc'] = "Last Name can't be number.";
+                $no_error = false;
+            }
+
+            if (strlen($post['last_name_tc']) > 128) {
+                $_SESSION['last_name_tc'] = "Last Name character can't be more than 128.";
+                $no_error = false;
+            }
+
+            if (empty($post['dob_tc'])) {
+                $_SESSION['dob_tc'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if ($age_tc > 120) {
+                $_SESSION ['dob_tc'] = 'The age cannot be older than 120 years.';
+                $no_error = true;
+            }
+
+            if ($post['dob_tc'] >= date('Y-m-d')) {
+                $_SESSION ['dob_tc'] = 'Date of birth cannot be today or future.';
+                $no_error = true;
+            }
+
+            if (empty($post['gender_tc'])) {
+                $_SESSION['gender_tc'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+
+            if (empty($post['nationality_tc'])) {
+                $_SESSION['nationality_tc'] = "Please fills the required field.";
+                $no_error = false;
+            } else if ($post['nationality_tc'] == 'other' && empty($post['custom_country_tc'])) {
+                $_SESSION['nationality_tc'] = "Please fills your nationality in other field.";
+                $no_error = false;
+            } else if (strlen($post['custom_country_tc']) > 128) {
+                $_SESSION['nationality_tc'] = "Nationality can't be more than 128.";
+                $no_error = false;
+            }
+
+            if (empty($post['relationship_tc'])) {
+                $_SESSION['relationship_tc'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (is_numeric($post['relationship_tc'])) {
+                $_SESSION['relationship_tc'] = "The field cannot be number.";
+                $no_error = false;
+            }
+
+            if (strlen($post['relationship_tc']) > 128) {
+                $_SESSION['relationship_tc'] = "This field of character can't be more than 128.";
+                $no_error = false;
+            }
+
+            if (empty($post['restriction_tc'])) {
+                $_SESSION['restriction_tc'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (is_numeric($post['restriction_tc'])) {
+                $_SESSION['restriction_tc'] = "The field cannot be number.";
+                $no_error = false;
+            }
+
+            if (strlen($post['restriction_tc']) > 400) {
+                $_SESSION['restriction_tc'] = "This field of character can't be more than 400.";
+                $no_error = false;
+            }
+
+            if (empty($post['first_name_jp'])) {
+                $_SESSION['first_name_jp'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (strlen($post['first_name_jp']) > 128) {
+                $_SESSION['first_name_jp'] = "First Name character can't be more than 128.";
+                $no_error = false;
+            }
+
+            if (is_numeric($post['first_name_jp'])) {
+                $_SESSION['first_name_jp'] = "First name cannot be number.";
+                $no_error = false;
+            }
+
+            if (empty($post['last_name_jp'])) {
+                $_SESSION['last_name_jp'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (strlen($post['last_name_jp']) > 128) {
+                $_SESSION['last_name_jp'] = "Last Name character can't be more than 128.";
+                $no_error = false;
+            }
+
+            if (is_numeric($post['last_name_jp'])) {
+                $_SESSION['last_name_jp'] = "Last name cannot be number.";
+                $no_error = false;
+            }
+
+            if (empty($post['period'])) {
+                $_SESSION['period'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (empty($post['video_upload'])) {
+                $_SESSION['video_upload'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
+            if (empty($post['campaign'])) {
+                $_SESSION['campaign'] = "Please fills the required field.";
+                $no_error = false;
+            }
+
 
             return $no_error;
         } catch (PDOException $e) {
