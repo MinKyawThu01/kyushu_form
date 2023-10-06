@@ -127,6 +127,9 @@ ul li {
 .container .form_container .f_container .inner_container .visited_japan {
     width: 100%;
 }
+.dis_ragion {
+    pointer-events: none;
+}
 .container .form_container .f_container .inner_container .visited_japan .all_checks_contact {
     width: 100%;
     flex-wrap: wrap;
@@ -299,8 +302,13 @@ font-size: 30px;
 background-color: #808080;
 color: #fff;
 border: none;
-cursor: pointer;
 font-weight: bold;
+transition: background-color .4s;
+}
+.container .form_container .summit_contact .f_container .inner_container .show_pointer {
+    cursor: pointer;
+    background-color: #000;
+    transition: background-color .4s;
 }
 .container .form_container .summit_contact .f_container .inner_container .submit_btn:hover {
 opacity: 0.9;

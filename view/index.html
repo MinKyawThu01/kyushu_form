@@ -67,18 +67,18 @@
                             <h4 class="radio_p">Nationality</h4>
                             <ul class="for_ul_top">
                                 <li>
-                                    <label class="all_checks_radio">Singaporean
-                                        <input type="radio" name="n_radio">
+                                    <label class="all_checks_radio others-input">Singaporean
+                                        <input type="radio" name="nation1_radio">
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
                                 <li>
                                     <div class="others">
-                                        <label class="all_checks_radio">Other:
-                                            <input type="radio" name="n_radio" >
+                                        <label class="all_checks_radio others-input">Other:
+                                            <input type="radio" name="nation1_radio">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <input type="text" class="dim">
+                                        <input type="text" class="dim" id="nation_opt1" disabled = "disabled">
                                     </div>
                                 </li>
                             </ul>
@@ -106,31 +106,31 @@
                             <ul class="for_ul_top">
                                 <li>
                                     <label class="all_checks_radio">Never
-                                        <input type="radio" name="j_radio">
+                                        <input type="radio" name="jp_radio" id="never_input" class="c-form_radio">
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="all_checks_radio">One
-                                        <input type="radio" name="j_radio">
+                                        <input type="radio" name="jp_radio" class="c-form_radio">
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="all_checks_radio">Twice
-                                        <input type="radio" name="j_radio">
+                                        <input type="radio" name="jp_radio" class="c-form_radio">
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="all_checks_radio">Thrice
-                                        <input type="radio" name="j_radio">
+                                        <input type="radio" name="jp_radio" class="c-form_radio">
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="all_checks_radio">More than 3 times
-                                        <input type="radio" name="j_radio">
+                                        <input type="radio" name="jp_radio" class="c-form_radio">
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
@@ -521,18 +521,18 @@
                             <h4 class="radio_p">Nationality</h4>
                             <ul class="for_ul_top">
                                 <li>
-                                    <label class="all_checks_radio">Singaporean
-                                        <input type="radio" name="sn_radio">
+                                    <label class="all_checks_radio others-input">Singaporean
+                                        <input type="radio" name="nation2_radio">
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
                                 <li>
                                     <div class="others">
-                                        <label class="all_checks_radio">Other:
-                                            <input type="radio" name="sn_radio" >
+                                        <label class="all_checks_radio others-input">Other:
+                                            <input type="radio" name="nation2_radio">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <input type="text" class="dim">
+                                        <input type="text" class="dim" id="nation_opt2" disabled = "disabled">
                                     </div>
                                 </li>
                             </ul>
@@ -664,11 +664,11 @@
                                     </li>
                                     <li>
                                         <div class="others">
-                                            <label class="all_checks_label">Other:
-                                                <input type="checkbox" class="selected" >
+                                            <label class="all_checks_label others-input">Other:
+                                                <input type="checkbox">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class="dim remove_dim">
+                                            <input type="text" class="dim remove_dim_class">
                                         </div>
                                     </li>
                                 </ul>
@@ -682,11 +682,11 @@
                             <div class="inner_submit">
                                 <div class="policy">
                                     <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
-                                        <input type="checkbox">
+                                        <input type="checkbox" class="policy_input">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-                                <button type="submit" class="submit_btn">Submit</button>
+                                <button type="submit" class="submit_btn" disabled>Submit</button>
                             </div>
                         </div>
                     </div>
@@ -709,7 +709,7 @@
             </div>
             <div class="jnto ">
                 <div class="f_container">
-                  <a href="#"><figure class="logo"><img src="img/JNTO_logo.png" alt="JNTO" /></figure></a>
+                  <a href="#"><figure class="logo"><img src="../assets/img/JNTO_logo.png" alt="JNTO" /></figure></a>
                   <ul class="contact">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">FAQ</a></li>
@@ -719,11 +719,11 @@
                   </ul>
                   <div class="social">
                     <a href="#" class="facebook">
-                      <figure><img src="img/facebook_logo.jpg" alt="facebook" />
+                      <figure><img src="../assets/img/facebook_logo.jpg" alt="facebook" />
                       </figure>
                     </a>
                     <a href="#" class="instagram">
-                      <figure><img src="img/ig.png" alt="instagram"></figure>
+                      <figure><img src="../assets/img/ig.png" alt="instagram"></figure>
                     </a>
                   </div>
                 </div>
