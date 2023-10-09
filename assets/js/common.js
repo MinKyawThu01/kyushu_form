@@ -23,6 +23,7 @@ close_vdo_tag.addEventListener("click", () => {
 // radio and checkbox handler
 other_input.forEach(item => {
     item.addEventListener("click", event => {
+        console.log("helllo")
         if (event.target.tagName == "INPUT") {
             if (event.target.type == "checkbox") {
                 const has_selected = remove_dim_class.classList.contains("has_selected")
@@ -36,7 +37,7 @@ other_input.forEach(item => {
                 }
             } else {
                 if (event.target.parentNode.nextElementSibling == null) {
-                    if (event.target.name == "nation1_radio") {
+                    if (event.target.name == "nationality") {
                         nation_opt1.value = "";
                         nation_opt1.disabled = true;
                         nation_opt1.classList.add("dim");
