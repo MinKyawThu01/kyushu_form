@@ -107,15 +107,13 @@ class Kyushu extends DB
                             'custom_know_campaign' => $custom_campaign
                             // 'terms&conditions' => $termsCondition
                         ];
-                    // echo "<pre>";
-                    // var_dump($user_data);
-                    // echo "</pre>";
-                    // die();
-                    // return $user_data;
+                    echo "<pre>";
+                    var_dump($user_data);
+                    echo "</pre>";
+                    die();
+                    return $user_data;
 
-                    if ($user_data) {
-
-                    }
+                    
                 }
             }
 
@@ -190,7 +188,7 @@ class Kyushu extends DB
             }
 
             if (is_numeric($post['last_name'])) {
-                $_SESSION['last_name'] = "First name cannot be number.";
+                $_SESSION['last_name'] = "Last name cannot be number.";
                 $no_error = false;
             }
 
@@ -277,7 +275,7 @@ class Kyushu extends DB
             }
 
             if (strlen($post['sns_username']) > 128) {
-                $_SESSION['religion'] = "Username character can't be more than 128.";
+                $_SESSION['username'] = "Username character can't be more than 128.";
                 $no_error = false;
             } 
 
@@ -367,7 +365,7 @@ class Kyushu extends DB
             }
 
             if (strlen($post['first_name_tc']) > 128) {
-                $_SESSION['first_name_tc'] = "Last Name character can't be more than 128.";
+                $_SESSION['first_name_tc'] = "First Name character can't be more than 128.";
                 $no_error = false;
             }
 
@@ -512,11 +510,14 @@ class Kyushu extends DB
 
             if (empty($post['period'])) {
                 $_SESSION['period'] = "Please fills the required field.";
+                // $_SESSION['old_period'] = $post['period'];
                 $no_error = false;
-            } else {
+            }
+            
+            if (!empty ($post['period'])){
                 $_SESSION['old_period'] = $post['period'];
                 $no_error = false;
-            } 
+            }
 
             if (empty($post['video_upload'])) {
                 $_SESSION['video_upload'] = "Please fills the required field.";
@@ -526,29 +527,11 @@ class Kyushu extends DB
                 $no_error = false;
             } 
 
-            // if (empty($post['campaign'])) {
-            //     $_SESSION['campaign'] = "Please fills the required field.";
-            //     $no_error = false;
-            // }
-            // // else {
-            // //     $_SESSION['old_camp'] = $post['campaign'];
-            // //     $no_error = false;
-            // // } 
-
-            // if (!empty($post['campaign'])){
-            //     $_SESSION['old_camp'] = $post['campaign'] ;
-            //     $no_error = false;
-            // }
-
-            // if (isset($post['campaign'])  && $post['campaign'] == 'other' && isset($post['custom_campaign'])) {
-            //     $_SESSION['old_camp_custom'] = $post['custom_campaign'];
-            //     $no_error = false;
-            // } 
-
             if (empty($post['campaign'])) {
                 $_SESSION['campaign'] = "Please fills the required field.";
                 $no_error = false;
-            } else if ($post['campaign'] == 'other' && empty($post['custom_campaign'])) {
+            } 
+            if ( isset($psot['campaign']) && in_array('other', $post['campaign']) && empty($post['custom_campaign'])) {
                 $_SESSION['campaign'] = "Please fills your campaign in other field.";
                 $no_error = false;
             } else if (!empty($post['custom_campaign']) && strlen($post['custom_campaign']) > 128 ) {
@@ -561,7 +544,7 @@ class Kyushu extends DB
                 $no_error = false;
             } 
             
-            if ( isset($post['campaign']) && $post['campaign'] == 'other' && isset($post['custom_campaign'])) {
+            if ( isset($post['campaign']) && in_array('other', $post['campaign']) && isset($post['custom_campaign'])) {
                 $_SESSION['old_custom_camp'] = $post['custom_campaign'];
                 $no_error = false;
             } 

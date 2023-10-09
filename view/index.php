@@ -32,10 +32,10 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
             </div>
         </div>
         <?php
-         echo '<pre>'; 
-         var_dump($_SESSION);
-        //  var_dump($_SESSION['old_custom_camp']);
-         echo '</pre>';  ?>
+        echo '<pre>';
+        var_dump($_POST);
+
+        echo '</pre>';  ?>
         <div class="form_container">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="f_container">
@@ -171,8 +171,8 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                                 <span class="checkmark"></span>
                                             </label>
                                             <input type="text" class="dim all_input" id="nation_opt1" disabled="disabled" name="custom_country" value="<?php if (isset($_SESSION['old_nati_cc'])) {
-                                                                                                                                                    echo $_SESSION['old_nati_cc'];
-                                                                                                                                                } ?>">
+                                                                                                                                                            echo $_SESSION['old_nati_cc'];
+                                                                                                                                                        } ?>">
                                         </div>
                                     </li>
                                 <?php
@@ -342,338 +342,774 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Region visited in past Japan travels -->
-                        <div class="visited_japan for_top">
-                            <h4 class="radio_p">Region(s) visited in past Japan travels</h4>
-                            <div class="hokkaido">
-                                <h5 class="region_p">Hokkaido / Tohoku region</h5>
-                                <ul class="for_ul_top all_checks_contact">
-                                    <li>
-                                        <label class="all_checks_label">Hokkaido
-                                            <input type="checkbox" name="region[]" value="Hokkaido">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Aomori
-                                            <input type="checkbox" name="region[]" value="Aomori">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Iwate
-                                            <input type="checkbox" name="region[]" value="Iwate">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Miyagi
-                                            <input type="checkbox" name="region[]" value="Miyagi">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Akita
-                                            <input type="checkbox" name="region[]" value="Akita">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Yamagata
-                                            <input type="checkbox" name="region[]" value="Yamagata">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Fukushima
-                                            <input type="checkbox" name="region[]" value="Fukushima">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
+                        <?php if (isset($_SESSION['old_reg'])) {
+                        ?>
+                            <div class="visited_japan for_top">
+                                <h4 class="radio_p">Region(s) visited in past Japan travels</h4>
+                                <div class="hokkaido">
+                                    <h5 class="region_p">Hokkaido / Tohoku region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Hokkaido
+                                                <input type="checkbox" name="region[]" value="Hokkaido" <?php if (in_array('Hokkaido', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Aomori
+                                                <input type="checkbox" name="region[]" value="Aomori" <?php if (in_array('Aomori', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Iwate
+                                                <input type="checkbox" name="region[]" value="Iwate" <?php if (in_array('Iwate', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Miyagi
+                                                <input type="checkbox" name="region[]" value="Miyagi" <?php if (in_array('Miyagi', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Akita
+                                                <input type="checkbox" name="region[]" value="Akita" <?php if (in_array('Akita', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Yamagata
+                                                <input type="checkbox" name="region[]" value="Yamagata" <?php if (in_array('Yamagata', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Fukushima
+                                                <input type="checkbox" name="region[]" value="Fukushima" <?php if (in_array('Fukushima', $_SESSION['old_reg'])) {
+                                                                                                                echo 'checked';
+                                                                                                            } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kanto">
+                                    <h5 class="region_p">Kanto region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Ibaraki
+                                                <input type="checkbox" name="region[]" value="Ibaraki" <?php if (in_array('Ibaraki', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Tochigi
+                                                <input type="checkbox" name="region[]" value="Tochigi" <?php if (in_array('Tochigi', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?> <?php if (in_array('Aomori', $_SESSION['old_reg'])) {
+                                                                                                                    echo 'checked';
+                                                                                                                } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Gunma
+                                                <input type="checkbox" name="region[]" value="Gunma" <?php if (in_array('Gunma', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Saitama
+                                                <input type="checkbox" name="region[]" value="Saitama" <?php if (in_array('Saitama', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Chiba
+                                                <input type="checkbox" name="region[]" value="Chiba" <?php if (in_array('Chiba', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Tokyo
+                                                <input type="checkbox" name="region[]" value="Tokyo" <?php if (in_array('Tokyo', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kanagawa
+                                                <input type="checkbox" name="region[]" value="Kanagawa" <?php if (in_array('Kanagawa', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Hokuriku Shinetesu region">
+                                    <h5 class="region_p">Hokuriku Shinetesu region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Niigata
+                                                <input type="checkbox" name="region[]" value="Niigata" <?php if (in_array('Niigata', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Toyama
+                                                <input type="checkbox" name="region[]" value="Toyama" <?php if (in_array('Toyama', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Ishikawa
+                                                <input type="checkbox" name="region[]" value="Ishikawa" <?php if (in_array('Ishikawa', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Yamanashi
+                                                <input type="checkbox" name="region[]" value="Yamanashi" <?php if (in_array('Yamanashi', $_SESSION['old_reg'])) {
+                                                                                                                echo 'checked';
+                                                                                                            } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Nagano
+                                                <input type="checkbox" name="region[]" value="Nagano" <?php if (in_array('Nagano', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Chubu region">
+                                    <h5 class="region_p">Chubu region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Shizuoka
+                                                <input type="checkbox" name="region[]" value="Shizuoka" <?php if (in_array('Shizuoka', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Aichi
+                                                <input type="checkbox" name="region[]" value="Aichi" <?php if (in_array('Aichi', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Gifu
+                                                <input type="checkbox" name="region[]" value="Gifu" <?php if (in_array('Gifu', $_SESSION['old_reg'])) {
+                                                                                                        echo 'checked';
+                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Mie
+                                                <input type="checkbox" name="region[]" value="Mie" <?php if (in_array('Mie', $_SESSION['old_reg'])) {
+                                                                                                        echo 'checked';
+                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Fukui
+                                                <input type="checkbox" name="region[]" value="Fukui" <?php if (in_array('Fukui', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Kinki region">
+                                    <h5 class="region_p">Kinki region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Shiga
+                                                <input type="checkbox" name="region[]" value="Shiga" <?php if (in_array('Shiga', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kyoto
+                                                <input type="checkbox" name="region[]" value="Kyoto" <?php if (in_array('Kyoto', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Osaka
+                                                <input type="checkbox" name="region[]" value="Osaka" <?php if (in_array('Osaka', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Hyogo
+                                                <input type="checkbox" name="region[]" value="Hyogo" <?php if (in_array('Hyogo', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Nara
+                                                <input type="checkbox" name="region[]" value="Nara" <?php if (in_array('Nara', $_SESSION['old_reg'])) {
+                                                                                                        echo 'checked';
+                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Wakayama
+                                                <input type="checkbox" name="region[]" value="Wakayama" <?php if (in_array('Wakayama', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Chugoku region">
+                                    <h5 class="region_p">Chugoku region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Tottori
+                                                <input type="checkbox" name="region[]" value="Tottori" <?php if (in_array('Tottori', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Shimane
+                                                <input type="checkbox" name="region[]" value="Shimane" <?php if (in_array('Shimane', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Okayama
+                                                <input type="checkbox" name="region[]" value="Okayama" <?php if (in_array('Okayama', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Hiroshima
+                                                <input type="checkbox" name="region[]" value="Hiroshima" <?php if (in_array('Hiroshima', $_SESSION['old_reg'])) {
+                                                                                                                echo 'checked';
+                                                                                                            } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Yamaguchi
+                                                <input type="checkbox" name="region[]" value="Yamaguchi" <?php if (in_array('Yamaguchi', $_SESSION['old_reg'])) {
+                                                                                                                echo 'checked';
+                                                                                                            } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Shikoku region">
+                                    <h5 class="region_p">Shikoku region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Tokushima
+                                                <input type="checkbox" name="region[]" value="Tokushima" <?php if (in_array('Tokushima', $_SESSION['old_reg'])) {
+                                                                                                                echo 'checked';
+                                                                                                            } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kagawa
+                                                <input type="checkbox" name="region[]" value="Kagawa" <?php if (in_array('Kagawa', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Ehima
+                                                <input type="checkbox" name="region[]" value="Ehima" <?php if (in_array('Ehima', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kochi
+                                                <input type="checkbox" name="region[]" value="Kochi" <?php if (in_array('Kochi', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Kyushu/Okinawa region">
+                                    <h5 class="region_p">Kyushu / Okinawa region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Fukuoka
+                                                <input type="checkbox" name="region[]" value="Fukuoka" <?php if (in_array('Fukuoka', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Saga
+                                                <input type="checkbox" name="region[]" value="Saga" <?php if (in_array('Saga', $_SESSION['old_reg'])) {
+                                                                                                        echo 'checked';
+                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Nagasaki
+                                                <input type="checkbox" name="region[]" value="Nagasaki" <?php if (in_array('Nagasaki', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kumamoto
+                                                <input type="checkbox" name="region[]" value="Kumamoto" <?php if (in_array('Kumamoto', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Oita
+                                                <input type="checkbox" name="region[]" value="Oita" <?php if (in_array('Oita', $_SESSION['old_reg'])) {
+                                                                                                        echo 'checked';
+                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Miyazaki
+                                                <input type="checkbox" name="region[]" value="Miyazaki" <?php if (in_array('Miyazaki', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kagoshima
+                                                <input type="checkbox" name="region[]" value="Kagoshima" <?php if (in_array('Kagoshima', $_SESSION['old_reg'])) {
+                                                                                                                echo 'checked';
+                                                                                                            } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Okinawa
+                                                <input type="checkbox" name="region[]" value="Okinawa" <?php if (in_array('Okinawa', $_SESSION['old_reg'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                    <?php if (isset($_SESSION['region'])) {
+                                    ?>
+                                        <span class="for_err"> <?php echo $_SESSION['region']; ?></span>
+                                    <?php
+                                    }
+                                    unset($_SESSION['region']);
+                                    ?>
+                                </div>
                             </div>
-                            <div class="kanto">
-                                <h5 class="region_p">Kanto region</h5>
-                                <ul class="for_ul_top all_checks_contact">
-                                    <li>
-                                        <label class="all_checks_label">Ibaraki
-                                            <input type="checkbox" name="region[]" value="Ibaraki">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Tochigi
-                                            <input type="checkbox" name="region[]" value="Tochigi">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Gunma
-                                            <input type="checkbox" name="region[]" value="Gunma">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Saitama
-                                            <input type="checkbox" name="region[]" value="Saitama">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Chiba
-                                            <input type="checkbox" name="region[]" value="Chiba">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Tokyo
-                                            <input type="checkbox" name="region[]" value="Tokyo">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Kanagawa
-                                            <input type="checkbox" name="region[]" value="Kanagawa">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="visited_japan for_top">
+                                <h4 class="radio_p">Region(s) visited in past Japan travels</h4>
+                                <div class="hokkaido">
+                                    <h5 class="region_p">Hokkaido / Tohoku region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Hokkaido
+                                                <input type="checkbox" name="region[]" value="Hokkaido">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Aomori
+                                                <input type="checkbox" name="region[]" value="Aomori">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Iwate
+                                                <input type="checkbox" name="region[]" value="Iwate">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Miyagi
+                                                <input type="checkbox" name="region[]" value="Miyagi">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Akita
+                                                <input type="checkbox" name="region[]" value="Akita">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Yamagata
+                                                <input type="checkbox" name="region[]" value="Yamagata">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Fukushima
+                                                <input type="checkbox" name="region[]" value="Fukushima">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="kanto">
+                                    <h5 class="region_p">Kanto region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Ibaraki
+                                                <input type="checkbox" name="region[]" value="Ibaraki">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Tochigi
+                                                <input type="checkbox" name="region[]" value="Tochigi">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Gunma
+                                                <input type="checkbox" name="region[]" value="Gunma">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Saitama
+                                                <input type="checkbox" name="region[]" value="Saitama">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Chiba
+                                                <input type="checkbox" name="region[]" value="Chiba">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Tokyo
+                                                <input type="checkbox" name="region[]" value="Tokyo">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kanagawa
+                                                <input type="checkbox" name="region[]" value="Kanagawa">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Hokuriku Shinetesu region">
+                                    <h5 class="region_p">Hokuriku Shinetesu region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Niigata
+                                                <input type="checkbox" name="region[]" value="Niigata">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Toyama
+                                                <input type="checkbox" name="region[]" value="Toyama">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Ishikawa
+                                                <input type="checkbox" name="region[]" value="Ishikawa">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Yamanashi
+                                                <input type="checkbox" name="region[]" value="Yamanashi">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Nagano
+                                                <input type="checkbox" name="region[]" value="Nagano">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Chubu region">
+                                    <h5 class="region_p">Chubu region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Shizuoka
+                                                <input type="checkbox" name="region[]" value="Shizuoka">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Aichi
+                                                <input type="checkbox" name="region[]" value="Aichi">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Gifu
+                                                <input type="checkbox" name="region[]" value="Gifu">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Mie
+                                                <input type="checkbox" name="region[]" value="Mie">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Fukui
+                                                <input type="checkbox" name="region[]" value="Fukui">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Kinki region">
+                                    <h5 class="region_p">Kinki region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Shiga
+                                                <input type="checkbox" name="region[]" value="Shiga">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kyoto
+                                                <input type="checkbox" name="region[]" value="Kyoto">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Osaka
+                                                <input type="checkbox" name="region[]" value="Osaka">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Hyogo
+                                                <input type="checkbox" name="region[]" value="Hyogo">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Nara
+                                                <input type="checkbox" name="region[]" value="Nara">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Wakayama
+                                                <input type="checkbox" name="region[]" value="Wakayama">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Chugoku region">
+                                    <h5 class="region_p">Chugoku region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Tottori
+                                                <input type="checkbox" name="region[]" value="Tottori">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Shimane
+                                                <input type="checkbox" name="region[]" value="Shimane">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Okayama
+                                                <input type="checkbox" name="region[]" value="Okayama">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Hiroshima
+                                                <input type="checkbox" name="region[]" value="Hiroshima">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Yamaguchi
+                                                <input type="checkbox" name="region[]" value="Yamaguchi">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Shikoku region">
+                                    <h5 class="region_p">Shikoku region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Tokushima
+                                                <input type="checkbox" name="region[]" value="Tokushima">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kagawa
+                                                <input type="checkbox" name="region[]" value="Kagawa">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Ehima
+                                                <input type="checkbox" name="region[]" value="Ehima">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kochi
+                                                <input type="checkbox" name="region[]" value="Kochi">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="Kyushu/Okinawa region">
+                                    <h5 class="region_p">Kyushu / Okinawa region</h5>
+                                    <ul class="for_ul_top all_checks_contact">
+                                        <li>
+                                            <label class="all_checks_label">Fukuoka
+                                                <input type="checkbox" name="region[]" value="Fukuoka">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Saga
+                                                <input type="checkbox" name="region[]" value="Saga">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Nagasaki
+                                                <input type="checkbox" name="region[]" value="Nagasaki">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kumamoto
+                                                <input type="checkbox" name="region[]" value="Kumamoto">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Oita
+                                                <input type="checkbox" name="region[]" value="Oita">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Miyazaki
+                                                <input type="checkbox" name="region[]" value="Miyazaki">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Kagoshima
+                                                <input type="checkbox" name="region[]" value="Kagoshima">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Okinawa
+                                                <input type="checkbox" name="region[]" value="Okinawa">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                    <?php if (isset($_SESSION['region'])) {
+                                    ?>
+                                        <span class="for_err"> <?php echo $_SESSION['region']; ?></span>
+                                    <?php
+                                    }
+                                    unset($_SESSION['region']);
+                                    ?>
+                                </div>
                             </div>
-                            <div class="Hokuriku Shinetesu region">
-                                <h5 class="region_p">Hokuriku Shinetesu region</h5>
-                                <ul class="for_ul_top all_checks_contact">
-                                    <li>
-                                        <label class="all_checks_label">Niigata
-                                            <input type="checkbox" name="region[]" value="Niigata">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Toyama
-                                            <input type="checkbox" name="region[]" value="Toyama">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Ishikawa
-                                            <input type="checkbox" name="region[]" value="Ishikawa">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Yamanashi
-                                            <input type="checkbox" name="region[]" value="Yamanashi">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Nagano
-                                            <input type="checkbox" name="region[]" value="Nagano">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="Chubu region">
-                                <h5 class="region_p">Chubu region</h5>
-                                <ul class="for_ul_top all_checks_contact">
-                                    <li>
-                                        <label class="all_checks_label">Shizuoka
-                                            <input type="checkbox" name="region[]" value="Shizuoka">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Aichi
-                                            <input type="checkbox" name="region[]" value="Aichi">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Gifu
-                                            <input type="checkbox" name="region[]" value="Gifu">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Mie
-                                            <input type="checkbox" name="region[]" value="Mie">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Fukui
-                                            <input type="checkbox" name="region[]" value="Fukui">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="Kinki region">
-                                <h5 class="region_p">Kinki region</h5>
-                                <ul class="for_ul_top all_checks_contact">
-                                    <li>
-                                        <label class="all_checks_label">Shiga
-                                            <input type="checkbox" name="region[]" value="Shiga">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Kyoto
-                                            <input type="checkbox" name="region[]" value="Kyoto">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Osaka
-                                            <input type="checkbox" name="region[]" value="Osaka">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Hyogo
-                                            <input type="checkbox" name="region[]" value="Hyogo">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Nara
-                                            <input type="checkbox" name="region[]" value="Nara">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Wakayama
-                                            <input type="checkbox" name="region[]" value="Wakayama">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="Chugoku region">
-                                <h5 class="region_p">Chugoku region</h5>
-                                <ul class="for_ul_top all_checks_contact">
-                                    <li>
-                                        <label class="all_checks_label">Tottori
-                                            <input type="checkbox" name="region[]" value="Tottori">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Shimane
-                                            <input type="checkbox" name="region[]" value="Shimane">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Okayama
-                                            <input type="checkbox" name="region[]" value="Okayama">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Hiroshima
-                                            <input type="checkbox" name="region[]" value="Hiroshima">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Yamaguchi
-                                            <input type="checkbox" name="region[]" value="Yamaguchi">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="Shikoku region">
-                                <h5 class="region_p">Shikoku region</h5>
-                                <ul class="for_ul_top all_checks_contact">
-                                    <li>
-                                        <label class="all_checks_label">Tokushima
-                                            <input type="checkbox" name="region[]" value="Tokushima">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Kagawa
-                                            <input type="checkbox" name="region[]" value="Kagawa">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Ehima
-                                            <input type="checkbox" name="region[]" value="Ehima">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Kochi
-                                            <input type="checkbox" name="region[]" value="Kochi">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="Kyushu/Okinawa region">
-                                <h5 class="region_p">Kyushu / Okinawa region</h5>
-                                <ul class="for_ul_top all_checks_contact">
-                                    <li>
-                                        <label class="all_checks_label">Fukuoka
-                                            <input type="checkbox" name="region[]" value="Fukuoka">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Saga
-                                            <input type="checkbox" name="region[]" value="Saga">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Nagasaki
-                                            <input type="checkbox" name="region[]" value="Nagasaki">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Kumamoto
-                                            <input type="checkbox" name="region[]" value="Kumamoto">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Oita
-                                            <input type="checkbox" name="region[]" value="Oita">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Miyazaki
-                                            <input type="checkbox" name="region[]" value="Miyazaki">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Kagoshima
-                                            <input type="checkbox" name="region[]" value="Kagoshima">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Okinawa
-                                            <input type="checkbox" name="region[]" value="Okinawa">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                                <?php if (isset($_SESSION['region'])) {
-                                ?>
-                                    <span class="for_err"> <?php echo $_SESSION['region']; ?></span>
-                                <?php
-                                }
-                                unset($_SESSION['region']);
-                                ?>
-                            </div>
-                        </div>
+                        <?php
+                        } ?>
+
                         <!-- Dietary  Restrictions-->
                         <div class="dietary for_top">
                             <label for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
@@ -850,8 +1286,8 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                                 <span class="checkmark"></span>
                                             </label>
                                             <input type="text" class=" all_input" id="nation_opt2" disabled="disabled" name="custom_country_tc" value="<?php if (isset($_SESSION['old_nati_cc_tc'])) {
-                                                                                                                                                    echo $_SESSION['old_nati_cc_tc'];
-                                                                                                                                                } ?>">
+                                                                                                                                                            echo $_SESSION['old_nati_cc_tc'];
+                                                                                                                                                        } ?>">
                                     </li>
                                 <?php
                                 } else {
@@ -967,25 +1403,19 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                     ?>
                                         <li>
                                             <label class="all_checks_label">Early January 2024
-                                                <input type="checkbox" name="period[]" value="early_january_2024" <?php if (in_array('early_january_2024', $_SESSION['old_period'])) {
-                                                                                                                        echo 'checked';
-                                                                                                                    } ?>>
+                                                <input type="checkbox" name="period[]" value="early_january_2024" <?= (in_array('early_january_2024', $_SESSION['old_period'])) ? 'checked' : ''; ?>>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="all_checks_label">Mid January 2024
-                                                <input type="checkbox" name="period[]" value="mid_january_2024" <?php if (in_array('mid_january_2024', $_SESSION['old_period'])) {
-                                                                                                                    echo 'checked';
-                                                                                                                } ?>>
+                                                <input type="checkbox" name="period[]" value="mid_january_2024" <?= (in_array('mid_january_2024', $_SESSION['old_period'])) ? 'checked' : ''; ?>>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="all_checks_label">Late January 2024
-                                                <input type="checkbox" name="period[]" value="late_january_2024" <?php if (in_array('late_january_2024', $_SESSION['old_period'])) {
-                                                                                                                        echo 'checked';
-                                                                                                                    } ?>>
+                                                <input type="checkbox" name="period[]" value="late_january_2024" <?= (in_array('late_january_2024', $_SESSION['old_period'])) ? 'checked' : ''; ?>>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
@@ -1135,24 +1565,28 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                             </label>
                                         </li>
                                         <li>
+                                        <li>
                                             <label class="all_checks_label">Friends/Family
-                                                <input type="checkbox" name="campaign[]" value="friends/family" <?php if (in_array("riends/family", $_SESSION['old_camp'])) {
+                                                <input type="checkbox" name="campaign[]" value="friends/family" <?php if (in_array("friends/family", $_SESSION['old_camp'])) {
                                                                                                                     echo 'checked';
-                                                                                                                } ?>>
+                                                                                                                }  ?>>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
+                                        </li>
                                         <li>
                                             <div class="others">
-                                                <label class="all_checks_label others-input">Other:
+                                                <label class="all_checks_label others-input">Other: <?php var_dump($_SESSION['old_custom_camp']);?>
                                                     <input type="checkbox" class="selected" name="campaign[]" value="other" <?php if (in_array("other", $_SESSION['old_camp'])) {
                                                                                                                                 echo 'checked';
                                                                                                                             } ?>>
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <input type="text" class=" remove_dim_class all_input dim" name="custom_campaign" <?php if (isset($_SESSION['old_custom_camp'])) {
-                                                                                                                            echo $_SESSION['old_custom_camp'];
-                                                                                                                        } ?>>
+                                                <input type="text" class=" remove_dim_class all_input dim" name="custom_campaign" value="<?php if (isset($_SESSION['old_custom_camp'])) {
+                                                                                                                                                echo $_SESSION['old_custom_camp'];
+                                                                                                                                            } 
+                                                                                                                                            unset($_SESSION['old_custom_camp']);
+                                                                                                                                            ?>">
                                             </div>
                                         </li>
                                     <?php
@@ -1222,7 +1656,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                             </div>
                                         </li>
                                     <?php
-                                    } ?>
+                                    }
+                                    unset($_SESSION['old_camp']);
+                                    ?>
 
 
                                 </ul>
@@ -1246,8 +1682,8 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                     ?>
                                         <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
                                             <input type="checkbox" name="termsConditions" value="yes" class="policy_input all_input" <?php if ($_SESSION['old_terms'] == 'yes') {
-                                                                                                                                echo 'checked';
-                                                                                                                            } ?>>
+                                                                                                                                            echo 'checked';
+                                                                                                                                        } ?>>
                                             <span class="checkmark"></span>
                                         </label>
                                     <?php } else {
