@@ -6,19 +6,20 @@
     <title>Form</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/34c98ef48d.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container" >
         <div class="f_container">
             <div class="inner_container">
-                <p class="req">Please complete the application form below.</p>
-                <p class="represent">Representative Applicant</p>
+                <p class="req"><strong>Please complete the application form below.</strong></p>
             </div>
         </div>
         <div class="form_container">
             <form action="">
                 <div class="f_container">
                     <div class="inner_container">
+                        <h3><span class="star_icon">Representative Applicant</span></h3>
                         <!-- Name -->
                         <div class="name_contact for_top">
                             <label  for="name" class="label_name">Full Name</label>
@@ -478,7 +479,7 @@
                         </div>
                         <hr class="for_top">
                         <!-- Travel Companion 01 -->
-                        <p class="represent">Travel Companion 01</p>
+                        <h3><span class="star_icon second_option">Representative Applicant</span></h3>
                         <!-- Name -->
                         <div class="name_contact for_top">
                             <label  for="name" class="label_name">Full Name</label>
@@ -676,21 +677,26 @@
                         </div>
                    </div>
                 </div>
-                <div class="summit_contact">
-                    <div class="f_container">
-                        <div class="inner_container">
-                            <div class="inner_submit">
-                                <div class="policy">
-                                    <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
-                                        <input type="checkbox" class="policy_input">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <button type="submit" class="submit_btn" disabled>Submit</button>
-                            </div>
-                        </div>
+                <div class="f_container">
+                    <div class="policy">
+                        <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
+                            <input type="checkbox" class="policy_input">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                 </div>
+                <div class="btn_submit">
+                    <button type="submit" name="submit" disabled class="submit_btn">
+                        <span>Submit</span>
+                    </button>
+                </div>
+                <!-- hid confirm -->
+                <!-- <div class="btn_submit">
+                    <a href="#" class="back_link">Back</a>
+                    <button type="submit" name="confirm"  disabled class="submit_btn btn_lg">
+                        <span>Confirm</span>
+                    </button>
+                </div> -->
             </form>
             <div class="covid_contact">
                 <div class="f_container">
@@ -709,7 +715,9 @@
             </div>
             <div class="jnto ">
                 <div class="f_container">
-                  <a href="#"><figure class="logo"><img src="../assets/img/JNTO_logo.png" alt="JNTO" /></figure></a>
+                  <a href="#">
+                    <img src="../assets/img/JNTO_logo.png" alt="JNTO" />
+                  </a>
                   <ul class="contact">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">FAQ</a></li>
@@ -718,12 +726,11 @@
                     <li><a href="#">JbyJ intro</a></li>
                   </ul>
                   <div class="social">
-                    <a href="#" class="facebook">
-                      <figure><img src="../assets/img/facebook_logo.jpg" alt="facebook" />
-                      </figure>
+                    <a href="#" class=" fa-brands facebook fa-facebook-f">
+                      <span>facebook</span>
                     </a>
-                    <a href="#" class="instagram">
-                      <figure><img src="../assets/img/ig.png" alt="instagram"></figure>
+                    <a href="#" class="instagram fa-brands fa-instagram">
+                      <span>instagram</span>
                     </a>
                   </div>
                 </div>

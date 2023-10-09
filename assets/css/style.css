@@ -4,21 +4,19 @@
     box-sizing: border-box;
     font-family: "Noto Sans", sans-serif;
 }
-@font-face {
-    font-family: Proxima-Nova;
-    src: url(../fonts/flood-std/www.dafontfree.net.url);
-  }
 .f_container {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
 }
+a {
+    text-decoration: none;
+}
 .inner_container {
     max-width: 628px;
     margin: 0 auto;
     box-sizing: border-box;
-    /* background-color: aqua; */
 }
 /* common */
 .for_err {
@@ -63,16 +61,12 @@ ul li {
     width: fit-content;
 }
 /* title */
-.container .f_container .inner_container .req,.container .f_container .inner_container .represent {
-    font-weight: bold;
+h3 {
     text-align: center;
 }
 .f_container .inner_container .req {
-    font-size: 20px;
-}
-.f_container .inner_container .represent {
-    font-size: 30px;
-    margin-top: 65px;
+    text-align: center;
+    margin: 20px 0 56px;
 }
 /* Full Name & person Name */
 .fullname {
@@ -84,6 +78,17 @@ ul li {
 }
 .fullname .fname {
     margin-right: 36px;
+}
+.container .form_container h3 span::before{
+    content: "";
+    width: 16.5px;
+    height: 16.5px;
+    margin-right: 8px;
+    background: url('../img/title.png');
+    display: inline-block;
+}
+.container .form_container .second_option {
+    padding-top: 56px;
 }
 .container .form_container .f_container .inner_container .gender_contact  label, .f_container  .form_container.inner_container .been_jp  label, .all_checks_contact label{
     font-size: 20px;
@@ -234,6 +239,7 @@ margin-top: 30px;
 }
 hr.for_top {
     border-top: 3px dotted #949494;
+    margin-bottom: 56px;
 }
 /* file upload */
 .container .form_container .files_upload {
@@ -273,45 +279,62 @@ user-select: none;
 font-size: 20px;
 margin: 25px 0px;
 }
-/* summit contact */
-.container .form_container .summit_contact {
-margin: 60px 0 120px;
+/* policy */
+.container .policy {
+    max-width: 470px;
+    margin: 50px auto 0;
 }
-.container .form_container .summit_contact .f_container .inner_container .inner_submit {
-display: flex;
-flex-direction: column;
-align-items: center;
+.container .policy .all_checks_label {
+    padding-left: 40px;
+    font-size: 15px;
+    margin-bottom: 0;
 }
-.container .form_container .summit_contact .f_container .inner_container .inner_submit .policy {
-padding: 0PX 70px;
-margin-bottom: 70px;
-}
-.container .form_container .summit_contact .f_container .inner_container .inner_submit .all_checks_label{
-font-size: 16px;
-}
-.container .form_container .summit_contact .f_container .inner_container a {
+.container .form_container .policy  a {
 color: #d14800;
 text-decoration: underline;
 }
-.container .form_container .summit_contact .f_container .inner_container a:hover {
+.container .form_container .policy  a:hover {
 opacity: 0.7;
 }
-.container .form_container .summit_contact .f_container .inner_container .submit_btn {
-padding: 36px 253px;
+/* summit contact */
+.container .form_container  .btn_submit{
+max-width: 502px;
+width: 100%;
+margin: 56px auto 112px;
+display: flex;
+justify-content: center;
+transition: background-color .4s;
+flex-direction: column;
+align-items: center;    
+}
+.container .form_container  .btn_submit button {
+width: 100%;
 font-size: 30px;
+text-align: center;
+height: 84px;
 background-color: #808080;
-color: #fff;
 border: none;
+padding: 10px;
+box-sizing: border-box;
+color: #fff;
 font-weight: bold;
 transition: background-color .4s;
 }
-.container .form_container .summit_contact .f_container .inner_container .show_pointer {
-    cursor: pointer;
-    background-color: #000;
-    transition: background-color .4s;
+.container .form_container  .btn_submit .show_pointer, .container .form_container  .btn_submit .btn_lg {
+cursor: pointer;
+background-color: #000;
+transition: background-color .4s;
 }
-.container .form_container .summit_contact .f_container .inner_container .submit_btn:hover {
-opacity: 0.9;
+.container .form_container  .btn_submit button:hover {
+opacity: 0.6;
+}
+.container .form_container  .btn_submit .back_link {
+font-size: 24px;
+line-height: 27px;
+text-decoration: underline;
+font-weight: bold;
+margin-bottom: 44px;
+color: #2d2d2d;
 }
 /* covid contact */
 .container .covid_contact {
@@ -364,9 +387,16 @@ padding: 11px;
 color: #7e7e7e;
 font-size: 20px;
 }
+.container .jnto .contact a:hover {
+    color: #fff;
+    opacity: 0.5;
+}
 .container .jnto .logo {
 width: 6.924%;
 max-width: 72px;
+}
+.container .jnto .logo img {
+    width: 100%;
 }
 .container .jnto .social {
 display: flex;
@@ -374,6 +404,20 @@ align-items: center;
 }
 .container .jnto .social .facebook {
 margin-right: 20px;
+}
+.container .jnto .social a {
+    font-size: 0;
+}
+.container .jnto .fa-brands.facebook::before, .container .jnto .instagram.fa-brands::before {
+    font-family: Font Awesome\ 5 Brands;
+    font-size: 18px;
+    color: #9c9c9c;
+}
+.container .jnto .fa-brands.facebook::before {
+    content: "\F39E";
+}
+.container .jnto .instagram.fa-brands::before {
+    content: "\F16D";
 }
 /* home contact */
 .container .home_contact {
