@@ -107,11 +107,15 @@ class Kyushu extends DB
                             'custom_know_campaign' => $custom_campaign
                             // 'terms&conditions' => $termsCondition
                         ];
-                    echo "<pre>";
-                    var_dump($user_data);
-                    echo "</pre>";
-                    die();
-                    return $user_data;
+                    // echo "<pre>";
+                    // var_dump($user_data);
+                    // echo "</pre>";
+                    // die();
+                    // return $user_data;
+
+                    if ($user_data) {
+
+                    }
                 }
             }
 
@@ -132,6 +136,11 @@ class Kyushu extends DB
             $image_name = $files['image']['name'];
             $image_ext = pathinfo($files["image"]["name"], PATHINFO_EXTENSION);
             $ext = array('jepg', 'jpg', 'png');
+
+            if(empty($image_name)) {
+                $_SESSION['image'] = 'Please upload a photo.';
+                $no_error = false;
+            }
 
             if (in_array($image_ext, $ext) === false && !empty($image_name)) {
                 $_SESSION['image'] = 'Image file not support. Please upload JEPG, JPG, PNG.';
@@ -517,11 +526,51 @@ class Kyushu extends DB
                 $no_error = false;
             } 
 
+            // if (empty($post['campaign'])) {
+            //     $_SESSION['campaign'] = "Please fills the required field.";
+            //     $no_error = false;
+            // }
+            // // else {
+            // //     $_SESSION['old_camp'] = $post['campaign'];
+            // //     $no_error = false;
+            // // } 
+
+            // if (!empty($post['campaign'])){
+            //     $_SESSION['old_camp'] = $post['campaign'] ;
+            //     $no_error = false;
+            // }
+
+            // if (isset($post['campaign'])  && $post['campaign'] == 'other' && isset($post['custom_campaign'])) {
+            //     $_SESSION['old_camp_custom'] = $post['custom_campaign'];
+            //     $no_error = false;
+            // } 
+
             if (empty($post['campaign'])) {
                 $_SESSION['campaign'] = "Please fills the required field.";
                 $no_error = false;
+            } else if ($post['campaign'] == 'other' && empty($post['custom_campaign'])) {
+                $_SESSION['campaign'] = "Please fills your campaign in other field.";
+                $no_error = false;
+            } else if (!empty($post['custom_campaign']) && strlen($post['custom_campaign']) > 128 ) {
+                $_SESSION['campaign'] = "Campaign can't be more than 128.";
+                $no_error = false;
+            }
+            
+            if (!empty($post['campaign'])){
+                $_SESSION['old_camp'] = $post['campaign'] ;
+                $no_error = false;
+            } 
+            
+            if ( isset($post['campaign']) && $post['campaign'] == 'other' && isset($post['custom_campaign'])) {
+                $_SESSION['old_custom_camp'] = $post['custom_campaign'];
+                $no_error = false;
+            } 
+
+            if (empty($post['termsConditions'])) {
+                $_SESSION['termsConditions'] = "Please agree the terms & conditions.";
+                $no_error = false;
             }else {
-                $_SESSION['old_camp'] = $post['campaign'];
+                $_SESSION['old_terms'] = $post['termsConditions'];
                 $no_error = false;
             } 
 

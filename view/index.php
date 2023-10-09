@@ -31,6 +31,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                 <p class="represent">Representative Applicant</p>
             </div>
         </div>
+        <?php
+         echo '<pre>'; 
+         var_dump($_SESSION);
+        //  var_dump($_SESSION['old_custom_camp']);
+         echo '</pre>';  ?>
         <div class="form_container">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="f_container">
@@ -165,14 +170,15 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                                                                                         } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class="dim" id="nation_opt1" disabled="disabled" name="custom_country" value="<?php if (isset($_SESSION['old_nati_cc'])) {
+                                            <input type="text" class="dim all_input" id="nation_opt1" disabled="disabled" name="custom_country" value="<?php if (isset($_SESSION['old_nati_cc'])) {
                                                                                                                                                     echo $_SESSION['old_nati_cc'];
                                                                                                                                                 } ?>">
                                         </div>
                                     </li>
-                                <?php echo "<pre>";
-                                    var_dump($_SESSION);
-                                    echo '</pre>';
+                                <?php
+                                    //  echo "<pre>";
+                                    //     var_dump($_SESSION);
+                                    //     echo '</pre>';
                                 } else {
                                 ?>
                                     <li>
@@ -187,7 +193,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                                 <input type="radio" name="nationality" value="other">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class="dim" id="nation_opt1" disabled="disabled" name="custom_country">
+                                            <input type="text" class="dim all_input" id="nation_opt1" disabled="disabled" name="custom_country">
                                         </div>
                                     </li>
                                 <?php } ?>
@@ -843,8 +849,8 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                                                                                         } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class="dim" id="nation_opt2" disabled="disabled" name="custom_country_tc" value="<?php if (isset($_SESSION['old_nati_cc_tc'])) {
-                                                                                                                                                   echo $_SESSION['old_nati_cc_tc'];
+                                            <input type="text" class=" all_input" id="nation_opt2" disabled="disabled" name="custom_country_tc" value="<?php if (isset($_SESSION['old_nati_cc_tc'])) {
+                                                                                                                                                    echo $_SESSION['old_nati_cc_tc'];
                                                                                                                                                 } ?>">
                                     </li>
                                 <?php
@@ -862,7 +868,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                                 <input type="radio" name="nationality_tc" value="other">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class="dim" id="nation_opt2" disabled="disabled" name="custom_country_tc">
+                                            <input type="text" class="dim all_input" id="nation_opt2" disabled="disabled" name="custom_country_tc">
                                         </div>
                                     </li>
                                 <?php
@@ -917,7 +923,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                 <input type="file" name="image" class="full_width" />
                                 <?php if (isset($_SESSION['image'])) {
                                 ?>
-                                    <p> <?php echo $_SESSION['image']; ?></p>
+                                    <span class="for_err"> <?php echo $_SESSION['image']; ?></span>
                                 <?php
                                 }
                                 unset($_SESSION['image']);
@@ -957,24 +963,56 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             <div class="traveling_period for_top">
                                 <p class="upload_label">Please let us know your preferred traveling period</p>
                                 <ul class="for_ul_top">
-                                    <li>
-                                        <label class="all_checks_label">Early January 2024
-                                            <input type="checkbox" name="period[]" value="early_january_2024">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Mid January 2024
-                                            <input type="checkbox" name="period[]" value="mid_january_2024">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Late January 2024
-                                            <input type="checkbox" name="period[]" value="late_january_2024">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
+                                    <?php if (isset($_SESSION['old_period'])) {
+                                    ?>
+                                        <li>
+                                            <label class="all_checks_label">Early January 2024
+                                                <input type="checkbox" name="period[]" value="early_january_2024" <?php if (in_array('early_january_2024', $_SESSION['old_period'])) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Mid January 2024
+                                                <input type="checkbox" name="period[]" value="mid_january_2024" <?php if (in_array('mid_january_2024', $_SESSION['old_period'])) {
+                                                                                                                    echo 'checked';
+                                                                                                                } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Late January 2024
+                                                <input type="checkbox" name="period[]" value="late_january_2024" <?php if (in_array('late_january_2024', $_SESSION['old_period'])) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <li>
+                                            <label class="all_checks_label">Early January 2024
+                                                <input type="checkbox" name="period[]" value="early_january_2024">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Mid January 2024
+                                                <input type="checkbox" name="period[]" value="mid_january_2024">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Late January 2024
+                                                <input type="checkbox" name="period[]" value="late_january_2024">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    <?php
+                                    } ?>
+
                                 </ul>
                                 <?php if (isset($_SESSION['period'])) {
                                 ?>
@@ -1030,69 +1068,163 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             <div class="traveling_period for_top">
                                 <p class="upload_label">Please let us know how you came across this campaign</p>
                                 <ul class="for_ul_top">
-                                    <li>
-                                        <label class="all_checks_label">JNTO's Website (japan.travel)
-                                            <input type="checkbox" name="campaign[]" value="jnto's_website_(japan.travel)">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">JNTO's Facebook (Visit Japan Now)
-                                            <input type="checkbox" name="campaign[]" value="jnto's_facebook_(visit_japan_now)">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">JNTO's Instagram (@visitjapansg)
-                                            <input type="checkbox" name="campaign[]" value="jnto's_instagram_(@visitjapansg)">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">JAPAN by Japan EDM
-                                            <input type="checkbox" name="campaign[]" value="japan_by_japan_edm">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Japan Travel Fair
-                                            <input type="checkbox" name="campaign[]" value="japan_travel_fai">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Social media
-                                            <input type="checkbox" name="campaign[]" value="social_media">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Online news sites
-                                            <input type="checkbox" name="campaign[]" value="online_news_sites">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Radio
-                                            <input type="checkbox" name="campaign[]" value="radio">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="all_checks_label">Friends/Family
-                                            <input type="checkbox" name="campaign[]" value="friends/family">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <div class="others">
-                                            <label class="all_checks_label others-input">Other:
-                                                <input type="checkbox" class="selected" name="campaign[]" value="other">
+                                    <?php if (isset($_SESSION['old_camp'])) {
+                                    ?>
+                                        <li>
+                                            <label class="all_checks_label">JNTO's Website (japan.travel)
+                                                <input type="checkbox" name="campaign[]" value="jnto's_website_(japan.travel)" <?php if (in_array("jnto's_website_(japan.travel)", $_SESSION['old_camp'])) {
+                                                                                                                                    echo 'checked';
+                                                                                                                                } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class="dim remove_dim_class" name="custom_campaign">
-                                        </div>
-                                    </li>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">JNTO's Facebook (Visit Japan Now)
+                                                <input type="checkbox" name="campaign[]" value="jnto's_facebook_(visit_japan_now)" <?php if (in_array("jnto's_facebook_(visit_japan_now)", $_SESSION['old_camp'])) {
+                                                                                                                                        echo 'checked';
+                                                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">JNTO's Instagram (@visitjapansg)
+                                                <input type="checkbox" name="campaign[]" value="jnto's_instagram_(@visitjapansg)" <?php if (in_array("jnto's_instagram_(@visitjapansg)", $_SESSION['old_camp'])) {
+                                                                                                                                        echo 'checked';
+                                                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">JAPAN by Japan EDM
+                                                <input type="checkbox" name="campaign[]" value="japan_by_japan_edm" <?php if (in_array("japan_by_japan_edm", $_SESSION['old_camp'])) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Japan Travel Fair
+                                                <input type="checkbox" name="campaign[]" value="japan_travel_fair" <?php if (in_array("japan_travel_fair", $_SESSION['old_camp'])) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Social media
+                                                <input type="checkbox" name="campaign[]" value="social_media" <?php if (in_array("social_media", $_SESSION['old_camp'])) {
+                                                                                                                    echo 'checked';
+                                                                                                                } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Online news sites
+                                                <input type="checkbox" name="campaign[]" value="online_news_sites" <?php if (in_array("online_news_sites", $_SESSION['old_camp'])) {
+                                                                                                                        echo 'checked';
+                                                                                                                    } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Radio
+                                                <input type="checkbox" name="campaign[]" value="radio" <?php if (in_array("radio", $_SESSION['old_camp'])) {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Friends/Family
+                                                <input type="checkbox" name="campaign[]" value="friends/family" <?php if (in_array("riends/family", $_SESSION['old_camp'])) {
+                                                                                                                    echo 'checked';
+                                                                                                                } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <div class="others">
+                                                <label class="all_checks_label others-input">Other:
+                                                    <input type="checkbox" class="selected" name="campaign[]" value="other" <?php if (in_array("other", $_SESSION['old_camp'])) {
+                                                                                                                                echo 'checked';
+                                                                                                                            } ?>>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <input type="text" class=" remove_dim_class all_input dim" name="custom_campaign" <?php if (isset($_SESSION['old_custom_camp'])) {
+                                                                                                                            echo $_SESSION['old_custom_camp'];
+                                                                                                                        } ?>>
+                                            </div>
+                                        </li>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <li>
+                                            <label class="all_checks_label">JNTO's Website (japan.travel)
+                                                <input type="checkbox" name="campaign[]" value="jnto's_website_(japan.travel)">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">JNTO's Facebook (Visit Japan Now)
+                                                <input type="checkbox" name="campaign[]" value="jnto's_facebook_(visit_japan_now)">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">JNTO's Instagram (@visitjapansg)
+                                                <input type="checkbox" name="campaign[]" value="jnto's_instagram_(@visitjapansg)">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">JAPAN by Japan EDM
+                                                <input type="checkbox" name="campaign[]" value="japan_by_japan_edm">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Japan Travel Fair
+                                                <input type="checkbox" name="campaign[]" value="japan_travel_fai">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Social media
+                                                <input type="checkbox" name="campaign[]" value="social_media">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Online news sites
+                                                <input type="checkbox" name="campaign[]" value="online_news_sites">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Radio
+                                                <input type="checkbox" name="campaign[]" value="radio">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="all_checks_label">Friends/Family
+                                                <input type="checkbox" name="campaign[]" value="friends/family">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <div class="others">
+                                                <label class="all_checks_label others-input">Other:
+                                                    <input type="checkbox" class="selected" name="campaign[]" value="other">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <input type="text" class=" remove_dim_class all_input" name="custom_campaign">
+                                            </div>
+                                        </li>
+                                    <?php
+                                    } ?>
+
+
                                 </ul>
                                 <?php if (isset($_SESSION['campaign'])) {
                                 ?>
@@ -1110,12 +1242,36 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         <div class="inner_container">
                             <div class="inner_submit">
                                 <div class="policy">
-                                    <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
-                                        <input type="checkbox" name="termsConditions" value="yes" class="policy_input">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                    <?php if (isset($_SESSION['old_terms'])) {
+                                    ?>
+                                        <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
+                                            <input type="checkbox" name="termsConditions" value="yes" class="policy_input all_input" <?php if ($_SESSION['old_terms'] == 'yes') {
+                                                                                                                                echo 'checked';
+                                                                                                                            } ?>>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    <?php } else {
+                                    ?>
+
+                                        <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
+                                            <input type="checkbox" name="termsConditions" value="yes" class="policy_input">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    <?php
+                                    }
+                                    if (isset($_SESSION['termsConditions'])) {
+                                    ?>
+                                        <span class="for_err"> <?php echo $_SESSION['termsConditions']; ?></span>
+                                    <?php
+                                    }
+                                    unset($_SESSION['termsConditions']);
+                                    ?>
                                 </div>
-                                <button type="submit" class="submit_btn" name="submit">Submit</button>
+                                <div class="btn_submit">
+                                    <button type="submit" name="submit" disabled class="submit_btn">
+                                        <span>Submit</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

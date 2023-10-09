@@ -901,7 +901,7 @@
                                 <input type="file" name="image" class="full_width" />
                                 <?php if (isset($_SESSION['image'])) {
                                 ?>
-                                    <p> <?php echo $_SESSION['image']; ?></p>
+                                    <span class="for_err"> <?php echo $_SESSION['image']; ?></span>
                                 <?php
                                 }
                                 unset($_SESSION['image']);
