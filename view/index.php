@@ -6,9 +6,8 @@ session_start();
 
 $kyushu = new Kyushu();
 
-if ($kyushu->storeArray($_POST, $_FILES)) {
-    "<script>location.href='confirmed/index.php'</script>";
-}
+$kyushu->storeArray($_POST, $_FILES);
+
 
 ?>
 
@@ -31,11 +30,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                 <p class="represent">Representative Applicant</p>
             </div>
         </div>
-        <?php
-        echo '<pre>';
-        var_dump($_POST);
-
-        echo '</pre>';  ?>
+      
         <div class="form_container">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="f_container">
@@ -47,7 +42,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                 <div class="fname">
                                     <input type="text" id="name" class="fname" placeholder="First Name" name="first_name" value="<?php if (isset($_SESSION['old_fn'])) {
                                                                                                                                         echo $_SESSION['old_fn'];
-                                                                                                                                    } ?>" />
+                                                                                                                                    }  ?>" />
                                     <?php if (isset($_SESSION['first_name'])) {
                                     ?>
                                         <span class="for_err"> <?php echo $_SESSION['first_name']; ?></span>
@@ -148,9 +143,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         </div>
                         <!-- Nationality -->
                         <div class="nation_contact for_top">
-                            <h4 class="radio_p">Nationality <?php if (isset($_SESSION['old_nati_cc'])) {
-                                                                var_dump($_SESSION['old_nati_cc']);
-                                                            } ?></h4>
+                            <h4 class="radio_p">Nationality </h4>
                             <ul class="for_ul_top">
                                 <?php if (isset($_SESSION['old_nati'])) {
                                 ?>
@@ -170,15 +163,14 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                                                                                         } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class="dim all_input" id="nation_opt1" disabled="disabled" name="custom_country" value="<?php if (isset($_SESSION['old_nati_cc'])) {
+                                            
+                                            <!-- test 1 remove disable and class = dim -->
+                                            <input type="text" class=" all_input" id="nation_opt1"  name="custom_country" value="<?php if (isset($_SESSION['old_nati_cc'])) {
                                                                                                                                                             echo $_SESSION['old_nati_cc'];
                                                                                                                                                         } ?>">
                                         </div>
                                     </li>
                                 <?php
-                                    //  echo "<pre>";
-                                    //     var_dump($_SESSION);
-                                    //     echo '</pre>';
                                 } else {
                                 ?>
                                     <li>
@@ -188,12 +180,22 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </label>
                                     </li>
                                     <li>
-                                        <div class="others">
+                                        <!-- original  -->
+                                        <!-- <div class="others">
                                             <label class="all_checks_radio others-input">Other:
                                                 <input type="radio" name="nationality" value="other">
                                                 <span class="checkmark"></span>
                                             </label>
                                             <input type="text" class="dim all_input" id="nation_opt1" disabled="disabled" name="custom_country">
+                                        </div> -->
+
+                                        <!-- copy remove disabled and calss = dim  -->
+                                        <div class="others">
+                                            <label class="all_checks_radio others-input">Other:
+                                                <input type="radio" name="nationality" value="other">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <input type="text" class=" all_input" id="nation_opt1" name="custom_country">
                                         </div>
                                     </li>
                                 <?php } ?>
@@ -1285,7 +1287,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                                                                                         } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class=" all_input" id="nation_opt2" disabled="disabled" name="custom_country_tc" value="<?php if (isset($_SESSION['old_nati_cc_tc'])) {
+
+                                            <!-- test 2 reomve disable  -->
+                                            <input type="text" class=" all_input" id="nation_opt2"  name="custom_country_tc" value="<?php if (isset($_SESSION['old_nati_cc_tc'])) {
                                                                                                                                                             echo $_SESSION['old_nati_cc_tc'];
                                                                                                                                                         } ?>">
                                     </li>
@@ -1304,7 +1308,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                                 <input type="radio" name="nationality_tc" value="other">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class="dim all_input" id="nation_opt2" disabled="disabled" name="custom_country_tc">
+                                            <!-- original -->
+                                            <!-- <input type="text" class="dim all_input" id="nation_opt2" disabled="disabled" name="custom_country_tc"> -->
+
+                                            <!-- copy remove disable and class = dim  -->
+                                            <input type="text" class=" all_input" id="nation_opt2"  name="custom_country_tc">
                                         </div>
                                     </li>
                                 <?php
@@ -1566,7 +1574,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                         <li>
                                         <li>
-                                            <label class="all_checks_label">Friends/Family
+                                            <label class="all_checks_label">Friends/Family 
                                                 <input type="checkbox" name="campaign[]" value="friends/family" <?php if (in_array("friends/family", $_SESSION['old_camp'])) {
                                                                                                                     echo 'checked';
                                                                                                                 }  ?>>
@@ -1576,16 +1584,17 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                         <li>
                                             <div class="others">
-                                                <label class="all_checks_label others-input">Other: <?php var_dump($_SESSION['old_custom_camp']);?>
+                                                <label class="all_checks_label others-input">Other: ?>
                                                     <input type="checkbox" class="selected" name="campaign[]" value="other" <?php if (in_array("other", $_SESSION['old_camp'])) {
                                                                                                                                 echo 'checked';
                                                                                                                             } ?>>
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <input type="text" class=" remove_dim_class all_input dim" name="custom_campaign" value="<?php if (isset($_SESSION['old_custom_camp'])) {
+
+                                                <!-- remove dim class  -->
+                                                <input type="text" class=" remove_dim_class all_input " name="custom_campaign" value="<?php if (isset($_SESSION['old_custom_camp'])) {
                                                                                                                                                 echo $_SESSION['old_custom_camp'];
-                                                                                                                                            } 
-                                                                                                                                            unset($_SESSION['old_custom_camp']);
+                                                                                                                                            }
                                                                                                                                             ?>">
                                             </div>
                                         </li>
@@ -1656,11 +1665,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                             </div>
                                         </li>
                                     <?php
-                                    }
-                                    unset($_SESSION['old_camp']);
-                                    ?>
-
-
+                                    } ?>
                                 </ul>
                                 <?php if (isset($_SESSION['campaign'])) {
                                 ?>
@@ -1703,8 +1708,17 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                     unset($_SESSION['termsConditions']);
                                     ?>
                                 </div>
-                                <div class="btn_submit">
+
+                                <!-- original  -->
+                                <!-- <div class="btn_submit">
                                     <button type="submit" name="submit" disabled class="submit_btn">
+                                        <span>Submit</span>
+                                    </button>
+                                </div> -->
+
+                                <!-- test  -->
+                                <div class="btn_submit">
+                                    <button type="submit" name="submit"  class="submit_btn">
                                         <span>Submit</span>
                                     </button>
                                 </div>
@@ -1758,7 +1772,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
             </div>
         </div>
     </div>
-    <script src="../assets/js/common.js"></script>
+    <!-- <script src="../assets/js/common.js"></script> -->
 </body>
 
 </html>
