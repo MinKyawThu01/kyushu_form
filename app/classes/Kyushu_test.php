@@ -16,7 +16,7 @@ class Kyushu extends DB
         try {
 
             if (isset($post['submit'])) {
-                if ($this->validate($post, $files)) {
+                if($this->validate($post, $files)){
                     $first_name = htmlspecialchars($post['first_name']);
                     $last_name = htmlspecialchars($post['last_name']);
                     $dob = htmlspecialchars($post['dob']);
@@ -46,12 +46,16 @@ class Kyushu extends DB
                     $period = $post['period'];
                     $video_upload = $post['video_upload'];
                     $campaign = $post['campaign'];
-                    $termsCondition = $post['termsConditions'];
+                    $custom_campaign = $post['custom_campaign'];
+                    // $termsCondition = $post['termsConditions'];
 
                     // image to base64 code
+
+                    var_dump(($files));
                     $tmp_img_name = $files['image']['tmp_name'];
-                    $image_data =  file_get_contents($files['image']['tmp_name']);
-                    $image_result = base64_encode($image_data);
+                    $image_name = $files['image']['name'];
+                    // $image_data =  file_get_contents($files['image']['tmp_name']);
+                    // $image_result = base64_encode($image_data);
 
                     if ($nationality == 'other' && isset($custom_country)) {
                         $custom_data = $custom_country;
@@ -65,10 +69,15 @@ class Kyushu extends DB
                         $custom_data_tc = $nationality_tc;
                     }
 
-                    if (!empty($files['image']['name'])) {
-                        $imgData = $image_result;
-                        $_SESSION['ImgBase64'];
+                    if ($campaign == "other" && isset($custom_campaign)) {
+                        $custom_data_cp = $custom_campaign;
+                    } else {
+                        $custom_data_cp = $campaign;
                     }
+
+                    // if (!empty($files['image']['name'])) {
+                    //     $imgData = $image_result;
+                    // }
 
                     $user_data =
                         [
@@ -92,19 +101,27 @@ class Kyushu extends DB
                             'nationality_travel_companion' => $custom_data_tc,
                             'relationship_travel_companion' => $relationship_tc,
                             'restriction_travel_companion' => $restriction_tc,
-                            'uploaded_image' => $imgData,
+                            'uploaded_image' => $image_name,
                             'first_name_japan_gift' => $first_name_jp,
                             'last_name_japan_gift' => $last_name_jp,
                             'travel_period' => $period,
                             'video_upload' => $video_upload,
-                            'know_campaign' => $campaign,
+                            'know_campaign' => $custom_data_cp,
+                            'custom_know_campaign' => $custom_campaign
                             // 'terms&conditions' => $termsCondition
                         ];
-                    // echo "<pre>";
-                    // var_dump($user_data);
-                    // echo "</pre>";
-                    // die();
-                    return $user_data ? true : false;
+                        // echo"<pre>";
+                        // var_dump($user_data);
+                        // echo"</pre>";
+                        // die();
+                    // return $user_data ? true : false;
+                        return $user_data;
+                    // if($user_data) {
+                    //     echo '<script>location.href="confirmed/index.php"</script>';
+                    // } else {
+                    //     return false;
+                    // }
+
                 }
             }
 
