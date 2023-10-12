@@ -25,9 +25,14 @@ class Kyushu extends DB
                     $custom_country = htmlspecialchars($post['custom_country']);
                     $occupation = htmlspecialchars($post['occupation']);
                     $religion = htmlspecialchars($post['religion']);
-                    $sns_username = htmlspecialchars($post['sns_username']);
+                    if (isset($post['sns_username']) && !empty($post['sns_username'])) {
+                        $sns_username = htmlspecialchars($post['sns_username']);
+                    } else {
+                        $sns_username = NULL;
+                    }
+
                     $japan_before = $post['japan_before'];
-                    if (isset($post['region'])) {
+                    if (isset($post['region']) && isset($post['japan_before']) && $post['japan_before'] != 'Never') {
                         $region = $post['region'];
                     } else {
                         $region = NULL;
@@ -69,6 +74,8 @@ class Kyushu extends DB
                     } else {
                         $custom_data_tc = $nationality_tc;
                     }
+
+
 
                     if (in_array('Other', $campaign) && isset($custom_camp)) {
                         $arr_search = array_search('Other', $campaign);
@@ -122,13 +129,12 @@ class Kyushu extends DB
                             ]
                         ];
                     $_SESSION['user_data'] = $user_data;
-                    // var_dump(json_encode($_SESSION['user_data'], JSON_UNESCAPED_SLASHES));
-                    // die();
                     return  $_SESSION['user_data'];
                 }
             }
 
             return false;
+            
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -226,6 +232,10 @@ class Kyushu extends DB
 
             if (!empty($post['custom_country']) && strlen($post['custom_country']) > 128) {
                 $errors['nationality'] = "Nationality character can't be more than 128.";
+            }
+
+            if (!empty($post['custom_country']) && is_numeric($post['custom_country'])) {
+                $errors['nationality'] = "Nationality character can't be number.";
             }
 
             if (!empty($post['nationality'])) {
@@ -385,6 +395,8 @@ class Kyushu extends DB
                 $errors['nationality_tc'] = "Please fills your nationality in other field.";
             } else if (!empty($post['custom_country_tc']) && strlen($post['custom_country_tc']) > 128) {
                 $errors['nationality_tc'] = "Nationality can't be more than 128.";
+            } else if (!empty($post['custom_country_tc']) && is_numeric($post['custom_country_tc'])) {
+                $errors['nationality_tc'] = "Nationality can't be number.";
             }
 
             if (!empty($post['nationality_tc'])) {
@@ -412,6 +424,8 @@ class Kyushu extends DB
 
             if (empty($post['restriction_tc'])) {
                 $errors['restriction_tc'] = "Please fills the required field.";
+            } else {
+                $_SESSION['old_res_tc'] = $post['restriction_tc'];
             }
 
             if (is_numeric($post['restriction_tc'])) {
@@ -504,7 +518,6 @@ class Kyushu extends DB
             $_SESSION['error'] = $errors;
 
             return  empty($_SESSION['error']);
-
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -531,7 +544,6 @@ class Kyushu extends DB
             }
 
             return false;
-
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

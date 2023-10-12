@@ -113,7 +113,7 @@ if ($kyushu->store($_POST, $_FILES)) {
                                 } else if (isset($_SESSION['old_nati']) && isset($_SESSION['old_nati_cc'])) {
                                 ?>
                                     <div class="others">
-                                        <label class="all_checks_radio others-input"><?= $_SESSION['old_nati'] ?> ;
+                                        <label class="all_checks_radio others-input"><?= $_SESSION['old_nati'] ?>:
                                             <input disabled type="radio" name="nationality" value="<?= $_SESSION['old_nati'] ?>" checked>
                                             <span class="checkmark"></span>
                                         </label>
@@ -172,7 +172,7 @@ if ($kyushu->store($_POST, $_FILES)) {
 
                         </div>
                         <!-- Region visited in past Japan travels -->
-                        <?php if (isset($_SESSION['old_reg'])) {
+                        <?php if (isset($_SESSION['old_reg']) && $_SESSION['old_before'] != "Never" ) {
                         ?>
                             <div class="visited_japan for_top">
                                 <h4 class="radio_p">Region(s) visited in past Japan travels</h4>
@@ -284,7 +284,7 @@ if ($kyushu->store($_POST, $_FILES)) {
                                 <?php } else if (isset($_SESSION['old_nati_tc']) && isset($_SESSION['old_nati_cc_tc'])) { ?>
                                     <li>
                                         <div class="others">
-                                            <label class="all_checks_radio others-input"><?= $_SESSION['old_nati_tc']; ?> :
+                                            <label class="all_checks_radio others-input"><?= $_SESSION['old_nati_tc']; ?>:
                                                 <input disabled type="radio" name="nationality_tc" value="<?= $_SESSION['old_nati_tc']; ?>" checked>
                                                 <span class="checkmark"></span>
                                             </label>
@@ -309,8 +309,8 @@ if ($kyushu->store($_POST, $_FILES)) {
                         <!-- Dietary  Restrictions-->
                         <div class="dietary for_top">
                             <label for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
-                            <input disabled type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..." name="restriction_tc" value="<?php if (isset($_SESSION['old_rs_tc'])) {
-                                                                                                                                                                echo $_SESSION['old_rs_tc'];
+                            <input disabled type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..." name="restriction_tc" value="<?php if (isset($_SESSION['old_res_tc'])) {
+                                                                                                                                                                echo $_SESSION['old_res_tc'];
                                                                                                                                                             } ?>" />
 
                         </div>

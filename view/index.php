@@ -1360,8 +1360,8 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         <!-- Dietary  Restrictions-->
                         <div class="dietary for_top">
                             <label for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
-                            <input type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..." name="restriction_tc" value="<?php if (isset($_SESSION['old_rs_tc'])) {
-                                                                                                                                                        echo $_SESSION['old_rs_tc'];
+                            <input type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..." name="restriction_tc" value="<?php if (isset($_SESSION['old_res_tc'])) {
+                                                                                                                                                        echo $_SESSION['old_res_tc'];
                                                                                                                                                     } ?>" />
                             <?php if (isset($_SESSION['error']['restriction_tc'])) {
                             ?>
@@ -1591,7 +1591,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         <li>
                                         <li>
                                             <label class="all_checks_label">Friends/Family 
-                                                <input type="checkbox" name="campaign[]" value="Friends/Family " <?php if (in_array("Friends/Family ", $_SESSION['old_camp'])) {
+                                                <input type="checkbox" name="campaign[]" value="Friends/Family" <?php if (in_array("Friends/Family", $_SESSION['old_camp'])) {
                                                                                                                     echo 'checked';
                                                                                                                 }  ?>>
                                                 <span class="checkmark"></span>
