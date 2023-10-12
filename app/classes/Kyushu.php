@@ -27,7 +27,12 @@ class Kyushu extends DB
                     $religion = htmlspecialchars($post['religion']);
                     $sns_username = htmlspecialchars($post['sns_username']);
                     $japan_before = $post['japan_before'];
-                    $region = $post['region'];
+                    if(isset($post['region'])) {
+                        $region = $post['region'];
+                    } else {
+                        $region = NULL;
+                    }
+                    
                     $restriction = htmlspecialchars($post['restriction']);
                     $email = htmlspecialchars($post['email']);
                     $ph_num = htmlspecialchars($post['ph_num']);
@@ -51,15 +56,16 @@ class Kyushu extends DB
                     // image to base64 code
                     $tmp_img_name = $files['image']['tmp_name'];
                     $image_data =  file_get_contents($files['image']['tmp_name']);
-                    $image_result = base64_encode($image_data);
+                    $image_ext = pathinfo($files["image"]["name"], PATHINFO_EXTENSION);
+                    $image_result = 'data:image/' . $image_ext .';base64,' . base64_encode($image_data);
 
-                    if ($nationality == 'other' && isset($custom_country)) {
+                    if ($nationality == 'Other' && isset($custom_country)) {
                         $custom_data = $custom_country;
                     } else {
                         $custom_data = $nationality;
                     }
 
-                    if ($nationality_tc == 'other' && isset($custom_country_tc)) {
+                    if ($nationality_tc == 'Other' && isset($custom_country_tc)) {
                         $custom_data_tc = $custom_country_tc;
                     } else {
                         $custom_data_tc = $nationality_tc;
@@ -67,7 +73,7 @@ class Kyushu extends DB
 
                     if (!empty($files['image']['name'])) {
                         $imgData = $image_result;
-                        $_SESSION['ImgBase64'];
+                        $_SESSION['imgBase64'] = $imgData;
                     }
 
                     $user_data =
@@ -105,6 +111,7 @@ class Kyushu extends DB
                     // echo "</pre>";
                     // die();
                     return $user_data ? true : false;
+                    // die();
                 }
             }
 
@@ -200,7 +207,7 @@ class Kyushu extends DB
 
             if (empty($post['nationality'])) {
                 $errors['nationality'] = "Please fills the required field.";
-            } else if ($post['nationality'] == 'other' && empty($post['custom_country'])) {
+            } else if ($post['nationality'] == 'Other' && empty($post['custom_country'])) {
                 $errors['nationality'] = "Please fills your nationality in other field.";
             }
 
@@ -212,7 +219,7 @@ class Kyushu extends DB
                 $_SESSION['old_nati'] = $post['nationality'];
             }
 
-            if (isset($post['nationality'])  && $post['nationality'] == 'other' && isset($post['custom_country'])) {
+            if (isset($post['nationality'])  && $post['nationality'] == 'Other' && isset($post['custom_country'])) {
                 $_SESSION['old_nati_cc'] = $post['custom_country'];
             }
 
@@ -255,7 +262,9 @@ class Kyushu extends DB
                 $_SESSION['old_before'] = $post['japan_before'];
             }
 
-            if (empty($post['region']) && isset($post['japan_before']) && $post['japan_before'] != 'never') {
+            // var_dump(empty($post['region'])  && isset($post['japan_before']) && $post['japan_before'] != 'Never');
+            // die();
+            if (empty($post['region']) && isset($post['japan_before']) && $post['japan_before'] != 'Never') {
                 $errors['region'] = "Please fills the required field.";
                 if (isset($_SESSION['old_reg'])) {
                     unset($_SESSION['old_reg']);
@@ -361,7 +370,7 @@ class Kyushu extends DB
 
             if (empty($post['nationality_tc'])) {
                 $errors['nationality_tc'] = "Please fills the required field.";
-            } else if ($post['nationality_tc'] == 'other' && empty($post['custom_country_tc'])) {
+            } else if ($post['nationality_tc'] == 'Other' && empty($post['custom_country_tc'])) {
                 $errors['nationality_tc'] = "Please fills your nationality in other field.";
             } else if (!empty($post['custom_country_tc']) && strlen($post['custom_country_tc']) > 128) {
                 $errors['nationality_tc'] = "Nationality can't be more than 128.";
@@ -371,8 +380,8 @@ class Kyushu extends DB
                 $_SESSION['old_nati_tc'] = $post['nationality_tc'];
             }
 
-            if (isset($post['nationality_tc']) && $post['nationality_tc'] == 'other' && isset($post['custom_country_tc'])) {
-                $errors['old_nati_cc_tc'] = $post['custom_country_tc'];
+            if (isset($post['nationality_tc']) && $post['nationality_tc'] == 'Other' && isset($post['custom_country_tc'])) {
+                $_SESSION['old_nati_cc_tc'] = $post['custom_country_tc'];
             }
 
             if (empty($post['relationship_tc'])) {
@@ -451,13 +460,14 @@ class Kyushu extends DB
             } else {
                 $_SESSION['old_vd'] = $post['video_upload'];
             }
-
+// var_dump(isset($post['campaign'])&& in_array('Other', $post['campaign']));
+// die();
             if (empty($post['campaign'])) {
                 $errors['campaign'] = "Please fills the required field.";
                 if (isset($_SESSION['old_camp'])) {
                     unset($_SESSION['old_camp']);
                 }
-            } else if (in_array('other', $post['campaign']) && empty($post['custom_campaign'])) {
+            } else if (isset($post['campaign']) && in_array('Other', $post['campaign']) && $post['custom_campaign'] == '') {
                 $errors['campaign'] = "Please fills your campaign in other field.";
             } else if (!empty($post['custom_campaign']) && strlen($post['custom_campaign']) > 128) {
                 $errors['campaign'] = "Campaign can't be more than 128.";
@@ -467,7 +477,7 @@ class Kyushu extends DB
                 $_SESSION['old_camp'] = $post['campaign'];
             }
 
-            if (isset($post['campaign']) && in_array('other', $post['campaign']) && isset($post['custom_campaign'])) {
+            if (isset($post['campaign']) && in_array('Other', $post['campaign']) && isset($post['custom_campaign'])) {
                 $_SESSION['old_custom_camp'] = $post['custom_campaign'];
             } else {
                 if (isset($_SESSION['old_custom_camp'])) {
