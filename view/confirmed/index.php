@@ -6,14 +6,11 @@ session_start();
 
 $kyushu = new Kyushu();
 
-// var_dump(isset($kyushu->storeArray($_POST, $file)))
-if ($kyushu->storeArray($_POST, $_FILES)) {
-    echo '<script>location.href="confirmed/index.php"</script>';
+if ($kyushu->store($_POST, $_FILES)) {
+    echo '<script>location.href="../complete/index.php"</script>';
+    session_destroy();
 }
-// echo "<pre>";
-// var_dump($_SESSION);
-// echo "</pre>";
-// die();
+
 ?>
 
 <!DOCTYPE html>
@@ -276,7 +273,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         <div class="nation_contact for_top">
                             <h4 class="radio_p">Nationality</h4>
                             <ul class="for_ul_top">
-                                <?php if (isset($_SESSION['old_nati_tc'])) {
+                                <?php if (isset($_SESSION['old_nati_tc']) && !isset($_SESSION['old_nati_cc_tc'])) {
                                 ?>
                                     <li>
                                         <label class="all_checks_radio others-input"><?= $_SESSION['old_nati_tc']; ?>
@@ -427,7 +424,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                 <!-- test  -->
                                 <div class="btn_submit">
                                     <a href="../index.php" class="back_link">Back</a>
-                                    <button type="submit" name="confirm" disabled class="submit_btn btn_lg">
+                                    <button type="submit" name="confirm"   class="submit_btn btn_lg">
                                         <span>Confirm</span>
                                     </button>
                                 </div>

@@ -27,12 +27,12 @@ class Kyushu extends DB
                     $religion = htmlspecialchars($post['religion']);
                     $sns_username = htmlspecialchars($post['sns_username']);
                     $japan_before = $post['japan_before'];
-                    if(isset($post['region'])) {
+                    if (isset($post['region'])) {
                         $region = $post['region'];
                     } else {
                         $region = NULL;
                     }
-                    
+
                     $restriction = htmlspecialchars($post['restriction']);
                     $email = htmlspecialchars($post['email']);
                     $ph_num = htmlspecialchars($post['ph_num']);
@@ -49,15 +49,14 @@ class Kyushu extends DB
                     $first_name_jp = htmlspecialchars($post['first_name_jp']);
                     $last_name_jp = htmlspecialchars($post['last_name_jp']);
                     $period = $post['period'];
-                    $video_upload = $post['video_upload'];
                     $campaign = $post['campaign'];
-                    $termsCondition = $post['termsConditions'];
+                    $custom_camp = $post['custom_campaign'];
 
                     // image to base64 code
                     $tmp_img_name = $files['image']['tmp_name'];
                     $image_data =  file_get_contents($files['image']['tmp_name']);
                     $image_ext = pathinfo($files["image"]["name"], PATHINFO_EXTENSION);
-                    $image_result = 'data:image/' . $image_ext .';base64,' . base64_encode($image_data);
+                    $image_result = 'data:image/' . $image_ext . ';base64,' . base64_encode($image_data);
 
                     if ($nationality == 'Other' && isset($custom_country)) {
                         $custom_data = $custom_country;
@@ -71,6 +70,13 @@ class Kyushu extends DB
                         $custom_data_tc = $nationality_tc;
                     }
 
+                    if (in_array('Other', $campaign) && isset($custom_camp)) {
+                        $arr_search = array_search('Other', $campaign);
+                        if ($arr_search !== false) {
+                            $campaign[$arr_search] = $custom_camp;
+                        }
+                    }
+
                     if (!empty($files['image']['name'])) {
                         $imgData = $image_result;
                         $_SESSION['imgBase64'] = $imgData;
@@ -78,40 +84,47 @@ class Kyushu extends DB
 
                     $user_data =
                         [
-                            'first_name' => $first_name,
-                            'last_name' => $last_name,
-                            'dob' => $dob,
-                            'gender' => $gender,
-                            'nationality' => $custom_data,
-                            'occupation' => $occupation,
-                            'religion' => $religion,
-                            'sns_username' => $sns_username,
-                            'japan_before' => $japan_before,
-                            'region' => $region,
-                            'restriction' => $restriction,
-                            'email' => $email,
-                            'ph_num' => $ph_num,
-                            'first_name_travel_companion' => $first_name_tc,
-                            'last_name_travel_companion' => $last_name_tc,
-                            'dob_travel_companion' => $dob_tc,
-                            'gender_travel_companion' => $gender_tc,
-                            'nationality_travel_companion' => $custom_data_tc,
-                            'relationship_travel_companion' => $relationship_tc,
-                            'restriction_travel_companion' => $restriction_tc,
-                            'uploaded_image' => $imgData,
-                            'first_name_japan_gift' => $first_name_jp,
-                            'last_name_japan_gift' => $last_name_jp,
-                            'travel_period' => $period,
-                            'video_upload' => $video_upload,
-                            'know_campaign' => $campaign,
-                            // 'terms&conditions' => $termsCondition
+                            'main' =>
+                            [
+                                'first_name' => $first_name,
+                                'last_name' => $last_name,
+                                'dob' => $dob,
+                                'gender' => $gender,
+                                'nationality' => $custom_data,
+                                'occupation' => $occupation,
+                                'religion' => $religion,
+                                'sns_username' => $sns_username,
+                                'japan_before' => $japan_before,
+                                'region' => $region,
+                                'restriction' => $restriction,
+                                'email' => $email,
+                                'ph_num' => $ph_num,
+                            ],
+
+                            'tc_1' =>
+                            [
+                                'first_name_travel_companion' => $first_name_tc,
+                                'last_name_travel_companion' => $last_name_tc,
+                                'dob_travel_companion' => $dob_tc,
+                                'gender_travel_companion' => $gender_tc,
+                                'nationality_travel_companion' => $custom_data_tc,
+                                'relationship_travel_companion' => $relationship_tc,
+                                'restriction_travel_companion' => $restriction_tc,
+                            ],
+
+                            'other' =>
+                            [
+                                'uploaded_image' => $imgData,
+                                'first_name_japan_gift' => $first_name_jp,
+                                'last_name_japan_gift' => $last_name_jp,
+                                'travel_period' => $period,
+                                'know_campaign' => $campaign
+                            ]
                         ];
-                    // echo "<pre>";
-                    // var_dump($user_data);
-                    // echo "</pre>";
+                    $_SESSION['user_data'] = $user_data;
+                    // var_dump(json_encode($_SESSION['user_data'], JSON_UNESCAPED_SLASHES));
                     // die();
-                    return $user_data ? true : false;
-                    // die();
+                    return  $_SESSION['user_data'];
                 }
             }
 
@@ -134,7 +147,7 @@ class Kyushu extends DB
             $image_name = $files['image']['name'];
             $image_ext = pathinfo($files["image"]["name"], PATHINFO_EXTENSION);
             $ext = array('jepg', 'jpg', 'png');
-            if($image_name == "" && $tmp_img_name == "") {
+            if ($image_name == "" && $tmp_img_name == "") {
                 $errors['image'] = 'Please upload a photo.';
             } else if (empty($image_name) && empty($tmp_img_name)) {
                 $errors['image'] = 'Please upload a photo.';
@@ -142,8 +155,8 @@ class Kyushu extends DB
                 $errors['image'] = 'Image file not support. Please upload JEPG, JPG, PNG.';
             } else if ($image_size > 40000000) {
                 $errrors['image'] = 'Image Error';
-            } 
-            $_SESSION['image_name'] = $files['image']['name']; 
+            }
+            $_SESSION['image_name'] = $files['image']['name'];
             //image validate end
 
             //date 
@@ -262,8 +275,6 @@ class Kyushu extends DB
                 $_SESSION['old_before'] = $post['japan_before'];
             }
 
-            // var_dump(empty($post['region'])  && isset($post['japan_before']) && $post['japan_before'] != 'Never');
-            // die();
             if (empty($post['region']) && isset($post['japan_before']) && $post['japan_before'] != 'Never') {
                 $errors['region'] = "Please fills the required field.";
                 if (isset($_SESSION['old_reg'])) {
@@ -454,14 +465,13 @@ class Kyushu extends DB
 
             if (empty($post['video_upload'])) {
                 $errors['video_upload'] = "Please fills the required field.";
-                if(isset($_SESSION['old_vd'])) {
-                    unset ($_SESSION['old_vd']);
+                if (isset($_SESSION['old_vd'])) {
+                    unset($_SESSION['old_vd']);
                 }
             } else {
                 $_SESSION['old_vd'] = $post['video_upload'];
             }
-// var_dump(isset($post['campaign'])&& in_array('Other', $post['campaign']));
-// die();
+
             if (empty($post['campaign'])) {
                 $errors['campaign'] = "Please fills the required field.";
                 if (isset($_SESSION['old_camp'])) {
@@ -492,8 +502,36 @@ class Kyushu extends DB
             }
 
             $_SESSION['error'] = $errors;
+
             return  empty($_SESSION['error']);
-            
+
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function store(array $post, array $files)
+    {
+        try {
+            if (isset($post['confirm'])) {
+                $user_id = 1;
+                $flag = 1;
+                if (isset($_SESSION['user_data'])) {
+                    $user_data = json_encode($_SESSION['user_data'], JSON_UNESCAPED_SLASHES);
+                }
+
+
+                $sql = "INSERT INTO `users_table`(`user_id`, `user_data`, `flag`) VALUES (:user_id, :user_data, :flag)";
+                $stmt = $this->con->prepare($sql);
+                $stmt->bindParam('user_id', $user_id, PDO::PARAM_INT);
+                $stmt->bindParam('user_data', $user_data, PDO::PARAM_STR);
+                $stmt->bindParam('flag', $flag, PDO::PARAM_INT);
+
+                return $stmt->execute() ? true : false;
+            }
+
+            return false;
+
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
