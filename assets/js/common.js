@@ -10,28 +10,65 @@ const submit_btn = document.querySelector(".submit_btn");
 const never_input = document.querySelector("#never_input");
 const visited_japan = document.querySelector(".visited_japan");
 const c_form_radio = document.querySelectorAll(".c-form_radio");
-const all_input = document.querySelectorAll(".all_input")
-
+const all_input = document.querySelectorAll(".all_input");
 all_input.forEach((item) => {
     if (item.checked) {
         submit_btn.classList.add("show_pointer");
         remove_dim_class.classList.remove("dim");
-        nation_opt2.disabled = false;
-        nation_opt1.disabled = false;
         nation_opt1.classList.remove("dim");
         nation_opt2.classList.remove("dim");
-        submit_btn.disabled = false;
     } else {
         submit_btn.classList.remove("show_pointer");
         remove_dim_class.classList.add("dim");
         nation_opt1.classList.add("dim");
         nation_opt2.classList.add("dim");
-        nation_opt2.disabled = true;
-        nation_opt1.disabled = true;
-        // remove_dim_class.value = "";
     }
 })
+call_frame.addEventListener("click", () => {
+    vdo_upload.style.display = "block"
+})
 
+close_vdo_tag.addEventListener("click", () => {
+    vdo_upload.style.display = "none"
+})
+//  checkbox handler
+const radio_checkbox_handler = (items) => {
+    if (items && remove_dim_class.value == "") {
+        remove_dim_class.classList.remove("dim");
+    } else {
+        remove_dim_class.value = ""
+        remove_dim_class.classList.add("dim");
+    }
+}
+// radio handler
+const radio_handler = (event) => {
+    if (event.target.parentNode.nextElementSibling == null) {
+        if (event.target.name == "nationality") {
+            nation_opt1.value = "";
+            nation_opt1.classList.add("dim");
+        } else {
+            nation_opt2.disabled = true;
+            nation_opt2.value = "";
+            nation_opt2.classList.add("dim");
+        }
+    } else {
+        event.target.parentNode.nextElementSibling.disabled = false;
+        event.target.parentNode.nextElementSibling.classList.remove("dim");
+      }
+}
+other_input.forEach(item => {
+    item.addEventListener("click", event => {
+        if (event.target.tagName == "INPUT") {
+            if (event.target.type == "checkbox") {
+                const is_dim = remove_dim_class.classList.contains("dim")
+                radio_checkbox_handler(is_dim)
+            } else {
+               radio_handler(event)
+            }
+        }
+    })
+})
+// for policy input and submit btn
 policy_input.addEventListener("click", () => {
     if (policy_input.checked) {
         submit_btn.disabled = false;
@@ -40,4 +77,18 @@ policy_input.addEventListener("click", () => {
         submit_btn.disabled = true;
         submit_btn.classList.remove("show_pointer")
     }
+})
+// if never
+c_form_radio.forEach(item => {
+    item.addEventListener("click", (event) => {
+        if (event.target.id == 'never_input') {
+            visited_japan.classList.add("dis_ragion");
+            const all_input = document.querySelectorAll(".visited_japan input[type=checkbox]");
+            all_input.forEach(item => {
+                item.checked = false;
+            })
+        } else {
+            visited_japan.classList.remove("dis_ragion");
+        }
+    } )
 })
