@@ -14,7 +14,6 @@ text-decoration: none;
 font-size: 20px;
 }
 .inner_container {
-  width: 100%;
 max-width: 627px;
 margin: 0 auto;
 box-sizing: border-box;
@@ -65,13 +64,10 @@ margin-left: 34px;
 }
 /* fullname input */
 .form_container .f_container .fullname input {
-width: 100%;
+width: 296px;
 }
-.form_container .fullname .first-item {
-  margin-right: 36px;
-}
-.form_container .fullname .first-item, .form_container .fullname .second-item{
-width: 47.21%;
+.fullname .first-name {
+margin-right: 36px;
 }
 .form_container .f_container .fullname {
 display: flex;
@@ -104,9 +100,7 @@ margin-top: 70px;
 }
 /* title */
 .container .form_container h3 {
-  text-align: center;
-}
-.container .form_container span {
+text-align: center;
 font-size: 28px;
 }
 .inner_container .req  {
@@ -529,13 +523,12 @@ font-size: 100%;
     margin-top: calc(9 / 750 * 100vw);
     }
     .form_container .f_container  .sub_txt {
-      font-size: calc(24 / 750 * 100vw);
+      font-size: calc(28 / 750 * 100vw);
       margin-left: calc(10 / 750 * 100vw)
       }
     /* title */
-    .container .form_container span {
+    .container .form_container h3 {
     font-size: calc(40 / 750 * 100vw);
-    margin-top: calc(6 / 750 * 100vw);
     }
     .inner_container .req  {
     margin: calc(20 / 750 * 100vw) 0 calc(56 / 750 * 100vw);
@@ -545,7 +538,7 @@ font-size: 100%;
     .form_container .f_container .fullname input {
     width: calc(296 / 750 * 100vw);
     }
-    .fullname .first-item {
+    .fullname .first-name {
     margin-right: calc(36 / 750 * 100vw);
     }
     .container .form_container h3 span::before{
@@ -573,16 +566,16 @@ font-size: 100%;
     margin-bottom: calc(15 / 750 * 100vw);
     }
     .all_checks_label .checkmark, .all_checks_radio .checkmark {
-    height: calc(30 / 750 * 100vw);
-    width: calc(30 / 750 * 100vw);
+    height: calc(25 / 750 * 100vw);
+    width: calc(25 / 750 * 100vw);
     border-width: calc(1 / 750 * 100vw);
     }
     /* Create the indicator (the dot/circle - hidden when not checked) */
     .all_checks_label .checkmark:after {
     left: calc(9 / 750 * 100vw);
-    top: calc(2 / 750 * 100vw);
-    width: calc(10 / 750 * 100vw);
-    height: calc(20 / 750 * 100vw);
+    top: calc(5 / 750 * 100vw);
+    width: calc(5 / 750 * 100vw);
+    height: calc(10 / 750 * 100vw);
     border: calc(1 / 750 * 100vw) solid #fff;
     border-width: 0 calc(3 / 750 * 100vw) calc(3 / 750 * 100vw) 0;
     -webkit-transform: rotate(45deg);
@@ -597,8 +590,8 @@ font-size: 100%;
     .all_checks_radio .checkmark:after {
     top:calc(5 / 750 * 100vw);
     left: calc(5 / 750 * 100vw);
-    width: calc(20 / 750 * 100vw);
-    height: calc(20 / 750 * 100vw);
+    width: calc(15 / 750 * 100vw);
+    height: calc(15 / 750 * 100vw);
     }
     /* file upload */
     .container .form_container .files_upload {

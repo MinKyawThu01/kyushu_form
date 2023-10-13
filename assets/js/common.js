@@ -10,18 +10,25 @@ const submit_btn = document.querySelector(".submit_btn");
 const never_input = document.querySelector("#never_input");
 const visited_japan = document.querySelector(".visited_japan");
 const c_form_radio = document.querySelectorAll(".c-form_radio");
-const all_input = document.querySelectorAll(".all_input");
+const all_input = document.querySelectorAll(".all_input")
+
 all_input.forEach((item) => {
     if (item.checked) {
         submit_btn.classList.add("show_pointer");
         remove_dim_class.classList.remove("dim");
+        nation_opt2.disabled = false;
+        nation_opt1.disabled = false;
         nation_opt1.classList.remove("dim");
         nation_opt2.classList.remove("dim");
+        submit_btn.disabled = false;
     } else {
         submit_btn.classList.remove("show_pointer");
         remove_dim_class.classList.add("dim");
         nation_opt1.classList.add("dim");
         nation_opt2.classList.add("dim");
+        nation_opt2.disabled = true;
+        nation_opt1.disabled = true;
+        // remove_dim_class.value = "";
     }
 })
 call_frame.addEventListener("click", () => {

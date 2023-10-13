@@ -45,17 +45,16 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                 <p class="req"><strong>Please complete the application form below.</strong></p>
             </div>
         </div>
-
         <div class="form_container">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="f_container">
                     <div class="inner_container">
-                    <h3><span class="star_icon">Representative Applicant</span></h3>
+                        <h3><span class="star_icon">Representative Applicant</span></h3>
                         <!-- Name -->
-                        <div class="name_contact for_top">
-                            <label for="name" class="label_name">Full Name</label>
+                        <div class="form_gp">
+                            <h5 class="title">Full Name</h5>
                             <div class="fullname">
-                                <div class="fname">
+                                <div class="first-item">
                                     <input type="text" id="name" class="fname" placeholder="First Name" name="first_name" value="<?php if (isset($_SESSION['old_fn'])) {
                                                                                                                                         echo $_SESSION['old_fn'];
                                                                                                                                     }  ?>" />
@@ -67,7 +66,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                     unset($_SESSION['error']['first_name']);
                                     ?>
                                 </div>
-                                <div class="lname">
+                                <div class="second-item">
                                     <input type="text" placeholder="Last Name" name="last_name" value="<?php if (isset($_SESSION['old_ln'])) {
                                                                                                             echo $_SESSION['old_ln'];
                                                                                                         } ?>" />
@@ -82,11 +81,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             </div>
                         </div>
                         <!-- Date of Birth -->
-                        <div class="dob_contact for_top">
-                            <label for="dateOfBirth" class="label_name">Date of Birth</label>
-                            <input type="date" id="dateOfBirth" class="full_width" name="dob" value="<?php if (isset($_SESSION['old_dob'])) {
-                                                                                                            echo $_SESSION['old_dob'];
-                                                                                                        } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Date of Birth</h5>
+                            <input type="date" id="dateOfBirth" name="dob" value="<?php if (isset($_SESSION['old_dob'])) {
+                                                                                        echo $_SESSION['old_dob'];
+                                                                                    } ?>" />
                             <?php if (isset($_SESSION['error']['dob'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['dob']; ?></span>
@@ -97,8 +96,8 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         </div>
                         <!-- Gender -->
                         <div class="gender_contact for_top">
-                            <p class="radio_p">Gender</p>
-                            <ul class="for_ul_top">
+                            <h5 class="title">Gender</h5>
+                            <ul>
                                 <?php if (isset($_SESSION['old_gender'])) {
                                 ?>
 
@@ -158,9 +157,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Nationality -->
-                        <div class="nation_contact for_top">
-                            <h4 class="radio_p">Nationality </h4>
-                            <ul class="for_ul_top">
+                        <div class="form_gp">
+                            <h5 class="title">Nationality</h5>
+                            <ul>
                                 <?php if (isset($_SESSION['old_nati'])) {
                                 ?>
                                     <li>
@@ -225,11 +224,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Occupation -->
-                        <div class="occupation for_top">
-                            <label for="occupation" class="label_name">Occupation</label>
-                            <input type="text" id="occupation" class="full_width" placeholder="Type..." name="occupation" value="<?php if (isset($_SESSION['old_occ'])) {
-                                                                                                                                        echo $_SESSION['old_occ'];
-                                                                                                                                    } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Occupation</h5>
+                            <input type="text" id="occupation" placeholder="Type..." name="occupation" value="<?php if (isset($_SESSION['old_occ'])) {
+                                                                                                                    echo $_SESSION['old_occ'];
+                                                                                                                } ?>" />
                             <?php if (isset($_SESSION['error']['occupation'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['occupation']; ?></span>
@@ -239,12 +238,12 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Religion -->
-                        <div class="religion for_top">
-                            <label for="religion" class="label_name">Religion</label>
-                            <p class="for_ul_top reli_sns">(We will try to caster to religion preferences, but should you not wish to specify, please answer "prefer not to say")</p>
-                            <input type="text" id="religion" class="full_width reli_sns_input" placeholder="Type..." name="religion" value="<?php if (isset($_SESSION['old_reli'])) {
-                                                                                                                                                echo $_SESSION['old_reli'];
-                                                                                                                                            } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Religion</h5>
+                            <p>(We will try to caster to religion preferences, but should you not wish to specify, please answer "prefer not to say")</p>
+                            <input type="text" id="religion" placeholder="Type..." name="religion" value="<?php if (isset($_SESSION['old_reli'])) {
+                                                                                                                echo $_SESSION['old_reli'];
+                                                                                                            } ?>" />
                             <?php if (isset($_SESSION['error']['religion'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['religion']; ?></span>
@@ -254,12 +253,12 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- SNS username -->
-                        <div class="sns_username for_top">
-                            <label for="sns" class="label_name">SNS username <span class="label_rt">(Facebook/Instagram/Tiktok/Youtube)</span></label>
-                            <p class="for_ul_top reli_sns">*Leave the option blank if you do not have any Social Media account</p>
-                            <input type="text" id="sns" class="full_width reli_sns_input" placeholder="Type..." name="sns_username" value="<?php if (isset($_SESSION['old_sns'])) {
-                                                                                                                                                echo $_SESSION['old_sns'];
-                                                                                                                                            } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">SNS username<span class="sub_txt">(Facebook/Instagram/Tiktok/Youtube)</h5>
+                            <p>*Leave the option blank if you do not have any Social Media account</p>
+                            <input type="text" id="sns" placeholder="Type..." name="sns_username" value="<?php if (isset($_SESSION['old_sns'])) {
+                                                                                                                echo $_SESSION['old_sns'];
+                                                                                                            } ?>" />
                             <?php if (isset($_SESSION['error']['sns_username'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['sns_username']; ?></span>
@@ -269,9 +268,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- have been to japan -->
-                        <div class="been_jp for_top">
-                            <p class="radio_p">Have you been to Japan before?</p>
-                            <ul class="for_ul_top">
+                        <div class="form_gp">
+                            <h5 class="title">Have you been to Japan before?</h5>
+                            <ul>
                                 <?php if (isset($_SESSION['old_before'])) {
                                 ?>
                                     <li>
@@ -362,11 +361,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         <!-- Region visited in past Japan travels -->
                         <?php if (isset($_SESSION['old_reg'])) {
                         ?>
-                            <div class="visited_japan for_top">
-                                <h4 class="radio_p">Region(s) visited in past Japan travels</h4>
-                                <div class="hokkaido">
-                                    <h5 class="region_p">Hokkaido / Tohoku region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                            <div class="visited_japan form_gp">
+                                <h5 class="title">Region(s) visited in past Japan travels</h5>
+                                <div class="region">
+                                    <h5 class="title">Hokkaido / Tohoku region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Hokkaido
                                                 <input type="checkbox" name="region[]" value="Hokkaido" <?php if (in_array('Hokkaido', $_SESSION['old_reg'])) {
@@ -425,9 +424,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="kanto">
-                                    <h5 class="region_p">Kanto region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Kanto region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Ibaraki
                                                 <input type="checkbox" name="region[]" value="Ibaraki" <?php if (in_array('Ibaraki', $_SESSION['old_reg'])) {
@@ -488,9 +487,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Hokuriku Shinetesu region">
-                                    <h5 class="region_p">Hokuriku Shinetesu region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Hokuriku Shinetesu region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Niigata
                                                 <input type="checkbox" name="region[]" value="Niigata" <?php if (in_array('Niigata', $_SESSION['old_reg'])) {
@@ -533,9 +532,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Chubu region">
-                                    <h5 class="region_p">Chubu region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Chubu region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Shizuoka
                                                 <input type="checkbox" name="region[]" value="Shizuoka" <?php if (in_array('Shizuoka', $_SESSION['old_reg'])) {
@@ -578,9 +577,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Kinki region">
-                                    <h5 class="region_p">Kinki region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Kinki region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Shiga
                                                 <input type="checkbox" name="region[]" value="Shiga" <?php if (in_array('Shiga', $_SESSION['old_reg'])) {
@@ -631,9 +630,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Chugoku region">
-                                    <h5 class="region_p">Chugoku region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Chugoku region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Tottori
                                                 <input type="checkbox" name="region[]" value="Tottori" <?php if (in_array('Tottori', $_SESSION['old_reg'])) {
@@ -676,9 +675,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Shikoku region">
-                                    <h5 class="region_p">Shikoku region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Shikoku region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Tokushima
                                                 <input type="checkbox" name="region[]" value="Tokushima" <?php if (in_array('Tokushima', $_SESSION['old_reg'])) {
@@ -713,9 +712,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Kyushu/Okinawa region">
-                                    <h5 class="region_p">Kyushu / Okinawa region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Kyushu / Okinawa region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Fukuoka
                                                 <input type="checkbox" name="region[]" value="Fukuoka" <?php if (in_array('Fukuoka', $_SESSION['old_reg'])) {
@@ -793,11 +792,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         <?php
                         } else {
                         ?>
-                            <div class="visited_japan for_top">
-                                <h4 class="radio_p">Region(s) visited in past Japan travels</h4>
-                                <div class="hokkaido">
-                                    <h5 class="region_p">Hokkaido / Tohoku region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                            <div class="visited_japan form_gp">
+                                <h5 class="title">Region(s) visited in past Japan travels</h5>
+                                <div class="region">
+                                    <h5 class="title">Hokkaido / Tohoku region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Hokkaido
                                                 <input type="checkbox" name="region[]" value="Hokkaido">
@@ -842,9 +841,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="kanto">
-                                    <h5 class="region_p">Kanto region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Kanto region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Ibaraki
                                                 <input type="checkbox" name="region[]" value="Ibaraki">
@@ -889,9 +888,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Hokuriku Shinetesu region">
-                                    <h5 class="region_p">Hokuriku Shinetesu region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Hokuriku Shinetesu region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Niigata
                                                 <input type="checkbox" name="region[]" value="Niigata">
@@ -924,9 +923,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Chubu region">
-                                    <h5 class="region_p">Chubu region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Chubu region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Shizuoka
                                                 <input type="checkbox" name="region[]" value="Shizuoka">
@@ -959,9 +958,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Kinki region">
-                                    <h5 class="region_p">Kinki region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Kinki region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Shiga
                                                 <input type="checkbox" name="region[]" value="Shiga">
@@ -1000,9 +999,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Chugoku region">
-                                    <h5 class="region_p">Chugoku region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Chugoku region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Tottori
                                                 <input type="checkbox" name="region[]" value="Tottori">
@@ -1035,9 +1034,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Shikoku region">
-                                    <h5 class="region_p">Shikoku region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Shikoku region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Tokushima
                                                 <input type="checkbox" name="region[]" value="Tokushima">
@@ -1064,9 +1063,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="Kyushu/Okinawa region">
-                                    <h5 class="region_p">Kyushu / Okinawa region</h5>
-                                    <ul class="for_ul_top all_checks_contact">
+                                <div class="region">
+                                    <h5 class="title">Kyushu / Okinawa region</h5>
+                                    <ul class="custom-checkbox">
                                         <li>
                                             <label class="all_checks_label">Fukuoka
                                                 <input type="checkbox" name="region[]" value="Fukuoka">
@@ -1129,11 +1128,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         } ?>
 
                         <!-- Dietary  Restrictions-->
-                        <div class="dietary for_top">
-                            <label for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
-                            <input type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..." name="restriction" value="<?php if (isset($_SESSION['old_restri'])) {
-                                                                                                                                                    echo $_SESSION['old_restri'];
-                                                                                                                                                } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Dietary Restrictions <span class="sub_txt">(Including Alcohol)</span> </h5>
+                            <input type="text" id="dietary" placeholder="Type..." name="restriction" value="<?php if (isset($_SESSION['old_restri'])) {
+                                                                                                                echo $_SESSION['old_restri'];
+                                                                                                            } ?>" />
                             <?php if (isset($_SESSION['error']['restriction'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['restriction']; ?></span>
@@ -1143,11 +1142,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Email -->
-                        <div class="email for_top">
-                            <label for="email" class="label_name">Email Address</label>
-                            <input type="text" id="email" class="full_width" placeholder="Email" name="email" value="<?php if (isset($_SESSION['old_email'])) {
-                                                                                                                            echo $_SESSION['old_email'];
-                                                                                                                        } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Email Address</h5>
+                            <input type="text" id="email" placeholder="Email" name="email" value="<?php if (isset($_SESSION['old_email'])) {
+                                                                                                        echo $_SESSION['old_email'];
+                                                                                                    } ?>" />
                             <?php if (isset($_SESSION['error']['email'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['email']; ?></span>
@@ -1157,11 +1156,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Phone Number -->
-                        <div class="phone for_top">
-                            <label for="phone" class="label_name">Phone Number</label>
-                            <input type="text" id="phone" class="full_width" placeholder="Phone Number" name="ph_num" value="<?php if (isset($_SESSION['old_ph'])) {
-                                                                                                                                    echo $_SESSION['old_ph'];
-                                                                                                                                } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Phone Number</h5>
+                            <input type="text" id="phone" placeholder="Phone Number" name="ph_num" value="<?php if (isset($_SESSION['old_ph'])) {
+                                                                                                                echo $_SESSION['old_ph'];
+                                                                                                            } ?>" />
                             <?php if (isset($_SESSION['error']['ph_num'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['ph_num']; ?></span>
@@ -1171,18 +1170,18 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
 
-                        <hr class="for_top">
+                        <hr class="form_gp">
 
                         <!-- Travel Companion 01 -->
-                        <p class="represent">Travel Companion 01</p>
+                        <h3 class="form_gp"><span class="star_icon">Travel Companion 01</span></h3>
                         <!-- Name -->
-                        <div class="name_contact for_top">
-                            <label for="name" class="label_name">Full Name</label>
+                        <div class="form_gp">
+                            <h5 class="title">Full Name</h5>
                             <div class="fullname">
-                                <div class="fname">
-                                    <input type="text" id="name" class="fname" placeholder="First Name" name="first_name_tc" value="<?php if (isset($_SESSION['old_fn_tc'])) {
-                                                                                                                                        echo $_SESSION['old_fn_tc'];
-                                                                                                                                    } ?>" />
+                                <div class="first-item">
+                                    <input type="text" id="name" class="first-name" placeholder="First Name" name="first_name_tc" value="<?php if (isset($_SESSION['old_fn_tc'])) {
+                                                                                                                                                echo $_SESSION['old_fn_tc'];
+                                                                                                                                            } ?>" />
                                     <?php if (isset($_SESSION['error']['first_name_tc'])) {
                                     ?>
                                         <span class="for_err"> <?php echo $_SESSION['error']['first_name_tc']; ?></span>
@@ -1191,7 +1190,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                     unset($_SESSION['error']['first_name_tc']);
                                     ?>
                                 </div>
-                                <div class="lname">
+                                <div class="second-item">
                                     <input type="text" placeholder="Last Name" name="last_name_tc" value="<?php if (isset($_SESSION['old_ln_tc'])) {
                                                                                                                 echo $_SESSION['old_ln_tc'];
                                                                                                             } ?>" />
@@ -1206,11 +1205,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             </div>
                         </div>
                         <!-- Date of Birth -->
-                        <div class="dob_contact for_top">
-                            <label for="dateOfBirth" class="label_name">Date of Birth</label>
-                            <input type="date" id="dateOfBirth" class="full_width" name="dob_tc" value="<?php if (isset($_SESSION['old_dob_tc'])) {
-                                                                                                            echo $_SESSION['old_dob_tc'];
-                                                                                                        } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Date of Birth</h5>
+                            <input type="date" id="dateOfBirth" name="dob_tc" value="<?php if (isset($_SESSION['old_dob_tc'])) {
+                                                                                            echo $_SESSION['old_dob_tc'];
+                                                                                        } ?>" />
                             <?php if (isset($_SESSION['error']['dob_tc'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['dob_tc']; ?></span>
@@ -1220,9 +1219,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Gender -->
-                        <div class="gender_contact for_top">
-                            <p class="radio_p">Gender</p>
-                            <ul class="for_ul_top">
+                        <div class="form_gp">
+                            <h5 class="title">Gender</h5>
+                            <ul>
                                 <?php if (isset($_SESSION['old_gender_tc'])) {
                                 ?>
 
@@ -1282,9 +1281,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Nationality -->
-                        <div class="nation_contact for_top">
-                            <h4 class="radio_p">Nationality</h4>
-                            <ul class="for_ul_top">
+                        <div class="form_gp">
+                            <h5 class="title">Nationality</h5>
+                            <ul>
                                 <?php if (isset($_SESSION['old_nati_tc'])) {
                                 ?>
                                     <li>
@@ -1344,11 +1343,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Relationship with applicate -->
-                        <div class="relationship for_top">
-                            <label for="relationship" class="label_name">Relationship with applicate</label>
-                            <input type="text" id="relationship" class="full_width" placeholder="Type" name="relationship_tc" value="<?php if (isset($_SESSION['old_rs_tc'])) {
-                                                                                                                                            echo $_SESSION['old_rs_tc'];
-                                                                                                                                        } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Relationship with applicant</h5>
+                            <input type="text" id="relationship" placeholder="Type" name="relationship_tc" value="<?php if (isset($_SESSION['old_rs_tc'])) {
+                                                                                                                        echo $_SESSION['old_rs_tc'];
+                                                                                                                    } ?>" />
                             <?php if (isset($_SESSION['error']['relationship_tc'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['relationship_tc']; ?></span>
@@ -1358,11 +1357,11 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Dietary  Restrictions-->
-                        <div class="dietary for_top">
-                            <label for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
-                            <input type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..." name="restriction_tc" value="<?php if (isset($_SESSION['old_res_tc'])) {
-                                                                                                                                                        echo $_SESSION['old_res_tc'];
-                                                                                                                                                    } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Dietary Restrictions <span class="sub_txt">(Including Alcohol)</span></h5>
+                            <input type="text" id="dietary" placeholder="Type..." name="restriction_tc" value="<?php if (isset($_SESSION['old_res_tc'])) {
+                                                                                                                    echo $_SESSION['old_res_tc'];
+                                                                                                                } ?>" />
                             <?php if (isset($_SESSION['error']['restriction_tc'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['restriction_tc']; ?></span>
@@ -1377,10 +1376,10 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                 <div class="files_upload">
                     <div class="f_container">
                         <div class="inner_container">
-                            <!-- inamge upload  -->
-                            <div class="img_upload">
-                                <label for="upload_avatar" class="upload_label">Please upload a photo that shows all applicate in the photo</label>
-                                <input type="file" name="image" class="full_width" />
+                            <!-- image  -->
+                            <div class="form_gp img_upload">
+                                <h5 class="title">Please upload a photo that shows all applicate in the photo</h5>
+                                <input type="file" name="image" class="" />
                                 <?php if (isset($_SESSION['error']['image'])) {
                                 ?>
                                     <span class="for_err"> <?php echo $_SESSION['error']['image']; ?></span>
@@ -1390,10 +1389,10 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                 ?>
                             </div>
                             <!-- Birthday  -->
-                            <div class="person_name for_top">
-                                <label for="person" class="upload_label">The full name of the name who will receives the trip to Japan as their birthday gift</label>
+                            <div class="form_gp">
+                                <h5 class="title">The full name of the name who will receives the trip to Japan as their birthday gift</h5>
                                 <div class="fullname">
-                                    <div class="fname">
+                                    <div class="first-item">
                                         <input type="text" id="person" class="fname" placeholder="First Name" name="first_name_jp" value="<?php if (isset($_SESSION['old_fn_jp'])) {
                                                                                                                                                 echo $_SESSION['old_fn_jp'];
                                                                                                                                             } ?>" />
@@ -1405,7 +1404,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         unset($_SESSION['error']['first_name_jp']);
                                         ?>
                                     </div>
-                                    <div class="lname">
+                                    <div class="second-item">
                                         <input type="text" placeholder="Last Name" name="last_name_jp" value="<?php if (isset($_SESSION['old_ln_jp'])) {
                                                                                                                     echo $_SESSION['old_ln_jp'];
                                                                                                                 } ?>" />
@@ -1420,9 +1419,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                 </div>
                             </div>
                             <!-- travel period  -->
-                            <div class="traveling_period for_top">
-                                <p class="upload_label">Please let us know your preferred traveling period</p>
-                                <ul class="for_ul_top">
+                            <div class="form_gp">
+                                <h5 class="title">Please let us know your preferred traveling period</h5>
+                                <ul>
                                     <?php if (isset($_SESSION['old_period'])) {
                                     ?>
                                         <li>
@@ -1477,38 +1476,40 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                 ?>
                             </div>
                             <!-- video upload  -->
-                            <div class="traveling_period for_top">
-                                <p class="upload_label">Please upload your introductory video below</p>
+                            <div class="form_gp">
+                                <h5 class="title">Please upload your introductory video below</h5>
                                 <span class="click_upload">Click here to upload</span>
                                 <p class="intro_vd">Have you uploaded your introductory video?</p>
-                                <div class="option">
+                                <ul>
                                     <?php if (isset($_SESSION['old_vd'])) {
                                     ?>
-                                        <label class="all_checks_label">Yes
-                                            <input type="checkbox" name="video_upload" value="Yes" <?php if ($_SESSION['old_vd'] == 'Yes') {
-                                                                                                        echo 'checked';
-                                                                                                    } ?>>
-                                            <span class="checkmark"></span>
-                                        </label>
+                                        <li>
+                                            <label class="all_checks_label">Yes
+                                                <input type="checkbox" name="video_upload" value="Yes" <?php if ($_SESSION['old_vd'] == 'Yes') {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
                                     <?php
                                     } else {
                                     ?>
-                                        <label class="all_checks_label">Yes
-                                            <input type="checkbox" name="video_upload" value="Yes">
-                                            <span class="checkmark"></span>
-                                        </label>
+                                        <li>
+                                            <label class="all_checks_label">Yes
+                                                <input type="checkbox" name="video_upload" value="Yes">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
                                     <?php
                                     }
-                                    ?>
-
-                                    <?php if (isset($_SESSION['error']['video_upload'])) {
+                                    if (isset($_SESSION['error']['video_upload'])) {
                                     ?>
                                         <span class="for_err"> <?php echo $_SESSION['error']['video_upload']; ?></span>
                                     <?php
                                     }
                                     unset($_SESSION['error']['video_upload']);
                                     ?>
-                                </div>
+                                </ul>
                             </div>
                             <div class="pr_vdo_uploader">
                                 <div class="pr_modal_inner">
@@ -1519,9 +1520,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                 </div>
                             </div>
                             <!-- campagin  -->
-                            <div class="traveling_period for_top">
-                                <p class="upload_label">Please let us know how you came across this campaign</p>
-                                <ul class="for_ul_top">
+                            <div class="form_gp">
+                                <h5 class="title">Please let us know how you came across this campaign</h5>
+                                <ul>
                                     <?php if (isset($_SESSION['old_camp'])) {
                                     ?>
                                         <li>
@@ -1694,59 +1695,53 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         </div>
                     </div>
                 </div>
-                <div class="summit_contact">
-                    <div class="f_container">
-                        <div class="inner_container">
-                            <div class="inner_submit">
-                                <div class="policy">
-                                    <?php if (isset($_SESSION['old_terms'])) {
-                                    ?>
-                                        <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
-                                            <input type="checkbox" name="termsConditions" value="yes" class="policy_input all_input" <?php if ($_SESSION['old_terms'] == 'yes') {
-                                                                                                                                            echo 'checked';
-                                                                                                                                        } ?>>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    <?php } else {
-                                    ?>
+                <div class="f_container">
+                    <div class="policy">
+                        <?php if (isset($_SESSION['old_terms'])) {
+                        ?>
+                            <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
+                                <input type="checkbox" name="termsConditions" value="yes" class="policy_input" <?php if ($_SESSION['old_terms'] == 'yes') {
+                                                                                                                    echo 'checked';
+                                                                                                                } ?>>
+                                <span class="checkmark"></span>
+                            </label>
+                        <?php } else {
+                        ?>
 
-                                        <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
-                                            <input type="checkbox" name="termsConditions" value="yes" class="policy_input">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    <?php
-                                    }
-                                    if (isset($_SESSION['error']['termsConditions'])) {
-                                    ?>
-                                        <span class="for_err"> <?php echo $_SESSION['error']['termsConditions']; ?></span>
-                                    <?php
-                                    }
-                                    unset($_SESSION['error']['termsConditions']);
-                                    ?>
-                                </div>
+                            <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
+                                <input type="checkbox" name="termsConditions" value="yes" class="policy_input">
+                                <span class="checkmark"></span>
+                            </label>
+                        <?php
+                        }
+                        if (isset($_SESSION['error']['termsConditions'])) {
+                        ?>
+                            <span class="for_err"> <?php echo $_SESSION['error']['termsConditions']; ?></span>
+                        <?php
+                        }
+                        unset($_SESSION['error']['termsConditions']);
+                        ?>
+                    </div>
 
-                                <!-- original  -->
-                                <!-- <div class="btn_submit">
+                    <!-- original  -->
+                    <!-- <div class="btn_submit">
                                     <button type="submit" name="submit" disabled class="submit_btn">
                                         <span>Submit</span>
                                     </button>
                                 </div> -->
 
-                                <!-- test  -->
-                                <div class="btn_submit">
-                                    <button type="submit" name="submit" class="submit_btn">
-                                        <span>Submit</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- test  -->
+                    <div class="btn_submit">
+                        <button type="submit" name="submit" disabled class="submit_btn">
+                            <span>Submit</span>
+                        </button>
                     </div>
                 </div>
             </form>
             <div class="covid_contact">
                 <div class="f_container">
                     <p>Get Advisory Information COVID-19 situation in Japan</p>
-                    <a href="#" class="all_bt">Go to Advisory Information website</a>
+                    <a href="#">Go to Advisory Information website</a>
                 </div>
             </div>
             <div class="home_contact">
@@ -1760,25 +1755,24 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
             </div>
             <div class="jnto ">
                 <div class="f_container">
-                    <a href="#">
-                        <figure class="logo"><img src="../assets/img/JNTO_logo.png" alt="JNTO" /></figure>
+                  <a href="#"  class="logo">
+                    <img src="../assets/img/JNTO_logo.png" alt="JNTO" />
+                  </a>
+                  <ul class="contact">
+                    <li ><a href="#">Home</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a> </li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">JbyJ intro</a></li>
+                  </ul>
+                  <div class="social">
+                    <a href="#" class=" fa-brands facebook fa-facebook-f">
+                      <span>facebook</span>
                     </a>
-                    <ul class="contact">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a> </li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">JbyJ intro</a></li>
-                    </ul>
-                    <div class="social">
-                        <a href="#" class="facebook">
-                            <figure><img src="../assets/img/facebook_logo.jpg" alt="facebook" />
-                            </figure>
-                        </a>
-                        <a href="#" class="instagram">
-                            <figure><img src="../assets/img/ig.png" alt="instagram"></figure>
-                        </a>
-                    </div>
+                    <a href="#" class="instagram fa-brands fa-instagram">
+                      <span>instagram</span>
+                    </a>
+                  </div>
                 </div>
             </div>
             <div class="footer">
@@ -1788,7 +1782,6 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
             </div>
         </div>
     </div>
-    <!-- <script src="../assets/js/common.js"></script> -->
+    <script src="../assets/js/common.js"></script>
 </body>
-
 </html>
