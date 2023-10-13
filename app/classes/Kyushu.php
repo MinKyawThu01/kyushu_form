@@ -11,7 +11,7 @@ class Kyushu extends DB
         $this->con = $this->connect();
     }
 
-    public function storeArray(array $post, array $files)
+    public function storeArray(array $post, array $files) : bool
     {
         try {
 
@@ -134,14 +134,14 @@ class Kyushu extends DB
             }
 
             return false;
-            
+
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
     }
 
     //validate
-    public function validate(array $post, array $files)
+    public function validate(array $post, array $files) 
     {
         try {
             $errors = [];
@@ -257,6 +257,10 @@ class Kyushu extends DB
                 $errors['occupation'] = "Occupation character can't be more than 400.";
             }
 
+            if (is_numeric($post['occupation'])) {
+                $errors['occupation'] = "Occupation character can't be number.";
+            }
+
             if (empty($post['religion'])) {
                 $errors['religion'] = "Please fills the required field.";
                 $_SESSION['old_reli'] = $post['religion'];
@@ -268,8 +272,16 @@ class Kyushu extends DB
                 $errors['religion'] = "Religion character can't be more than 400.";
             }
 
+            if (is_numeric($post['religion']) ) {
+                $errors['religion'] = "Religion character can't be number.";
+            }
+
             if (strlen($post['sns_username']) > 128) {
                 $errors['sns_username'] = "Username character can't be more than 128.";
+            }
+
+            if (is_numeric($post['sns_username'])) {
+                $errors['sns_username'] = "Username character can't benumber.";
             }
 
             if (!empty($post['sns_username'])) {
@@ -313,6 +325,10 @@ class Kyushu extends DB
 
             if (strlen($post['restriction']) > 400) {
                 $errors['restriction'] = "Character can't be more than 400.";
+            }
+
+            if (is_numeric($post['restriction'])) {
+                $errors['restriction'] = "Character can't be number.";
             }
 
             if (empty($post['email'])) {
@@ -495,7 +511,10 @@ class Kyushu extends DB
                 $errors['campaign'] = "Please fills your campaign in other field.";
             } else if (!empty($post['custom_campaign']) && strlen($post['custom_campaign']) > 128) {
                 $errors['campaign'] = "Campaign can't be more than 128.";
+            } else if (!empty($post['custom_campaign']) && is_numeric($post['custom_campaign'])) {
+                $errors['campaign'] = "Campaign can't be number.";
             }
+            
 
             if (!empty($post['campaign'])) {
                 $_SESSION['old_camp'] = $post['campaign'];
@@ -531,6 +550,8 @@ class Kyushu extends DB
                 $flag = 1;
                 if (isset($_SESSION['user_data'])) {
                     $user_data = json_encode($_SESSION['user_data'], JSON_UNESCAPED_SLASHES);
+                    // var_dump($user_data);
+                    // die();
                 }
 
 
@@ -544,6 +565,27 @@ class Kyushu extends DB
             }
 
             return false;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    //userid , flag (kyushu) .extension
+    // 1Kyushu.jpg
+
+    public function export() 
+    {
+        try {
+            $sql = "SELECT * FROM `users_table` WHERE `deleted_date` IS NULL";
+            $stmt = $this->con->prepare($sql);
+            $stmt->bindParam('id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+            // var_dump($result);
+            // die();
+
+            return  $result ;
+
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
