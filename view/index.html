@@ -77,7 +77,7 @@
                                             <input type="radio" name="nationality">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <input type="text" class="dim all_input" id="nation_opt1" disabled = "disabled">
+                                        <input type="text" class="dim" id="nation_opt1" disabled = "disabled">
                                     </div>
                                 </li>
                             </ul>
@@ -482,8 +482,12 @@
                         <div class="form_gp">
                             <h5 class="title">Full Name</h5>
                             <div class="fullname">
-                                <input type="text" id="name" class="first-name" placeholder="First Name" />
-                                <input type="text" placeholder="Last Name" />
+                                <div class="first-item">
+                                    <input type="text" id="name" placeholder="First Name" />
+                                </div>
+                                <div class="second-item">
+                                    <input type="text" placeholder="Last Name" />
+                                </div>
                             </div>
                         </div>
                         <!-- Date of Birth -->
@@ -554,7 +558,9 @@
                             <div class="form_gp img_upload">
                                 <h5 class="title">Please upload a photo that shows all applicate in the photo</h5>
                                 <input type="file" name="upload_avatar" accept="image/png, image/jpeg"/>
+                                <figure class="upload_img"><img src="../assets/img/JNTO_logo.png" alt=""></figure>
                             </div>
+
                             <div class="form_gp">
                                 <h5 class="title">The full name of the name who will receives the trip to Japan as their birthday gift</h5>
                                 <div class="fullname">

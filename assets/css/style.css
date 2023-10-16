@@ -66,8 +66,8 @@ margin-left: 34px;
 .form_container .f_container .fullname input {
 width: 296px;
 }
-.fullname .first-name {
-margin-right: 36px;
+.form_container .fullname .first-item {
+  margin-right: 20px;
 }
 .form_container .f_container .fullname {
 display: flex;
@@ -100,8 +100,10 @@ margin-top: 70px;
 }
 /* title */
 .container .form_container h3 {
-text-align: center;
-font-size: 28px;
+  text-align: center;
+}
+.container .form_container h3 span {
+  font-size: 28px;
 }
 .inner_container .req  {
 text-align: center;
@@ -245,7 +247,6 @@ max-width: 470px;
 margin: 50px auto 0;
 }
 .container .policy .all_checks_label {
-padding-left: 40px;
 margin-bottom: 0;
 box-sizing: border-box;
 }
@@ -285,8 +286,8 @@ cursor: pointer;
 background-color: #000;
 transition: background-color .4s;
 }
-.container .form_container  .btn_submit button:hover {
-opacity: 0.6;
+.container .form_container  .btn_submit .show_pointer:hover, a:hover {
+  opacity: 0.7;
 }
 .container .form_container  .btn_submit .back_link {
 font-size: 24px;
@@ -395,9 +396,6 @@ font-weight: bold;
 box-sizing: border-box;
 position: relative;
 }
-a:hover,  .container .form_container  .btn_submit button:hover {
-opacity: 0.6;
-}
 .container .home_contact .f_container .nav li::after {
 content: "\3e";
 font-family: Font Awesome\ 5 Brands;
@@ -484,31 +482,32 @@ border-radius: 4px;
 width: 100%;
 font-size: 100%;
 }
+.upload_img {
+  width: 35%;
+  margin-top: 25px;
+}
 /* Media Queries */
-@media only screen and (max-width: 750px)  {
+@media only screen and (max-width: 768px)  {
     .f_container {
     max-width: 100%;
     margin: 0 auto;
     padding: 0 calc(20 / 750 * 100vw);
     }
     /* common */
-    .for_err {
-    margin-top: calc(15 / 750 * 100vw);
+    .form_container .f_container .for_err {
+    font-size: calc(28 / 750 * 100vw);
     }
-    .form_container .f_container p,  span, label,  .form_container .policy  a {
-      font-size: calc(32 / 750 * 100vw);
+    .form_container .f_container p,  span, label,  .form_container .policy  a, input, a {
+      font-size: calc(28 / 750 * 100vw);
     }
     .form_container .f_container input[type = "text"], input[type = "email"], input[type = "date"], input[type = "file"]  {
     padding: calc(12 / 750 * 100vw) calc(20 / 750 * 100vw);
     border-width: calc(1 / 750 * 100vw);
     margin-top: calc(18 / 750 * 100vw);
-    font-size: calc(32 / 750 * 100vw);
-    }
-    a,input {
-    font-size: calc(30 / 750 * 100vw);
+    font-size: calc(28 / 750 * 100vw);
     }
     .form_container .title {
-    font-size: calc(36 / 750 * 100vw);
+    font-size: calc(32 / 750 * 100vw);
     }
     .form_container .f_container .region {
     margin-top: calc(30 / 750 * 100vw);
@@ -532,13 +531,10 @@ font-size: 100%;
     }
     .inner_container .req  {
     margin: calc(20 / 750 * 100vw) 0 calc(56 / 750 * 100vw);
-    font-size: calc(36 / 750 * 100vw);
+    font-size: calc(32 / 750 * 100vw);
     }
     /* Full Name & person Name */
-    .form_container .f_container .fullname input {
-    width: calc(296 / 750 * 100vw);
-    }
-    .fullname .first-name {
+    .fullname .first-item {
     margin-right: calc(36 / 750 * 100vw);
     }
     .container .form_container h3 span::before{
@@ -546,6 +542,12 @@ font-size: 100%;
     width: calc(30 / 750 * 100vw);
     height: calc(30 / 750 * 100vw);
     margin-right: calc(8 / 750 * 100vw);
+    }
+    .container .form_container h3 span {
+      font-size: calc(28 / 750 * 100vw);
+    }
+    .container .jnto .logo {
+    width: 100%;
     }
     /* national compaign */
     .form_container .f_container .others input {
@@ -562,36 +564,32 @@ font-size: 100%;
     }
     /* for custom checkbox */
     .all_checks_label, .all_checks_radio {
-    padding-left: calc(45 / 750 * 100vw);
+    padding-left: calc( 60 / 750 * 100vw);
     margin-bottom: calc(15 / 750 * 100vw);
     }
     .all_checks_label .checkmark, .all_checks_radio .checkmark {
-    height: calc(25 / 750 * 100vw);
-    width: calc(25 / 750 * 100vw);
+    height: calc(40 / 750 * 100vw);
+    width: calc(40 / 750 * 100vw);
     border-width: calc(1 / 750 * 100vw);
     }
     /* Create the indicator (the dot/circle - hidden when not checked) */
     .all_checks_label .checkmark:after {
-    left: calc(9 / 750 * 100vw);
-    top: calc(5 / 750 * 100vw);
-    width: calc(5 / 750 * 100vw);
-    height: calc(10 / 750 * 100vw);
+    left: calc(12 / 750 * 100vw);
+    top: calc(2 / 750 * 100vw);
+    width: calc(14 / 750 * 100vw);
+    height: calc(24 / 750 * 100vw);
     border: calc(1 / 750 * 100vw) solid #fff;
-    border-width: 0 calc(3 / 750 * 100vw) calc(3 / 750 * 100vw) 0;
+    border-width: 0 calc(4 / 750 * 100vw) calc(4 / 750 * 100vw) 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
     }
-    /* for radio checkbox */
-    .all_checks_radio {
-    padding-left: calc(35 / 750 * 100vw);
-    }
     /* Style the indicator (dot/circle) */
     .all_checks_radio .checkmark:after {
-    top:calc(5 / 750 * 100vw);
-    left: calc(5 / 750 * 100vw);
-    width: calc(15 / 750 * 100vw);
-    height: calc(15 / 750 * 100vw);
+    top:calc(6 / 750 * 100vw);
+    left: calc(7 / 750 * 100vw);
+    width: calc(28 / 750 * 100vw);
+    height: calc(28 / 750 * 100vw);
     }
     /* file upload */
     .container .form_container .files_upload {
@@ -601,6 +599,9 @@ font-size: 100%;
     .container .form_container .files_upload .img_upload input {
     border-radius: calc(5 / 750 * 100vw);
     }
+    .form_container .fullname .first-item {
+      margin-right: calc(20 / 750 * 100vw);
+    }
     .container .form_container .files_upload input::file-selector-button {
     padding: calc(10 / 750 * 100vw);
     border-radius: calc(3 / 750 * 100vw);
@@ -609,18 +610,17 @@ font-size: 100%;
     padding: calc(10 / 750 * 100vw);
     border-width: calc(1 / 750 * 100vw);
     margin-top: calc(13 / 750 * 100vw);
-    font-size: calc(36 / 750 * 100vw);
+    font-size: calc(32 / 750 * 100vw);
     }
     .container .form_container .files_upload .f_container .inner_container  .intro_vd {
     margin-top: calc(25 / 750 * 100vw);
     }
     /* policy */
     .container .policy {
-    max-width: calc(470 / 750 * 100vw);
+    width: 100%;
     margin: calc(50 / 750 * 100vw) auto 0;
     }
     .container .policy .all_checks_label {
-    padding-left: calc(40 / 750 * 100vw);
     margin-bottom: 0;
     }
     /* summit contact */
@@ -649,10 +649,11 @@ font-size: 100%;
     }
     .container .covid_contact .f_container  p {
     padding: calc(20 / 750 * 100vw) 0px;
-    font-size: calc(36 / 750 * 100vw);
+    font-size: calc(24 / 750 * 100vw);
+    margin: 0;
     }
     .container .covid_contact .f_container  a {
-    padding: calc(30 / 750 * 100vw) calc(90 / 750 * 100vw);
+    padding: calc(30 / 750 * 100vw) calc(50 / 750 * 100vw);
     }
     /* jnto */
     .container .jnto {
@@ -668,7 +669,7 @@ font-size: 100%;
     margin-right: calc(20 / 750 * 100vw);
     }
     .container .jnto .fa-brands.facebook::before, .container .jnto .instagram.fa-brands::before {
-    font-size: calc(18 / 750 * 100vw);
+    font-size: calc(36 / 750 * 100vw);
     }
     /* home contact */
     .container .home_contact .f_container .nav {
@@ -679,7 +680,14 @@ font-size: 100%;
     }
     .container .home_contact .f_container .nav li::after {
     padding: 0 calc(2 / 750 * 100vw);
-    font-size: calc(28 / 750 * 100vw);
+    font-size: calc(24 / 750 * 100vw);
+    }
+    .container .footer .f_container p {
+      font-size: calc(32   / 750 * 100vw);
+      margin: 0;
+    }
+    .upload_img {
+      margin-top: calc(25   / 750 * 100vw);
     }
     .container .footer .f_container {
     padding: calc(50 / 750 * 100vw) 0;
