@@ -22,11 +22,11 @@
                         <div class="form_gp">
                             <h5 class="title">Full Name</h5> 
                             <div class="fullname">
-                                <div class="first-name">
+                                <div class="first-item">
                                     <input type="text" id="name" placeholder="First Name" />
                                     <span class="for_err">This is Error</span>
                                 </div>
-                                <div>
+                                <div class="second-item">
                                     <input type="text" placeholder="Last Name" />
                                     <span class="for_err">This is Error</span>
                                 </div>
@@ -67,7 +67,7 @@
                             <ul>
                                 <li>
                                     <label class="all_checks_radio others-input">Singaporean
-                                        <input type="radio" name="nationality">
+                                        <input type="radio" name="nationality" class="all_input">
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
@@ -532,10 +532,10 @@
                                 <li>
                                     <div class="others">
                                         <label class="all_checks_radio others-input">Other:
-                                            <input type="radio" name="nation2_radio">
+                                            <input type="radio" name="nation2_radio" class="all_input">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <input type="text" class="dim all_input" id="nation_opt2" disabled = "disabled">
+                                        <input type="text" class="dim" id="nation_opt2" disabled = "disabled">
                                     </div>
                                 </li>
                             </ul>
@@ -564,8 +564,12 @@
                             <div class="form_gp">
                                 <h5 class="title">The full name of the name who will receives the trip to Japan as their birthday gift</h5>
                                 <div class="fullname">
-                                    <input type="text" id="person" class="fname" placeholder="First Name" />
-                                    <input type="text" placeholder="Last Name" />
+                                    <div class="first-item">
+                                        <input type="text" id="person" class="fname" placeholder="First Name" />
+                                    </div>
+                                    <div class="second-item">
+                                        <input type="text" placeholder="Last Name" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="form_gp">
@@ -672,10 +676,10 @@
                                     <li>
                                         <div class="others">
                                             <label class="all_checks_label others-input">Other:
-                                                <input type="checkbox">
+                                                <input type="checkbox" class="all_input">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class="remove_dim_class all_input">
+                                            <input type="text" class="remove_dim_class">
                                         </div>
                                     </li>
                                 </ul>
@@ -686,13 +690,13 @@
                 <div class="f_container">
                     <div class="policy">
                         <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
-                            <input type="checkbox" class="policy_input">
+                            <input type="checkbox" class="policy_input all_input">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                 </div>
                 <div class="btn_submit">
-                    <button type="submit" name="submit" disabled class="submit_btn all_input">
+                    <button type="submit" name="submit" disabled class="submit_btn">
                         <span>Submit</span>
                     </button>
                 </div>
@@ -743,7 +747,7 @@
             </div>
             <div class="footer">
                 <div class="f_container">
-                    <p class="sub_txt">Copyright @ Japan National Tourists Organization. All Rights Reserved.</p>
+                    <p>Copyright @ Japan National Tourists Organization. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
