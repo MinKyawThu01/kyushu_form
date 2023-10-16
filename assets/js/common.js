@@ -10,8 +10,30 @@ const submit_btn = document.querySelector(".submit_btn");
 const never_input = document.querySelector("#never_input");
 const visited_japan = document.querySelector(".visited_japan");
 const c_form_radio = document.querySelectorAll(".c-form_radio");
-const all_input = document.querySelectorAll(".all_input")
+const all_input = document.querySelectorAll(".all_input");
+window.onload = function() {
+    all_input.forEach((item) => {
+        if(item.parentNode.nextElementSibling === null){
+            return
+        }
+        if (item.checked) {
+            nation_opt2.disabled = false;
+            nation_opt1.disabled = false;
+            submit_btn.disabled = false;
+            item.parentNode.nextElementSibling.classList.remove("dim")
+        } else {
+            remove_dim_class.classList.add("dim");
+            item.parentNode.nextElementSibling.classList.add("dim");
+            nation_opt2.disabled = true;
+            nation_opt1.disabled = true;
+        }
+    })
+}
 
+
+call_frame.addEventListener("click", () => {
+    vdo_upload.style.display = "block"
+})
 all_input.forEach((item) => {
     if (item.checked) {
         submit_btn.classList.add("show_pointer");

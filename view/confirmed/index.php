@@ -22,14 +22,14 @@ if ($kyushu->store($_POST, $_FILES)) {
     <title>Form</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/34c98ef48d.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container">
         <div class="f_container">
             <div class="inner_container">
-                <p class="req">Please complete the application form below.</p>
-                <p class="represent">Representative Applicant</p>
+                <p class="req"><strong>Please complete the application form below.</strong></p>
             </div>
         </div>
 
@@ -37,11 +37,12 @@ if ($kyushu->store($_POST, $_FILES)) {
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="f_container">
                     <div class="inner_container">
+                        <h3><span class="star_icon">Representative Applicant</span></h3>
                         <!-- Name -->
-                        <div class="name_contact for_top">
-                            <label for="name" class="label_name">Full Name</label>
+                        <div class="form_gp">
+                            <h5 class="title">Full Name</h5>
                             <div class="fullname">
-                                <div class="fname">
+                                <div class="first-item">
                                     <input disabled type="text" id="name" class="fname" placeholder="First Name" disabled name="first_name" value="<?php if (isset($_SESSION['old_fn'])) {
                                                                                                                                                         echo $_SESSION['old_fn'];
                                                                                                                                                     }  ?>" />
@@ -68,11 +69,11 @@ if ($kyushu->store($_POST, $_FILES)) {
                             </div>
                         </div>
                         <!-- Date of Birth -->
-                        <div class="dob_contact for_top">
-                            <label for="dateOfBirth" class="label_name">Date of Birth</label>
-                            <input disabled type="date" id="dateOfBirth" class="full_width" name="dob" disabled value="<?php if (isset($_SESSION['old_dob'])) {
-                                                                                                                            echo $_SESSION['old_dob'];
-                                                                                                                        } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Date of Birth</h5>
+                            <input disabled type="date" id="dateOfBirth" name="dob" disabled value="<?php if (isset($_SESSION['old_dob'])) {
+                                                                                                        echo $_SESSION['old_dob'];
+                                                                                                    } ?>" />
                             <?php if (isset($_SESSION['error']['dob'])) {
                             ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['dob']; ?></span>
@@ -82,9 +83,9 @@ if ($kyushu->store($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Gender -->
-                        <div class="gender_contact for_top">
-                            <p class="radio_p">Gender</p>
-                            <ul class="for_ul_top">
+                        <div class="form_gp">
+                            <h5 class="title">Gender</h5>
+                            <ul>
                                 <?php if (isset($_SESSION['old_gender'])) {
                                 ?>
                                     <li>
@@ -98,9 +99,9 @@ if ($kyushu->store($_POST, $_FILES)) {
                             </ul>
                         </div>
                         <!-- Nationality -->
-                        <div class="nation_contact for_top">
-                            <h4 class="radio_p">Nationality </h4>
-                            <ul class="for_ul_top">
+                        <div class="form_gp">
+                            <h5 class="title">Nationality</h5>
+                            <ul>
                                 <?php if (isset($_SESSION['old_nati']) && !isset($_SESSION['old_nati_cc'])) {
                                 ?>
                                     <li>
@@ -128,35 +129,34 @@ if ($kyushu->store($_POST, $_FILES)) {
 
                         </div>
                         <!-- Occupation -->
-                        <div class="occupation for_top">
-                            <label for="occupation" class="label_name">Occupation</label>
-                            <input disabled type="text" id="occupation" class="full_width" placeholder="Type..." name="occupation" value="<?php if (isset($_SESSION['old_occ'])) {
-                                                                                                                                                echo $_SESSION['old_occ'];
-                                                                                                                                            } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Occupation</h5>
+                            <input disabled type="text" id="occupation" placeholder="Type..." name="occupation" value="<?php if (isset($_SESSION['old_occ'])) {
+                                                                                                                            echo $_SESSION['old_occ'];
+                                                                                                                        } ?>" />
 
                         </div>
                         <!-- Religion -->
-                        <div class="religion for_top">
-                            <label for="religion" class="label_name">Religion</label>
-                            <p class="for_ul_top reli_sns">(We will try to caster to religion preferences, but should you not wish to specify, please answer "prefer not to say")</p>
+                        <div class="form_gp">
+                            <h5 class="title">Religion</h5>
+                            <p>(We will try to caster to religion preferences, but should you not wish to specify, please answer "prefer not to say")</p>
                             <input disabled type="text" id="religion" class="full_width reli_sns_input" placeholder="Type..." name="religion" value="<?php if (isset($_SESSION['old_reli'])) {
                                                                                                                                                             echo $_SESSION['old_reli'];
                                                                                                                                                         } ?>" />
 
                         </div>
                         <!-- SNS username -->
-                        <div class="sns_username for_top">
-                            <label for="sns" class="label_name">SNS username <span class="label_rt">(Facebook/Instagram/Tiktok/Youtube)</span></label>
-                            <p class="for_ul_top reli_sns">*Leave the option blank if you do not have any Social Media account</p>
+                        <div class="form_gp">
+                            <h5 class="title">SNS username<span class="sub_txt">(Facebook/Instagram/Tiktok/Youtube)</h5>
+                            <p>*Leave the option blank if you do not have any Social Media account</p>
                             <input disabled type="text" id="sns" class="full_width reli_sns_input" placeholder="Type..." name="sns_username" value="<?php if (isset($_SESSION['old_sns'])) {
                                                                                                                                                         echo $_SESSION['old_sns'];
                                                                                                                                                     } ?>" />
 
                         </div>
-                        <!-- have been to japan -->
-                        <div class="been_jp for_top">
-                            <p class="radio_p">Have you been to Japan before?</p>
-                            <ul class="for_ul_top">
+                        <div class="form_gp">
+                            <h5 class="title">Have you been to Japan before?</h5>
+                            <ul>
                                 <?php if (isset($_SESSION['old_before'])) {
                                 ?>
                                     <li>
@@ -172,13 +172,12 @@ if ($kyushu->store($_POST, $_FILES)) {
 
                         </div>
                         <!-- Region visited in past Japan travels -->
-                        <?php if (isset($_SESSION['old_reg']) && $_SESSION['old_before'] != "Never" ) {
+                        <?php if (isset($_SESSION['old_reg']) && $_SESSION['old_before'] != "Never") {
                         ?>
-                            <div class="visited_japan for_top">
-                                <h4 class="radio_p">Region(s) visited in past Japan travels</h4>
-                                <div class="hokkaido">
-                                    <!-- <h5 class="region_p">Hokkaido / Tohoku region</h5> -->
-                                    <ul class="for_ul_top all_checks_contact">
+                            <div class="visited_japan form_gp">
+                                <h5 class="title">Region(s) visited in past Japan travels</h5>
+                                <div class="region">
+                                    <ul class="custom-checkbox">
                                         <?php foreach ($_SESSION['old_reg'] as $old_reg) {
                                         ?>
                                             <li>
@@ -197,45 +196,45 @@ if ($kyushu->store($_POST, $_FILES)) {
                         } ?>
 
                         <!-- Dietary  Restrictions-->
-                        <div class="dietary for_top">
-                            <label for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
-                            <input disabled type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..." name="restriction" value="<?php if (isset($_SESSION['old_restri'])) {
-                                                                                                                                                            echo $_SESSION['old_restri'];
-                                                                                                                                                        } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Dietary Restrictions <span class="sub_txt">(Including Alcohol)</span> </h5>
+                            <input disabled type="text" id="dietary" placeholder="Type..." name="restriction" value="<?php if (isset($_SESSION['old_restri'])) {
+                                                                                                                            echo $_SESSION['old_restri'];
+                                                                                                                        } ?>" />
 
                         </div>
                         <!-- Email -->
-                        <div class="email for_top">
-                            <label for="email" class="label_name">Email Address</label>
-                            <input disabled type="text" id="email" class="full_width" placeholder="Email" name="email" value="<?php if (isset($_SESSION['old_email'])) {
-                                                                                                                                    echo $_SESSION['old_email'];
-                                                                                                                                } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Email Address</h5>
+                            <input disabled type="text" id="email" placeholder="Email" name="email" value="<?php if (isset($_SESSION['old_email'])) {
+                                                                                                                echo $_SESSION['old_email'];
+                                                                                                            } ?>" />
 
                         </div>
                         <!-- Phone Number -->
-                        <div class="phone for_top">
-                            <label for="phone" class="label_name">Phone Number</label>
-                            <input disabled type="text" id="phone" class="full_width" placeholder="Phone Number" name="ph_num" value="<?php if (isset($_SESSION['old_ph'])) {
-                                                                                                                                            echo $_SESSION['old_ph'];
-                                                                                                                                        } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Phone Number</h5>
+                            <input disabled type="text" id="phone" placeholder="Phone Number" name="ph_num" value="<?php if (isset($_SESSION['old_ph'])) {
+                                                                                                                        echo $_SESSION['old_ph'];
+                                                                                                                    } ?>" />
 
                         </div>
 
-                        <hr class="for_top">
+                        <hr class="form_gp">
 
                         <!-- Travel Companion 01 -->
-                        <p class="represent">Travel Companion 01</p>
+                        <h3 class="form_gp"><span class="star_icon">Travel Companion 01</span></h3>
                         <!-- Name -->
-                        <div class="name_contact for_top">
-                            <label for="name" class="label_name">Full Name</label>
+                        <div class="form_gp">
+                            <h5 class="title">Full Name</h5>
                             <div class="fullname">
-                                <div class="fname">
-                                    <input disabled type="text" id="name" class="fname" placeholder="First Name" name="first_name_tc" value="<?php if (isset($_SESSION['old_fn_tc'])) {
-                                                                                                                                                    echo $_SESSION['old_fn_tc'];
-                                                                                                                                                } ?>" />
+                                <div class="first-item">
+                                    <input disabled type="text" id="name" class="first-name" placeholder="First Name" name="first_name_tc" value="<?php if (isset($_SESSION['old_fn_tc'])) {
+                                                                                                                                                        echo $_SESSION['old_fn_tc'];
+                                                                                                                                                    } ?>" />
 
                                 </div>
-                                <div class="lname">
+                                <div class="second-item">
                                     <input disabled type="text" placeholder="Last Name" name="last_name_tc" value="<?php if (isset($_SESSION['old_ln_tc'])) {
                                                                                                                         echo $_SESSION['old_ln_tc'];
                                                                                                                     } ?>" />
@@ -244,17 +243,17 @@ if ($kyushu->store($_POST, $_FILES)) {
                             </div>
                         </div>
                         <!-- Date of Birth -->
-                        <div class="dob_contact for_top">
-                            <label for="dateOfBirth" class="label_name">Date of Birth</label>
-                            <input disabled type="date" id="dateOfBirth" class="full_width" name="dob_tc" value="<?php if (isset($_SESSION['old_dob_tc'])) {
-                                                                                                                        echo $_SESSION['old_dob_tc'];
-                                                                                                                    } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Date of Birth</h5>
+                            <input disabled type="date" id="dateOfBirth" name="dob_tc" value="<?php if (isset($_SESSION['old_dob_tc'])) {
+                                                                                                    echo $_SESSION['old_dob_tc'];
+                                                                                                } ?>" />
 
                         </div>
                         <!-- Gender -->
-                        <div class="gender_contact for_top">
-                            <p class="radio_p">Gender</p>
-                            <ul class="for_ul_top">
+                        <div class="form_gp">
+                            <h5 class="title">Gender</h5>
+                            <ul>
                                 <?php if (isset($_SESSION['old_gender_tc'])) {
                                 ?>
 
@@ -270,9 +269,9 @@ if ($kyushu->store($_POST, $_FILES)) {
 
                         </div>
                         <!-- Nationality -->
-                        <div class="nation_contact for_top">
-                            <h4 class="radio_p">Nationality</h4>
-                            <ul class="for_ul_top">
+                        <div class="form_gp">
+                            <h5 class="title">Nationality</h5>
+                            <ul>
                                 <?php if (isset($_SESSION['old_nati_tc']) && !isset($_SESSION['old_nati_cc_tc'])) {
                                 ?>
                                     <li>
@@ -299,19 +298,18 @@ if ($kyushu->store($_POST, $_FILES)) {
 
                         </div>
                         <!-- Relationship with applicate -->
-                        <div class="relationship for_top">
-                            <label for="relationship" class="label_name">Relationship with applicate</label>
-                            <input disabled type="text" id="relationship" class="full_width" placeholder="Type" name="relationship_tc" value="<?php if (isset($_SESSION['old_rs_tc'])) {
-                                                                                                                                                    echo $_SESSION['old_rs_tc'];
-                                                                                                                                                } ?>" />
-
+                        <div class="form_gp">
+                            <h5 class="title">Relationship with applicant</h5>
+                            <input disabled type="text" id="relationship" placeholder="Type" name="relationship_tc" value="<?php if (isset($_SESSION['old_rs_tc'])) {
+                                                                                                                                echo $_SESSION['old_rs_tc'];
+                                                                                                                            } ?>" />
                         </div>
                         <!-- Dietary  Restrictions-->
-                        <div class="dietary for_top">
-                            <label for="dietary" class="label_name">Dietary Restrictions <span class="label_rt">(Including Alcohol)</span></label>
-                            <input disabled type="text" id="dietary" class="full_width reli_sns_input" placeholder="Type..." name="restriction_tc" value="<?php if (isset($_SESSION['old_res_tc'])) {
-                                                                                                                                                                echo $_SESSION['old_res_tc'];
-                                                                                                                                                            } ?>" />
+                        <div class="form_gp">
+                            <h5 class="title">Dietary Restrictions <span class="sub_txt">(Including Alcohol)</span></h5>
+                            <input disabled type="text" id="dietary" placeholder="Type..." name="restriction_tc" value="<?php if (isset($_SESSION['old_res_tc'])) {
+                                                                                                                            echo $_SESSION['old_res_tc'];
+                                                                                                                        } ?>" />
 
                         </div>
                     </div>
@@ -320,24 +318,26 @@ if ($kyushu->store($_POST, $_FILES)) {
                 <div class="files_upload">
                     <div class="f_container">
                         <div class="inner_container">
-                            <!-- inamge upload  -->
-                            <div class="img_upload">
-                                <p class="upload_label">Uploaded Image</p>
+                            <!-- image  -->
+                            <div class="form_gp img_upload">
+                                <h5 class="title">Please upload a photo that shows all applicate in the photo</h5>
+                                <figure class="upload_img">
                                 <?php if (isset($_SESSION['imgBase64'])) { ?>
-                                    <img src="<?php echo $_SESSION['imgBase64']; ?>" alt="Your Uploaded Photo" style="width: 100px; height:100px;">
+                                    <img src="<?php echo $_SESSION['imgBase64']; ?>" alt="Your Uploaded Photo"">
                                 <?php } ?>
+                                </figure>
+                               
                             </div>
                             <!-- Birthday  -->
-                            <div class="person_name for_top">
-                                <label for="person" class="upload_label">The full name of the name who will receives the trip to Japan as their birthday gift</label>
+                            <div class="form_gp">
+                                <h5 class="title">The full name of the name who will receives the trip to Japan as their birthday gift</h5>
                                 <div class="fullname">
-                                    <div class="fname">
+                                    <div class="first-item">
                                         <input disabled type="text" id="person" class="fname" placeholder="First Name" name="first_name_jp" value="<?php if (isset($_SESSION['old_fn_jp'])) {
                                                                                                                                                         echo $_SESSION['old_fn_jp'];
                                                                                                                                                     } ?>" />
-
                                     </div>
-                                    <div class="lname">
+                                    <div class="second-item">
                                         <input disabled type="text" placeholder="Last Name" name="last_name_jp" value="<?php if (isset($_SESSION['old_ln_jp'])) {
                                                                                                                             echo $_SESSION['old_ln_jp'];
                                                                                                                         } ?>" />
@@ -346,9 +346,9 @@ if ($kyushu->store($_POST, $_FILES)) {
                                 </div>
                             </div>
                             <!-- travel period  -->
-                            <div class="traveling_period for_top">
-                                <p class="upload_label">Please let us know your preferred traveling period</p>
-                                <ul class="for_ul_top">
+                            <div class="form_gp">
+                                <h5 class="title">Please let us know your preferred traveling period</h5>
+                                <ul>
                                     <?php if (isset($_SESSION['old_period'])) {
                                         foreach ($_SESSION['old_period'] as $old_period) {
                                     ?>
@@ -363,36 +363,34 @@ if ($kyushu->store($_POST, $_FILES)) {
                                     }  ?>
 
                                 </ul>
-
                             </div>
                             <!-- campagin  -->
-                            <div class="traveling_period for_top">
-                                <p class="upload_label">Please let us know how you came across this campaign</p>
-                                <ul class="for_ul_top">
+                            <div class="form_gp">
+                                <h5 class="title">Please let us know how you came across this campaign</h5>
+                                <ul>
                                     <?php if (isset($_SESSION['old_camp'])) {
                                         foreach ($_SESSION['old_camp'] as $old_camp) {
                                     ?>
                                             <li>
-                                                <div class="others">
+                                                <?php if ($old_camp == 'Other') {echo "<div class='others'>"; } ?>
                                                     <label class="all_checks_label others-input"><?= $old_camp ?>
                                                         <input disabled type="checkbox" class="selected" name="campaign[]" value="<?= $old_camp ?>" checked>
                                                         <span class="checkmark"></span>
                                                     </label>
 
                                                     <!-- remove dim class  -->
-                                                    
-                                                    <?php if ( $old_camp == 'Other' && isset($_SESSION['old_custom_camp'])) {
+
+                                                    <?php if ($old_camp == 'Other' && isset($_SESSION['old_custom_camp'])) {
                                                     ?>
                                                         <input disabled type="text" class=" remove_dim_class all_input " name="custom_campaign" value="<?= $_SESSION['old_custom_camp']; ?>">
                                                     <?php
                                                     } ?>
-                                                </div>
+                                            <?php if ($old_camp == 'Other') {echo "</div>"; } ?>
                                             </li>
                                     <?php
                                         }
                                     }  ?>
                                 </ul>
-
                             </div>
                         </div>
                     </div>
@@ -414,17 +412,10 @@ if ($kyushu->store($_POST, $_FILES)) {
                                     ?>
                                 </div>
 
-                                <!-- original  -->
-                                <!-- <div class="btn_submit">
-                                    <button type="submit" name="submit" disabled class="submit_btn">
-                                        <span>Submit</span>
-                                    </button>
-                                </div> -->
-
-                                <!-- test  -->
+                                <!-- hid confirm -->
                                 <div class="btn_submit">
                                     <a href="../index.php" class="back_link">Back</a>
-                                    <button type="submit" name="confirm"   class="submit_btn btn_lg">
+                                    <button type="submit" name="confirm" class="submit_btn btn_lg">
                                         <span>Confirm</span>
                                     </button>
                                 </div>
@@ -436,7 +427,7 @@ if ($kyushu->store($_POST, $_FILES)) {
             <div class="covid_contact">
                 <div class="f_container">
                     <p>Get Advisory Information COVID-19 situation in Japan</p>
-                    <a href="#" class="all_bt">Go to Advisory Information website</a>
+                    <a href="#">Go to Advisory Information website</a>
                 </div>
             </div>
             <div class="home_contact">
@@ -450,25 +441,24 @@ if ($kyushu->store($_POST, $_FILES)) {
             </div>
             <div class="jnto ">
                 <div class="f_container">
-                    <a href="#">
-                        <figure class="logo"><img src="../../assets/img/JNTO_logo.png" alt="JNTO" /></figure>
+                  <a href="#"  class="logo">
+                    <img src="../assets/img/JNTO_logo.png" alt="JNTO" />
+                  </a>
+                  <ul class="contact">
+                    <li ><a href="#">Home</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a> </li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">JbyJ intro</a></li>
+                  </ul>
+                  <div class="social">
+                    <a href="#" class=" fa-brands facebook fa-facebook-f">
+                      <span>facebook</span>
                     </a>
-                    <ul class="contact">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a> </li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">JbyJ intro</a></li>
-                    </ul>
-                    <div class="social">
-                        <a href="#" class="facebook">
-                            <figure><img src="../../assets/img/facebook_logo.jpg" alt="facebook" />
-                            </figure>
-                        </a>
-                        <a href="#" class="instagram">
-                            <figure><img src="../../assets/img/ig.png" alt="instagram"></figure>
-                        </a>
-                    </div>
+                    <a href="#" class="instagram fa-brands fa-instagram">
+                      <span>instagram</span>
+                    </a>
+                  </div>
                 </div>
             </div>
             <div class="footer">
@@ -478,7 +468,6 @@ if ($kyushu->store($_POST, $_FILES)) {
             </div>
         </div>
     </div>
-    <!-- <script src="../assets/js/common.js"></script> -->
+    <script src="../assets/js/common.js"></script>
 </body>
-
 </html>

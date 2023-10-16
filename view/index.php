@@ -29,6 +29,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
     <title>Form</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/34c98ef48d.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -95,7 +96,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             ?>
                         </div>
                         <!-- Gender -->
-                        <div class="gender_contact for_top">
+                        <div class="form_gp">
                             <h5 class="title">Gender</h5>
                             <ul>
                                 <?php if (isset($_SESSION['old_gender'])) {
@@ -173,14 +174,14 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                     <li>
                                         <div class="others">
                                             <label class="all_checks_radio others-input">Other:
-                                                <input type="radio" name="nationality" value="Other" <?php if ($_SESSION['old_nati'] == 'Other') {
+                                                <input type="radio" name="nationality" class=" all_input" value="Other" <?php if ($_SESSION['old_nati'] == 'Other') {
                                                                                                             echo 'checked';
                                                                                                         } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
 
                                             <!-- test 1 remove disable and class = dim -->
-                                            <input type="text" class=" all_input" id="nation_opt1" name="custom_country" value="<?php if (isset($_SESSION['old_nati_cc'])) {
+                                            <input type="text"  id="nation_opt1" name="custom_country" value="<?php if (isset($_SESSION['old_nati_cc'])) {
                                                                                                                                     echo $_SESSION['old_nati_cc'];
                                                                                                                                 } ?>">
                                         </div>
@@ -207,10 +208,10 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         <!-- copy remove disabled and calss = dim  -->
                                         <div class="others">
                                             <label class="all_checks_radio others-input">Other:
-                                                <input type="radio" name="nationality" value="Other">
+                                                <input type="radio" name="nationality" value="Other" class=" all_input">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text" class=" all_input" id="nation_opt1" name="custom_country">
+                                            <input type="text"  id="nation_opt1" name="custom_country">
                                         </div>
                                     </li>
                                 <?php } ?>
@@ -1297,14 +1298,14 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                     <li>
                                         <div class="others">
                                             <label class="all_checks_radio others-input">Other:
-                                                <input type="radio" name="nationality_tc" value="Other" <?php if ($_SESSION['old_nati_tc'] == 'Other') {
+                                                <input type="radio" name="nationality_tc" class=" all_input" value="Other" <?php if ($_SESSION['old_nati_tc'] == 'Other') {
                                                                                                             echo 'checked';
                                                                                                         } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
 
                                             <!-- test 2 reomve disable  -->
-                                            <input type="text" class=" all_input" id="nation_opt2" name="custom_country_tc" value="<?php if (isset($_SESSION['old_nati_cc_tc'])) {
+                                            <input type="text"  id="nation_opt2" name="custom_country_tc" value="<?php if (isset($_SESSION['old_nati_cc_tc'])) {
                                                                                                                                         echo $_SESSION['old_nati_cc_tc'];
                                                                                                                                     } ?>">
                                     </li>
@@ -1320,14 +1321,14 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                     <li>
                                         <div class="others">
                                             <label class="all_checks_radio others-input">Other:
-                                                <input type="radio" name="nationality_tc" value="Other">
+                                                <input type="radio" name="nationality_tc" value="Other" class=" all_input">
                                                 <span class="checkmark"></span>
                                             </label>
                                             <!-- original -->
                                             <!-- <input type="text" class="dim all_input" id="nation_opt2" disabled="disabled" name="custom_country_tc"> -->
 
                                             <!-- copy remove disable and class = dim  -->
-                                            <input type="text" class=" all_input" id="nation_opt2" name="custom_country_tc">
+                                            <input type="text"  id="nation_opt2" name="custom_country_tc">
                                         </div>
                                     </li>
                                 <?php
@@ -1602,14 +1603,14 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         <li>
                                             <div class="others">
                                                 <label class="all_checks_label others-input">Other:
-                                                    <input type="checkbox" class="selected" name="campaign[]" value="Other" <?php if (in_array("Other", $_SESSION['old_camp'])) {
+                                                    <input type="checkbox" class="all_input" name="campaign[]" value="Other" <?php if (in_array("Other", $_SESSION['old_camp'])) {
                                                                                                                                 echo 'checked';
                                                                                                                             } ?>>
                                                     <span class="checkmark"></span>
                                                 </label>
 
                                                 <!-- remove dim class  -->
-                                                <input type="text" class=" remove_dim_class all_input " name="custom_campaign" value="<?php if (isset($_SESSION['old_custom_camp'])) {
+                                                <input type="text" class=" remove_dim_class" name="custom_campaign" value="<?php if (isset($_SESSION['old_custom_camp'])) {
                                                                                                                                             echo $_SESSION['old_custom_camp'];
                                                                                                                                         }
                                                                                                                                         ?>">
@@ -1675,10 +1676,10 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         <li>
                                             <div class="others">
                                                 <label class="all_checks_label others-input">Other:
-                                                    <input type="checkbox" class="selected" name="campaign[]" value="Other">
+                                                    <input type="checkbox" class="all_input" name="campaign[]" value="Other">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <input type="text" class=" remove_dim_class all_input" name="custom_campaign">
+                                                <input type="text" class=" remove_dim_class" name="custom_campaign">
                                             </div>
                                         </li>
                                     <?php
@@ -1700,7 +1701,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         <?php if (isset($_SESSION['old_terms'])) {
                         ?>
                             <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
-                                <input type="checkbox" name="termsConditions" value="yes" class="policy_input" <?php if ($_SESSION['old_terms'] == 'yes') {
+                                <input type="checkbox" name="termsConditions" value="yes" class="policy_input all_input" <?php if ($_SESSION['old_terms'] == 'yes') {
                                                                                                                     echo 'checked';
                                                                                                                 } ?>>
                                 <span class="checkmark"></span>
@@ -1709,7 +1710,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         ?>
 
                             <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
-                                <input type="checkbox" name="termsConditions" value="yes" class="policy_input">
+                                <input type="checkbox" name="termsConditions" value="yes" class="policy_input all_input">
                                 <span class="checkmark"></span>
                             </label>
                         <?php

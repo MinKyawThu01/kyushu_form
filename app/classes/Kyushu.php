@@ -11,7 +11,7 @@ class Kyushu extends DB
         $this->con = $this->connect();
     }
 
-    public function storeArray(array $post, array $files): bool
+    public function storeArray(array $post, array $files)
     {
         try {
 
@@ -22,7 +22,7 @@ class Kyushu extends DB
                     $dob = htmlspecialchars($post['dob']);
                     $gender = $post['gender'];
                     $nationality = $post['nationality'];
-                    $custom_country = htmlspecialchars($post['custom_country']);
+                    $custom_country = isset($nationality) ? htmlspecialchars($post['custom_country']) : null ;
                     $occupation = htmlspecialchars($post['occupation']);
                     $religion = htmlspecialchars($post['religion']);
                     if (isset($post['sns_username']) && !empty($post['sns_username'])) {
@@ -48,7 +48,7 @@ class Kyushu extends DB
                     $dob_tc = htmlspecialchars($post['dob_tc']);
                     $gender_tc = $post['gender_tc'];
                     $nationality_tc = $post['nationality_tc'];
-                    $custom_country_tc = $post['custom_country_tc'];
+                    $custom_country_tc = isset($nationality) ? htmlspecialchars($post['custom_country_tc']) : null ;
                     $relationship_tc = htmlspecialchars($post['relationship_tc']);
                     $restriction_tc = htmlspecialchars($post['restriction_tc']);
                     $first_name_jp = htmlspecialchars($post['first_name_jp']);
@@ -63,13 +63,13 @@ class Kyushu extends DB
                     $image_ext = pathinfo($files["image"]["name"], PATHINFO_EXTENSION);
                     $image_result = 'data:image/' . $image_ext . ';base64,' . base64_encode($image_data);
 
-                    if ($nationality == 'Other' && isset($custom_country)) {
+                    if ( isset($nationality) && $nationality == 'Other' && isset($custom_country)) {
                         $custom_data = $custom_country;
                     } else {
                         $custom_data = $nationality;
                     }
 
-                    if ($nationality_tc == 'Other' && isset($custom_country_tc)) {
+                    if (isset($nationality_tc) && $nationality_tc == 'Other' && isset($custom_country_tc)) {
                         $custom_data_tc = $custom_country_tc;
                     } else {
                         $custom_data_tc = $nationality_tc;
@@ -128,14 +128,20 @@ class Kyushu extends DB
                                 'know_campaign' => $campaign
                             ]
                         ];
+                        // echo "<pre>";
+                        // var_dump($user_data);
+                        // echo "</pre>";
+                        // die();
                     $_SESSION['user_data'] = $user_data;
                     return  $_SESSION['user_data'];
                 }
             }
 
             return false;
+
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
+            
         }
     }
 
@@ -616,8 +622,6 @@ class Kyushu extends DB
                 $flag = 1;
                 if (isset($_SESSION['user_data'])) {
                     $user_data = json_encode($_SESSION['user_data'], JSON_UNESCAPED_SLASHES);
-                    // var_dump($user_data);
-                    // die();
                 }
 
 
@@ -631,6 +635,7 @@ class Kyushu extends DB
             }
 
             return false;
+            
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
