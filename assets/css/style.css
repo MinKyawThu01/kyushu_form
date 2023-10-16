@@ -106,6 +106,9 @@ margin-top: 70px;
 .container .form_container h3 {
   text-align: center;
 }
+.container .form_container h3 span {
+  font-size: 28px;
+}
 .inner_container .req  {
 text-align: center;
 margin: 20px 0 56px;
@@ -483,8 +486,12 @@ border-radius: 4px;
 width: 100%;
 font-size: 100%;
 }
+.upload_img {
+  width: 35%;
+  margin-top: 25px;
+}
 /* Media Queries */
-@media only screen and (max-width: 750px)  {
+@media only screen and (max-width: 768px)  {
     .f_container {
     max-width: 100%;
     margin: 0 auto;
@@ -539,6 +546,9 @@ font-size: 100%;
     width: calc(30 / 750 * 100vw);
     height: calc(30 / 750 * 100vw);
     margin-right: calc(8 / 750 * 100vw);
+    }
+    .container .form_container h3 span {
+      font-size: calc(28 / 750 * 100vw);
     }
     .container .jnto .logo {
     width: 100%;
@@ -679,6 +689,9 @@ font-size: 100%;
     .container .footer .f_container p {
       font-size: calc(32   / 750 * 100vw);
       margin: 0;
+    }
+    .upload_img {
+      margin-top: calc(25   / 750 * 100vw);
     }
     .container .footer .f_container {
     padding: calc(50 / 750 * 100vw) 0;
