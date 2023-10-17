@@ -17,41 +17,18 @@ window.onload = function() {
             return
         }
         if (item.checked) {
-            nation_opt2.disabled = false;
-            nation_opt1.disabled = false;
+            item.parentNode.nextElementSibling.disabled = false;
             submit_btn.disabled = false;
             item.parentNode.nextElementSibling.classList.remove("dim")
         } else {
             remove_dim_class.classList.add("dim");
             item.parentNode.nextElementSibling.classList.add("dim");
-            nation_opt2.disabled = true;
-            nation_opt1.disabled = true;
+            item.parentNode.nextElementSibling.disabled = true;
         }
     })
 }
-
-
 call_frame.addEventListener("click", () => {
     vdo_upload.style.display = "block"
-})
-all_input.forEach((item) => {
-    if (item.checked) {
-        submit_btn.classList.add("show_pointer");
-        remove_dim_class.classList.remove("dim");
-        nation_opt2.disabled = false;
-        nation_opt1.disabled = false;
-        nation_opt1.classList.remove("dim");
-        nation_opt2.classList.remove("dim");
-        submit_btn.disabled = false;
-    } else {
-        submit_btn.classList.remove("show_pointer");
-        remove_dim_class.classList.add("dim");
-        nation_opt1.classList.add("dim");
-        nation_opt2.classList.add("dim");
-        nation_opt2.disabled = true;
-        nation_opt1.disabled = true;
-        // remove_dim_class.value = "";
-    }
 })
 call_frame.addEventListener("click", () => {
     vdo_upload.style.display = "block"
@@ -90,7 +67,7 @@ other_input.forEach(item => {
         if (event.target.tagName == "INPUT") {
             if (event.target.type == "checkbox") {
                 const is_dim = remove_dim_class.classList.contains("dim")
-                radio_checkbox_handler(is_dim)
+                checkbox_handler(is_dim)
             } else {
                radio_handler(event)
             }
