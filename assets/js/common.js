@@ -38,8 +38,9 @@ close_vdo_tag.addEventListener("click", () => {
     vdo_upload.style.display = "none"
 })
 //  checkbox handler
-const radio_checkbox_handler = (items) => {
+const checkbox_handler = (items) => {
     if (items && remove_dim_class.value == "") {
+        remove_dim_class.disabled = false;
         remove_dim_class.classList.remove("dim");
     } else {
         remove_dim_class.value = ""
