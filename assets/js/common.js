@@ -13,14 +13,16 @@ const c_form_radio = document.querySelectorAll(".c-form_radio");
 const all_input = document.querySelectorAll(".all_input");
 window.onload = function() {
     all_input.forEach((item) => {
+        if(item.checked && item.classList.contains("policy_input")){
+            submit_btn.classList.add("show_pointer");
+        }
         if(item.parentNode.nextElementSibling === null){
             return
         }
         if (item.checked) {
             item.parentNode.nextElementSibling.disabled = false;
             submit_btn.disabled = false;
-            submit_btn.classList.add("show_pointer");
-            item.parentNode.nextElementSibling.classList.remove("dim")
+            item.parentNode.nextElementSibling.classList.remove("dim");
         } else {
             remove_dim_class.classList.add("dim");
             item.parentNode.nextElementSibling.classList.add("dim");

@@ -231,7 +231,7 @@
   box-sizing: border-box;
   }
   .container .form_container .files_upload .f_container .inner_container  .click_upload{
-  padding: 10px;
+  padding: 9px;
   background-color: #fff;
   border: 1px solid #727272;
   font-weight: bold;
@@ -490,6 +490,43 @@
     width: 35%;
     margin-top: 25px;
   }
+  /* completed page */
+ .container .banner .banner_content {
+  background: url("/assets/img/kyushu_kv.png") 50%/cover;
+ }
+ .container .banner .banner_content .inner_container .banner_text {
+  padding: 40px 0;
+ }
+ .container .banner_color {
+  height: 16px;
+  background-color: #8aed98;
+ }
+ .f_container .inner_container .l_main {
+  margin: 45px 0 125px;
+ }
+ .f_container .inner_container h2 {
+  font-size: 24px;
+  line-height: 33px;
+  text-align: center;
+  margin-bottom: 59px;
+ }
+ .f_container .inner_container p {
+  text-align: center;
+  font-size: 16px;
+  line-height: 27px;
+ }
+ .f_container .inner_container .btn_m_top {
+  text-align: center;
+  margin-top: 82px;
+ }
+ .f_container .inner_container .btn_m_top a {
+  font-size: 16px;
+  line-height: 27px;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: 700;
+  color: #212121;
+ }
   /* Media Queries */
   @media only screen and (max-width: 768px)  {
       .f_container {
@@ -503,6 +540,9 @@
       }
       .form_container .f_container p,  span, label,  .form_container .policy  a, input, a {
         font-size: calc(28 / 750 * 100vw);
+      }
+      .form_container .f_container .policy label {
+        font-size: calc(27 / 750 * 100vw)
       }
       .form_container .f_container input[type = "text"], input[type = "email"], input[type = "date"], input[type = "file"]  {
       padding: calc(12 / 750 * 100vw) calc(20 / 750 * 100vw);
@@ -611,7 +651,7 @@
       border-radius: calc(3 / 750 * 100vw);
       }
       .container .form_container .files_upload .f_container .inner_container  .click_upload{
-      padding: calc(10 / 750 * 100vw);
+      padding: calc(9 / 750 * 100vw);
       border-width: calc(1 / 750 * 100vw);
       margin-top: calc(13 / 750 * 100vw);
       font-size: calc(32 / 750 * 100vw);
@@ -621,7 +661,7 @@
       }
       /* policy */
       .container .policy {
-      width: 100%;
+      max-width:  100%;
       margin: calc(50 / 750 * 100vw) auto 0;
       }
       .container .policy .all_checks_label {
@@ -653,11 +693,12 @@
       }
       .container .covid_contact .f_container  p {
       padding: calc(20 / 750 * 100vw) 0px;
-      font-size: calc(24 / 750 * 100vw);
+      font-size: calc(22 / 750 * 100vw);
       margin: 0;
       }
       .container .covid_contact .f_container  a {
       padding: calc(30 / 750 * 100vw) calc(50 / 750 * 100vw);
+      font-size: calc(20 / 750 * 100vw);
       }
       /* jnto */
       .container .jnto {
@@ -704,42 +745,32 @@
       .container .pr_vdo_uploader .pr_modal_inner .pr_vdo_item {
       width: 100%;
       }
+      .container .banner .banner_content {
+        background: url("/assets/img/kyushu_kv_sp.png") 50%/cover;
+       }
+      .container .banner .banner_content .inner_container .banner_text {
+        padding: calc(40   / 750 * 100vw) 0;
+       }
+       .container .banner_color {
+        height: calc(16   / 750 * 100vw);
+       }
+       .f_container .inner_container .l_main {
+        margin: calc(45   / 750 * 100vw) 0 calc(125   / 750 * 100vw);
+       }
+       .f_container .inner_container h2 {
+        font-size: calc(24   / 750 * 100vw);
+        line-height: calc(33   / 750 * 100vw);
+        margin-bottom: calc(59   / 750 * 100vw);
+       }
+       .f_container .inner_container p {
+        font-size: calc(16   / 750 * 100vw);
+        line-height: calc(27   / 750 * 100vw);
+       }
+       .f_container .inner_container .btn_m_top {
+        margin-top: calc(82   / 750 * 100vw);
+       }
+       .f_container .inner_container .btn_m_top a {
+        font-size: calc(16   / 750 * 100vw);
+        line-height: calc(27   / 750 * 100vw);
+       }
   }
-
- /* completed page */
- .container .banner .banner_content {
-  background: url("/assets/img/kyushu_kv.png") 50%/cover;
- }
- .container .banner .banner_content .inner_container .banner_text {
-  padding: 40px 0;
- }
- .container .banner_color {
-  height: 16px;
-  background-color: #8aed98;
- }
- .f_container .inner_container .l_main {
-  margin: 45px 0 125px;
- }
- .f_container .inner_container h2 {
-  font-size: 24px;
-  line-height: 33px;
-  text-align: center;
-  margin-bottom: 59px;
- }
- .f_container .inner_container p {
-  text-align: center;
-  font-size: 16px;
-  line-height: 27px;
- }
- .f_container .inner_container .btn_m_top {
-  text-align: center;
-  margin-top: 82px;
- }
- .f_container .inner_container .btn_m_top a {
-  font-size: 16px;
-  line-height: 27px;
-  text-align: center;
-  text-decoration: underline;
-  font-weight: 700;
-  color: #212121;
- }
