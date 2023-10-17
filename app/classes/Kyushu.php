@@ -158,14 +158,16 @@ class Kyushu extends DB
             $image_name = $files['image']['name'];
             $image_ext = pathinfo($files["image"]["name"], PATHINFO_EXTENSION);
             $ext = array('jepg', 'jpg', 'png');
+            // var_dump($image_size > 500000);
+            // die();
             if ($image_name == "" && $tmp_img_name == "") {
                 $errors['image'] = 'Please upload a photo.';
             } else if (empty($image_name) && empty($tmp_img_name)) {
                 $errors['image'] = 'Please upload a photo.';
             } else if (in_array($image_ext, $ext) === false && !empty($image_name)) {
                 $errors['image'] = 'Image file not support. Please upload JEPG, JPG, PNG.';
-            } else if ($image_size > 40000000) {
-                $errrors['image'] = 'Image Error';
+            } else if ($image_size > 500000 && isset($image_name)) {
+                $errors['image'] = 'Image file size not more than 5MB.';
             }
             $_SESSION['image_name'] = $files['image']['name'];
             //image validate end
@@ -393,7 +395,7 @@ class Kyushu extends DB
                 $_SESSION['old_ph'] = $post['ph_num'];
             }
 
-            if (!preg_match('/^([0-9]{10})$/', $post['ph_num']) && !empty($post['ph_num']) && !ctype_space($post['ph_num'])) {
+            if (!preg_match('/^([0-9]{11})$/', $post['ph_num']) && !empty($post['ph_num']) && !ctype_space($post['ph_num'])) {
                 $errors['ph_num'] = "Please fills the valid phone number.";
             } 
              if (strlen($post['ph_num']) > 100) {

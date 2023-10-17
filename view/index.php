@@ -440,9 +440,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                             <label class="all_checks_label">Tochigi
                                                 <input type="checkbox" name="region[]" value="Tochigi" <?php if (in_array('Tochigi', $_SESSION['old_reg'])) {
                                                                                                             echo 'checked';
-                                                                                                        } ?> <?php if (in_array('Aomori', $_SESSION['old_reg'])) {
-                                                                                                                    echo 'checked';
-                                                                                                                } ?>>
+                                                                                                        } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
