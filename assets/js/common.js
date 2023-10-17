@@ -19,6 +19,7 @@ window.onload = function() {
         if (item.checked) {
             item.parentNode.nextElementSibling.disabled = false;
             submit_btn.disabled = false;
+            submit_btn.classList.add("show_pointer");
             item.parentNode.nextElementSibling.classList.remove("dim")
         } else {
             remove_dim_class.classList.add("dim");

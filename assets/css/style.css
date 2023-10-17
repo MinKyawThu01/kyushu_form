@@ -77,7 +77,7 @@
   display: flex;
   justify-content: space-between;
   }
-  .form_container .f_container ul{
+  ul{
   list-style: none;
   margin-top: 18px;
   padding: 0;
@@ -705,3 +705,41 @@
       width: 100%;
       }
   }
+
+ /* completed page */
+ .container .banner .banner_content {
+  background: url("/assets/img/kyushu_kv.png") 50%/cover;
+ }
+ .container .banner .banner_content .inner_container .banner_text {
+  padding: 40px 0;
+ }
+ .container .banner_color {
+  height: 16px;
+  background-color: #8aed98;
+ }
+ .f_container .inner_container .l_main {
+  margin: 45px 0 125px;
+ }
+ .f_container .inner_container h2 {
+  font-size: 24px;
+  line-height: 33px;
+  text-align: center;
+  margin-bottom: 59px;
+ }
+ .f_container .inner_container p {
+  text-align: center;
+  font-size: 16px;
+  line-height: 27px;
+ }
+ .f_container .inner_container .btn_m_top {
+  text-align: center;
+  margin-top: 82px;
+ }
+ .f_container .inner_container .btn_m_top a {
+  font-size: 16px;
+  line-height: 27px;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: 700;
+  color: #212121;
+ }
