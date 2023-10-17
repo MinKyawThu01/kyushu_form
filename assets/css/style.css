@@ -491,35 +491,35 @@
     margin-top: 25px;
   }
   /* completed page */
- .container .banner .banner_content {
+ .complete_container .banner .banner_content {
   background: url("/assets/img/kyushu_kv.png") 50%/cover;
  }
- .container .banner .banner_content .inner_container .banner_text {
+ .complete_container .banner .banner_content .inner_container .banner_text {
   padding: 40px 0;
  }
- .container .banner_color {
+ .complete_container .banner_color {
   height: 16px;
   background-color: #8aed98;
  }
- .f_container .inner_container .l_main {
+ .complete_container .f_container .inner_container .l_main {
   margin: 45px 0 125px;
  }
- .f_container .inner_container h2 {
+ .complete_container .f_container .inner_container h2 {
   font-size: 24px;
   line-height: 33px;
   text-align: center;
   margin-bottom: 59px;
  }
- .f_container .inner_container p {
+ .complete_container .f_container .inner_container p {
   text-align: center;
   font-size: 16px;
   line-height: 27px;
  }
- .f_container .inner_container .btn_m_top {
+ .complete_container .f_container .inner_container .btn_m_top {
   text-align: center;
   margin-top: 82px;
  }
- .f_container .inner_container .btn_m_top a {
+ .complete_container .f_container .inner_container .btn_m_top a {
   font-size: 16px;
   line-height: 27px;
   text-align: center;
@@ -745,31 +745,31 @@
       .container .pr_vdo_uploader .pr_modal_inner .pr_vdo_item {
       width: 100%;
       }
-      .container .banner .banner_content {
+      .complete_container .container .banner .banner_content {
         background: url("/assets/img/kyushu_kv_sp.png") 50%/cover;
        }
-      .container .banner .banner_content .inner_container .banner_text {
+      .complete_container .container .banner .banner_content .inner_container .banner_text {
         padding: calc(40   / 750 * 100vw) 0;
        }
-       .container .banner_color {
+       .complete_container .container .banner_color {
         height: calc(16   / 750 * 100vw);
        }
-       .f_container .inner_container .l_main {
+       .complete_container .f_container .inner_container .l_main {
         margin: calc(45   / 750 * 100vw) 0 calc(125   / 750 * 100vw);
        }
-       .f_container .inner_container h2 {
+       .complete_container .f_container .inner_container h2 {
         font-size: calc(24   / 750 * 100vw);
         line-height: calc(33   / 750 * 100vw);
         margin-bottom: calc(59   / 750 * 100vw);
        }
-       .f_container .inner_container p {
+       .complete_container .f_container .inner_container p {
         font-size: calc(16   / 750 * 100vw);
         line-height: calc(27   / 750 * 100vw);
        }
-       .f_container .inner_container .btn_m_top {
+       .complete_container .f_container .inner_container .btn_m_top {
         margin-top: calc(82   / 750 * 100vw);
        }
-       .f_container .inner_container .btn_m_top a {
+       .complete_container .f_container .inner_container .btn_m_top a {
         font-size: calc(16   / 750 * 100vw);
         line-height: calc(27   / 750 * 100vw);
        }
