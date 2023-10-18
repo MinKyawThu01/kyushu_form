@@ -14,19 +14,24 @@
   font-size: 20px;
   }
   .inner_container {
-    width: 100%;
+  width: 100%;
   max-width: 627px;
   margin: 0 auto;
   box-sizing: border-box;
   }
   /* common */
-  .for_err {
+  .form_container .f_container .for_err {
   color: #FF0000;
   margin-top: 15px;
   display: block;
   }
+  figure {
+    line-height: 0;
+  }
+  li {
+    display: flex;
+  }
   img {
-  line-height: 0;
   width: 100%;
   }
   .form_container .f_container label {
@@ -54,13 +59,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   }
   .form_container .f_container .others label {
     margin-bottom: 0;
   }
   .form_container .f_container .others input {
   margin: 0;
-  width: 82%;
   margin-left: 34px;
   }
   /* fullname input */
@@ -546,7 +551,8 @@
       }
       /* common */
       .form_container .f_container .for_err {
-      font-size: calc(28 / 750 * 100vw);
+      font-size: calc(24 / 750 * 100vw);
+      margin-top: calc(15 / 750 * 100vw);
       }
       .form_container .f_container p,  span, label,  .form_container .policy  a, input, a {
         font-size: calc(28 / 750 * 100vw);
@@ -561,7 +567,7 @@
       font-size: calc(28 / 750 * 100vw);
       }
       .form_container .title {
-      font-size: calc(32 / 750 * 100vw);
+      font-size: calc(28 / 750 * 100vw);
       }
       .form_container .f_container .region {
       margin-top: calc(30 / 750 * 100vw);
@@ -595,7 +601,7 @@
       margin-right: calc(8 / 750 * 100vw);
       }
       .container .form_container h3 span {
-        font-size: calc(28 / 750 * 100vw);
+        font-size: calc(36 / 750 * 100vw);
       }
       .container .jnto .logo {
       width: 100%;
@@ -625,9 +631,9 @@
       }
       /* Create the indicator (the dot/circle - hidden when not checked) */
       .all_checks_label .checkmark:after {
-      left: calc(12 / 750 * 100vw);
+      left: calc(15 / 750 * 100vw);
       top: calc(2 / 750 * 100vw);
-      width: calc(14 / 750 * 100vw);
+      width: calc(8 / 750 * 100vw);
       height: calc(24 / 750 * 100vw);
       border: calc(1 / 750 * 100vw) solid #fff;
       border-width: 0 calc(4 / 750 * 100vw) calc(4 / 750 * 100vw) 0;
@@ -662,7 +668,7 @@
       padding: calc(9 / 750 * 100vw);
       border-width: calc(1 / 750 * 100vw);
       margin-top: calc(13 / 750 * 100vw);
-      font-size: calc(32 / 750 * 100vw);
+      font-size: calc(24 / 750 * 100vw);
       }
       .container .form_container .files_upload .f_container .inner_container  .intro_vd {
       margin-top: calc(25 / 750 * 100vw);
@@ -717,6 +723,7 @@
       }
       .container .jnto .contact a {
       padding: calc(11 / 750 * 100vw);
+      font-size: calc(24 / 750 * 100vw);
       }
       .container .jnto .social .facebook {
       margin-right: calc(20 / 750 * 100vw);
@@ -730,6 +737,7 @@
       }
       .container .home_contact .f_container .nav li a {
       padding-right: calc(5 / 750 * 100vw);
+      font-size: calc(24 / 750 * 100vw);
       }
       .container .home_contact .f_container .nav li::after {
       padding: 0 calc(2 / 750 * 100vw);
