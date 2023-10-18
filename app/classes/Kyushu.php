@@ -22,7 +22,7 @@ class Kyushu extends DB
                     $dob = htmlspecialchars($post['dob']);
                     $gender = $post['gender'];
                     $nationality = $post['nationality'];
-                    $custom_country = isset($nationality) ? htmlspecialchars($post['custom_country']) : null ;
+                    $custom_country = isset($nationality,  $post['custom_country']) ? htmlspecialchars($post['custom_country']) : NULL ;
                     $occupation = htmlspecialchars($post['occupation']);
                     $religion = htmlspecialchars($post['religion']);
                     if (isset($post['sns_username']) && !empty($post['sns_username'])) {
@@ -48,14 +48,14 @@ class Kyushu extends DB
                     $dob_tc = htmlspecialchars($post['dob_tc']);
                     $gender_tc = $post['gender_tc'];
                     $nationality_tc = $post['nationality_tc'];
-                    $custom_country_tc = isset($nationality) ? htmlspecialchars($post['custom_country_tc']) : null ;
+                    $custom_country_tc = isset($nationality_tc,  $post['custom_country_tc']) ? htmlspecialchars($post['custom_country_tc']) : null ;
                     $relationship_tc = htmlspecialchars($post['relationship_tc']);
                     $restriction_tc = htmlspecialchars($post['restriction_tc']);
                     $first_name_jp = htmlspecialchars($post['first_name_jp']);
                     $last_name_jp = htmlspecialchars($post['last_name_jp']);
                     $period = $post['period'];
                     $campaign = $post['campaign'];
-                    $custom_camp = $post['custom_campaign'];
+                    $custom_camp = isset($post['custom_campaign']) ? $post['custom_campaign'] : null;
 
                     // image to base64 code
                     $tmp_img_name = $files['image']['tmp_name'];
@@ -128,12 +128,10 @@ class Kyushu extends DB
                                 'know_campaign' => $campaign
                             ]
                         ];
-                        // echo "<pre>";
-                        // var_dump($user_data);
-                        // echo "</pre>";
-                        // die();
+
                     $_SESSION['user_data'] = $user_data;
                     return  $_SESSION['user_data'];
+                
                 }
             }
 
@@ -154,12 +152,9 @@ class Kyushu extends DB
             //Image Validate Start
             $tmp_img_name = $files['image']['tmp_name'];
             $image_size = $files['image']['size'];
-            // var_dump(($image_name));
             $image_name = $files['image']['name'];
             $image_ext = pathinfo($files["image"]["name"], PATHINFO_EXTENSION);
             $ext = array('jepg', 'jpg', 'png');
-            // var_dump($image_size > 500000);
-            // die();
             if ($image_name == "" && $tmp_img_name == "") {
                 $errors['image'] = 'Please upload a photo.';
             } else if (empty($image_name) && empty($tmp_img_name)) {
@@ -226,8 +221,6 @@ class Kyushu extends DB
             }
 
             $inputDate = explode('-', $post['dob']);
-            //     var_dump( $inputDate);
-            //    die();
             if (isset($post['dob']) && strlen($inputDate[0]) > 4) {
                 $errors['dob'] = 'Please insert the valid date.';
             } else if ($post['dob'] >= date('Y-m-d')) {
@@ -241,15 +234,25 @@ class Kyushu extends DB
                 $_SESSION['old_gender'] = $post['gender'];
             }
 
+            if (isset($post['nationality'])  && $post['nationality'] == 'Other' && isset($post['custom_country'])) {
+                $_SESSION['old_nati_cc'] = $post['custom_country'];
+            }
+
             if (empty($post['nationality'])) {
                 $errors['nationality'] = "Please fills the required field.";
             } else if ($post['nationality'] == 'Other' && empty($post['custom_country'])) {
                 $errors['nationality'] = "Please fills your nationality in other field.";
-            } else {
+            } else if ($post['nationality'] == 'Other' && ctype_space($post['custom_country'])) {
+                $errors['nationality'] = "Please fills your nationality in other field.";
                 if (isset($_SESSION['old_nati_cc'])) {
                     unset($_SESSION['old_nati_cc']);
                 }
-            }
+            } 
+            // else {
+            //     if (isset($_SESSION['old_nati_cc'])) {
+            //         unset($_SESSION['old_nati_cc']);
+            //     }
+            // }
 
             if (!empty($post['custom_country']) && strlen($post['custom_country']) > 128) {
                 $errors['nationality'] = "Nationality character can't be more than 128.";
@@ -263,9 +266,6 @@ class Kyushu extends DB
                 $_SESSION['old_nati'] = $post['nationality'];
             }
 
-            if (isset($post['nationality'])  && $post['nationality'] == 'Other' && isset($post['custom_country'])) {
-                $_SESSION['old_nati_cc'] = $post['custom_country'];
-            }
 
             if (empty($post['occupation'])  || ctype_space($post['occupation'])) {
                 $errors['occupation'] = "Please fills the required field.";
@@ -303,8 +303,6 @@ class Kyushu extends DB
 
              if(isset($post['sns_username']) && ctype_space($post['sns_username'])) {
                 $errors['sns_username'] = "Please enter your username.";
-                // var_dump(isset($_SESSION['old_sns']));
-                // die();
                 if(isset($_SESSION['old_sns'])) {
                     unset($_SESSION['old_sns']);
                 }
@@ -323,13 +321,6 @@ class Kyushu extends DB
             if (is_numeric($post['sns_username'])) {
                 $errors['sns_username'] = "Username character can't benumber.";
             }
-
-            // if (!empty($post['sns_username'])) {
-            //     $_SESSION['old_sns'] = $post['sns_username'];
-            // } else {
-            //     $_SESSION['old_sns'] = $post['sns_username'];
-            // }
-
 
             if (empty($post['japan_before']) ) {
                 $errors['japan_before'] = "Please fills the required field.";
@@ -462,16 +453,25 @@ class Kyushu extends DB
                 $_SESSION['old_gender_tc'] = $post['gender_tc'];
             }
 
+            if (isset($post['nationality_tc']) && $post['nationality_tc'] == 'Other' && isset($post['custom_country_tc'])) {
+                $_SESSION['old_nati_cc_tc'] = $post['custom_country_tc'];
+            }
 
             if (empty($post['nationality_tc'])) {
                 $errors['nationality_tc'] = "Please fills the required field.";
             } else if ($post['nationality_tc'] == 'Other' && empty($post['custom_country_tc'])) {
                 $errors['nationality_tc'] = "Please fills your nationality in other field.";
-            } else {
+            } else if ($post['nationality_tc'] == 'Other' && ctype_space($post['custom_country_tc'])) {
+                $errors['nationality_tc'] = "Please fills your nationality in other field.";
                 if(isset($_SESSION['old_nati_cc_tc'])) {
                     unset($_SESSION['old_nati_cc_tc']);
                 }
-            } 
+            }
+            //  else {
+            //     if(isset($_SESSION['old_nati_cc_tc'])) {
+            //         unset($_SESSION['old_nati_cc_tc']);
+            //     }
+            // }
             
             if (!empty($post['custom_country_tc']) && strlen($post['custom_country_tc']) > 128) {
                 $errors['nationality_tc'] = "Nationality can't be more than 128.";
@@ -484,10 +484,7 @@ class Kyushu extends DB
                 $_SESSION['old_nati_tc'] = $post['nationality_tc'];
             }
 
-            if (isset($post['nationality_tc']) && $post['nationality_tc'] == 'Other' && isset($post['custom_country_tc'])) {
-                $_SESSION['old_nati_cc_tc'] = $post['custom_country_tc'];
-            }
-
+            
             if (empty($post['relationship_tc']) ||  ctype_space($post['relationship_tc'])) {
                 $errors['relationship_tc'] = "Please fills the required field.";
                 if(isset($_SESSION['old_rs_tc'])) {
@@ -576,6 +573,14 @@ class Kyushu extends DB
                 $_SESSION['old_vd'] = $post['video_upload'];
             }
 
+            if (isset($post['campaign']) && in_array('Other', $post['campaign']) && isset($post['custom_campaign'])) {
+                $_SESSION['old_custom_camp'] = $post['custom_campaign'];
+            } else {
+                if (isset($_SESSION['old_custom_camp'])) {
+                    unset($_SESSION['old_custom_camp']);
+                }
+            }
+            
             if (empty($post['campaign'])) {
                 $errors['campaign'] = "Please fills the required field.";
                 if (isset($_SESSION['old_camp'])) {
@@ -583,6 +588,11 @@ class Kyushu extends DB
                 }
             } else if (isset($post['campaign']) && in_array('Other', $post['campaign']) && $post['custom_campaign'] == '') {
                 $errors['campaign'] = "Please fills your campaign in other field.";
+            } else if (isset($post['campaign']) && in_array('Other', $post['campaign']) && ctype_space($post['custom_campaign'])) {
+                $errors['campaign'] = "Please fills your campaign in other field.";
+                if (isset($_SESSION['old_custom_camp'])) {
+                    unset($_SESSION['old_custom_camp']);
+                }
             } else if (!empty($post['custom_campaign']) && strlen($post['custom_campaign']) > 128) {
                 $errors['campaign'] = "Campaign can't be more than 128.";
             } else if (!empty($post['custom_campaign']) && is_numeric($post['custom_campaign'])) {
@@ -594,13 +604,13 @@ class Kyushu extends DB
                 $_SESSION['old_camp'] = $post['campaign'];
             }
 
-            if (isset($post['campaign']) && in_array('Other', $post['campaign']) && isset($post['custom_campaign'])) {
-                $_SESSION['old_custom_camp'] = $post['custom_campaign'];
-            } else {
-                if (isset($_SESSION['old_custom_camp'])) {
-                    unset($_SESSION['old_custom_camp']);
-                }
-            }
+            // if (isset($post['campaign']) && in_array('Other', $post['campaign']) && isset($post['custom_campaign'])) {
+            //     $_SESSION['old_custom_camp'] = $post['custom_campaign'];
+            // } else {
+            //     if (isset($_SESSION['old_custom_camp'])) {
+            //         unset($_SESSION['old_custom_camp']);
+            //     }
+            // }
 
             if (empty($post['termsConditions'])) {
                 $errors['termsConditions'] = "Please agree the terms & conditions.";
@@ -611,6 +621,7 @@ class Kyushu extends DB
             $_SESSION['error'] = $errors;
 
             return  empty($_SESSION['error']);
+
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -651,13 +662,11 @@ class Kyushu extends DB
         try {
             $sql = "SELECT * FROM `users_table` WHERE `deleted_date` IS NULL";
             $stmt = $this->con->prepare($sql);
-            // $stmt->bindParam('id', $id, PDO::PARAM_INT);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-            // var_dump($result);
-            // die();
 
             return  $result;
+
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

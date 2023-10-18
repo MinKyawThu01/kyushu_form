@@ -492,7 +492,7 @@
   }
   /* completed page */
  .complete_container .banner .banner_content {
-  background: url("/assets/img/kyushu_kv.png") 50%/cover;
+  background: url("../img/kyushu_kv.png") 50%/cover;
  }
  .complete_container .banner .banner_content .inner_container .banner_text {
   padding: 40px 0;
@@ -746,7 +746,7 @@
       width: 100%;
       }
       .complete_container .container .banner .banner_content {
-        background: url("/assets/img/kyushu_kv_sp.png") 50%/cover;
+        background: url("../img/kyushu_kv_sp.png") 50%/cover;
        }
       .complete_container .container .banner .banner_content .inner_container .banner_text {
         padding: calc(40   / 750 * 100vw) 0;

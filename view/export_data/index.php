@@ -30,12 +30,15 @@ fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF));
 fputcsv($fp, $titles);
 
 
-$files = glob('../../upload/' . '*');
+$files = glob('../../upload/*');
 foreach ($files as $file) {
     if (is_file($file)) {
         unlink($file);
     }
 }
+
+$i = 1;
+$x = 0;
 
 foreach ($data as $row) {
     $user_data = json_decode($row->user_data, true);
@@ -44,8 +47,7 @@ foreach ($data as $row) {
     if (isset($user_data['other']['uploaded_image']) && isset($user_data['main']['first_name'])) {
         $img = $user_data['other']['uploaded_image'];
 
-        $i = 1;
-        // var_dump($a['other']['uploaded_image']);
+        // $i = 1;
         list($type, $img) = explode(';', $img);
         list(, $img)      = explode(',', $img);
         list(, $ext) = explode('/', $type);
@@ -69,11 +71,17 @@ foreach ($data as $row) {
     }else if(!isset ($user_data['main']['region'])) {
         $region = 'null';
     }
-    $i=0;
-    $i++;
+
+    if(!isset($user_data['main']['sns_username'])) {
+        $sns = 'null';
+    } else {
+        $sns = $user_data['main']['sns_username'];
+    }
+    // $i=0;
+    $x++;
 
     $rowData = array(
-        $i,
+        $x,
         $row->user_id,
         $user_data['main']['first_name'] . ' ' . $user_data['main']['last_name'],
         $user_data['main']['dob'],
@@ -81,7 +89,8 @@ foreach ($data as $row) {
         $user_data['main']['nationality'],
         $user_data['main']['occupation'],
         $user_data['main']['religion'],
-        $user_data['main']['sns_username'],
+        // $user_data['main']['sns_username'],
+        $sns,
         $user_data['main']['japan_before'],
         $region ,
         $user_data['main']['restriction'],

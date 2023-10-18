@@ -6,12 +6,6 @@ include('../app/classes/Kyushu.php');
 session_start();
 
 $kyushu = new Kyushu();
-// echo '<pre>';
-// var_dump($_SESSION);
-
-// echo '</pre>';
-// die();
-// var_dump(isset($kyushu->storeArray($_POST, $file)))
 if ($kyushu->storeArray($_POST, $_FILES)) {
     echo '<script>location.href="confirmed/index.php"</script>';
 }
@@ -33,13 +27,15 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
 </head>
 
 <body>
-
-    <?php
-    // var_dump($kyushu->storeArray($_POST, $_FILES));
-    // echo '<pre>';
-    // var_dump($_SESSION);
-    // echo"</pre>"; 
-    ?>
+    <?php 
+if(isset($_SESSION['old_custom_camp']) ){
+    // || isset($_SESSION['old_nati_cc'])) {
+        var_dump($_SESSION['old_custom_camp']);
+        // var_dump($_SESSION['old_nati_cc']);
+    } else {
+        echo 'no session';
+    }
+     ?>
     <div class="container">
         <div class="f_container">
             <div class="inner_container">
