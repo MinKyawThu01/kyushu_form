@@ -27,15 +27,15 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
 </head>
 
 <body>
-    <?php 
-if(isset($_SESSION['old_custom_camp']) ){
-    // || isset($_SESSION['old_nati_cc'])) {
+    <?php
+    if (isset($_SESSION['old_custom_camp'])) {
+        // || isset($_SESSION['old_nati_cc'])) {
         var_dump($_SESSION['old_custom_camp']);
         // var_dump($_SESSION['old_nati_cc']);
     } else {
         echo 'no session';
     }
-     ?>
+    ?>
     <div class="container">
         <div class="f_container">
             <div class="inner_container">
@@ -171,15 +171,15 @@ if(isset($_SESSION['old_custom_camp']) ){
                                         <div class="others">
                                             <label class="all_checks_radio others-input">Other:
                                                 <input type="radio" name="nationality" class=" all_input" value="Other" <?php if ($_SESSION['old_nati'] == 'Other') {
-                                                                                                            echo 'checked';
-                                                                                                        } ?>>
+                                                                                                                            echo 'checked';
+                                                                                                                        } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
 
                                             <!-- test 1 remove disable and class = dim -->
-                                            <input type="text"  id="nation_opt1" name="custom_country" value="<?php if (isset($_SESSION['old_nati_cc'])) {
-                                                                                                                                    echo $_SESSION['old_nati_cc'];
-                                                                                                                                } ?>">
+                                            <input type="text" id="nation_opt1" name="custom_country" value="<?php if (isset($_SESSION['old_nati_cc'])) {
+                                                                                                                    echo $_SESSION['old_nati_cc'];
+                                                                                                                } ?>">
                                         </div>
                                     </li>
                                 <?php
@@ -207,7 +207,7 @@ if(isset($_SESSION['old_custom_camp']) ){
                                                 <input type="radio" name="nationality" value="Other" class=" all_input">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <input type="text"  id="nation_opt1" name="custom_country">
+                                            <input type="text" id="nation_opt1" name="custom_country">
                                         </div>
                                     </li>
                                 <?php } ?>
@@ -345,7 +345,6 @@ if(isset($_SESSION['old_custom_camp']) ){
                                     </li>
                                 <?php
                                 } ?>
-
                             </ul>
                             <?php if (isset($_SESSION['error']['japan_before'])) {
                             ?>
@@ -1121,7 +1120,6 @@ if(isset($_SESSION['old_custom_camp']) ){
                             </div>
                         <?php
                         } ?>
-
                         <!-- Dietary  Restrictions-->
                         <div class="form_gp">
                             <h5 class="title">Dietary Restrictions <span class="sub_txt">(Including Alcohol)</span> </h5>
@@ -1293,15 +1291,15 @@ if(isset($_SESSION['old_custom_camp']) ){
                                         <div class="others">
                                             <label class="all_checks_radio others-input">Other:
                                                 <input type="radio" name="nationality_tc" class=" all_input" value="Other" <?php if ($_SESSION['old_nati_tc'] == 'Other') {
-                                                                                                            echo 'checked';
-                                                                                                        } ?>>
+                                                                                                                                echo 'checked';
+                                                                                                                            } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
 
                                             <!-- test 2 reomve disable  -->
-                                            <input type="text"  id="nation_opt2" name="custom_country_tc" value="<?php if (isset($_SESSION['old_nati_cc_tc'])) {
-                                                                                                                                        echo $_SESSION['old_nati_cc_tc'];
-                                                                                                                                    } ?>">
+                                            <input type="text" id="nation_opt2" name="custom_country_tc" value="<?php if (isset($_SESSION['old_nati_cc_tc'])) {
+                                                                                                                    echo $_SESSION['old_nati_cc_tc'];
+                                                                                                                } ?>">
                                     </li>
                                 <?php
                                 } else {
@@ -1318,11 +1316,7 @@ if(isset($_SESSION['old_custom_camp']) ){
                                                 <input type="radio" name="nationality_tc" value="Other" class=" all_input">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <!-- original -->
-                                            <!-- <input type="text" class="dim all_input" id="nation_opt2" disabled="disabled" name="custom_country_tc"> -->
-
-                                            <!-- copy remove disable and class = dim  -->
-                                            <input type="text"  id="nation_opt2" name="custom_country_tc">
+                                            <input type="text" id="nation_opt2" name="custom_country_tc">
                                         </div>
                                     </li>
                                 <?php
@@ -1598,16 +1592,14 @@ if(isset($_SESSION['old_custom_camp']) ){
                                             <div class="others">
                                                 <label class="all_checks_label others-input">Other:
                                                     <input type="checkbox" class="all_input" name="campaign[]" value="Other" <?php if (in_array("Other", $_SESSION['old_camp'])) {
-                                                                                                                                echo 'checked';
-                                                                                                                            } ?>>
+                                                                                                                                    echo 'checked';
+                                                                                                                                } ?>>
                                                     <span class="checkmark"></span>
                                                 </label>
-
-                                                <!-- remove dim class  -->
                                                 <input type="text" class=" remove_dim_class" name="custom_campaign" value="<?php if (isset($_SESSION['old_custom_camp'])) {
-                                                                                                                                            echo $_SESSION['old_custom_camp'];
-                                                                                                                                        }
-                                                                                                                                        ?>">
+                                                                                                                                echo $_SESSION['old_custom_camp'];
+                                                                                                                            }
+                                                                                                                            ?>">
                                             </div>
                                         </li>
                                     <?php
@@ -1696,8 +1688,8 @@ if(isset($_SESSION['old_custom_camp']) ){
                         ?>
                             <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
                                 <input type="checkbox" name="termsConditions" value="yes" class="policy_input all_input" <?php if ($_SESSION['old_terms'] == 'yes') {
-                                                                                                                    echo 'checked';
-                                                                                                                } ?>>
+                                                                                                                                echo 'checked';
+                                                                                                                            } ?>>
                                 <span class="checkmark"></span>
                             </label>
                         <?php } else {
@@ -1717,15 +1709,6 @@ if(isset($_SESSION['old_custom_camp']) ){
                         unset($_SESSION['error']['termsConditions']);
                         ?>
                     </div>
-
-                    <!-- original  -->
-                    <!-- <div class="btn_submit">
-                                    <button type="submit" name="submit" disabled class="submit_btn">
-                                        <span>Submit</span>
-                                    </button>
-                                </div> -->
-
-                    <!-- test  -->
                     <div class="btn_submit">
                         <button type="submit" name="submit" disabled class="submit_btn">
                             <span>Submit</span>
@@ -1750,24 +1733,24 @@ if(isset($_SESSION['old_custom_camp']) ){
             </div>
             <div class="jnto ">
                 <div class="f_container">
-                  <a href="#"  class="logo">
-                    <img src="../assets/img/JNTO_logo.png" alt="JNTO" />
-                  </a>
-                  <ul class="contact">
-                    <li ><a href="#">Home</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Privacy Policy</a> </li>
-                    <li><a href="#">Terms of Use</a></li>
-                    <li><a href="#">JbyJ intro</a></li>
-                  </ul>
-                  <div class="social">
-                    <a href="#" class=" fa-brands facebook fa-facebook-f">
-                      <span>facebook</span>
+                    <a href="#" class="logo">
+                        <img src="../assets/img/JNTO_logo.png" alt="JNTO" />
                     </a>
-                    <a href="#" class="instagram fa-brands fa-instagram">
-                      <span>instagram</span>
-                    </a>
-                  </div>
+                    <ul class="contact">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a> </li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">JbyJ intro</a></li>
+                    </ul>
+                    <div class="social">
+                        <a href="#" class=" fa-brands facebook fa-facebook-f">
+                            <span>facebook</span>
+                        </a>
+                        <a href="#" class="instagram fa-brands fa-instagram">
+                            <span>instagram</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="footer">
@@ -1779,4 +1762,5 @@ if(isset($_SESSION['old_custom_camp']) ){
     </div>
     <script src="../assets/js/common.js"></script>
 </body>
+
 </html>

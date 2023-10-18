@@ -75,8 +75,6 @@ class Kyushu extends DB
                         $custom_data_tc = $nationality_tc;
                     }
 
-
-
                     if (in_array('Other', $campaign) && isset($custom_camp)) {
                         $arr_search = array_search('Other', $campaign);
                         if ($arr_search !== false) {
@@ -191,7 +189,6 @@ class Kyushu extends DB
                 $errors['first_name'] = "First Name character can't be more than 128.";
             }
 
-
             if (empty($post['last_name']) || ctype_space($post['last_name'])) {
                 $errors['last_name'] = "Please fills the required field.";
                 if(isset($_SESSION['old_ln'])){
@@ -247,12 +244,7 @@ class Kyushu extends DB
                 if (isset($_SESSION['old_nati_cc'])) {
                     unset($_SESSION['old_nati_cc']);
                 }
-            } 
-            // else {
-            //     if (isset($_SESSION['old_nati_cc'])) {
-            //         unset($_SESSION['old_nati_cc']);
-            //     }
-            // }
+            }
 
             if (!empty($post['custom_country']) && strlen($post['custom_country']) > 128) {
                 $errors['nationality'] = "Nationality character can't be more than 128.";
@@ -337,6 +329,12 @@ class Kyushu extends DB
 
             if (empty($post['region']) && !isset($post['japan_before'])) {
                 $errors['region'] = "Please fills the required field.";
+                if (isset($_SESSION['old_reg'])) {
+                    unset($_SESSION['old_reg']);
+                }
+            }
+
+            if(isset($post['japan_before']) && $post['japan_before'] == 'Never') {
                 if (isset($_SESSION['old_reg'])) {
                     unset($_SESSION['old_reg']);
                 }
@@ -439,8 +437,7 @@ class Kyushu extends DB
             }
 
             $inputDate = explode('-', $post['dob_tc']);
-            //     var_dump( $inputDate);
-            //    die();
+
             if (isset($post['dob_tc']) && strlen($inputDate[0]) > 4) {
                 $errors['dob_tc'] = 'Please insert the valid date.';
             } else if ($post['dob_tc'] >= date('Y-m-d')) {
@@ -467,11 +464,6 @@ class Kyushu extends DB
                     unset($_SESSION['old_nati_cc_tc']);
                 }
             }
-            //  else {
-            //     if(isset($_SESSION['old_nati_cc_tc'])) {
-            //         unset($_SESSION['old_nati_cc_tc']);
-            //     }
-            // }
             
             if (!empty($post['custom_country_tc']) && strlen($post['custom_country_tc']) > 128) {
                 $errors['nationality_tc'] = "Nationality can't be more than 128.";
@@ -483,7 +475,6 @@ class Kyushu extends DB
             if (!empty($post['nationality_tc'])) {
                 $_SESSION['old_nati_tc'] = $post['nationality_tc'];
             }
-
             
             if (empty($post['relationship_tc']) ||  ctype_space($post['relationship_tc'])) {
                 $errors['relationship_tc'] = "Please fills the required field.";
@@ -580,7 +571,7 @@ class Kyushu extends DB
                     unset($_SESSION['old_custom_camp']);
                 }
             }
-            
+
             if (empty($post['campaign'])) {
                 $errors['campaign'] = "Please fills the required field.";
                 if (isset($_SESSION['old_camp'])) {
@@ -603,14 +594,6 @@ class Kyushu extends DB
             if (!empty($post['campaign'])) {
                 $_SESSION['old_camp'] = $post['campaign'];
             }
-
-            // if (isset($post['campaign']) && in_array('Other', $post['campaign']) && isset($post['custom_campaign'])) {
-            //     $_SESSION['old_custom_camp'] = $post['custom_campaign'];
-            // } else {
-            //     if (isset($_SESSION['old_custom_camp'])) {
-            //         unset($_SESSION['old_custom_camp']);
-            //     }
-            // }
 
             if (empty($post['termsConditions'])) {
                 $errors['termsConditions'] = "Please agree the terms & conditions.";

@@ -6,23 +6,14 @@ $kyushu = new Kyushu();
 
 $data = $kyushu->export();
 
-
-// echo "<pre>";
-// var_dump($data->user_data);
-// echo "</pre>";
-
-
-
 // data for excel 
-$fileName = "users_data_" . date('Y-m-d') . ".xlsx";
+// $uploadDirectory = '../../upload/';
+$fileName = "../../upload/data.csv"; // Specify the path to the upload directory
+
 $titles = array('ID', 'User ID', 'Full Name', 'DOB', 'Gender', 'Nationality', 'Occupation', 'Religion', 'SNS Username', 'Japan Before', 'Region', 'Dietary Restrictions', 'Email', 'Phone Number', 'Full Name TC', 'DOB TC', 'Gender TC', 'Nationality TC', 'Relationship with applicant', 'Dietary Restrictions TC', 'Full Name(birthday gift)', 'Traveling Preiod', 'Know Campaign', 'Image Name', 'Area');
 
-header('Content-Type: text/csv');
-header('Content-Disposition: attachment;filename="' . $fileName . '"');
-header('Cache-Control: max-age=0');
-
-// Open the output stream
-$fp = fopen('php://output', 'w');
+// Open the output stream to the file
+$fp = fopen($fileName, 'w');
 
 // Add UTF-8 BOM to support special characters
 fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF));
@@ -30,32 +21,37 @@ fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF));
 fputcsv($fp, $titles);
 
 
-$files = glob('../../upload/*');
+$files = glob('../../upload/img/*');
 foreach ($files as $file) {
     if (is_file($file)) {
         unlink($file);
     }
 }
 
-$i = 1;
+// $i = 1;
 $x = 0;
 
 foreach ($data as $row) {
     $user_data = json_decode($row->user_data, true);
-    // $i++;
 
     if (isset($user_data['other']['uploaded_image']) && isset($user_data['main']['first_name'])) {
         $img = $user_data['other']['uploaded_image'];
 
-        // $i = 1;
         list($type, $img) = explode(';', $img);
         list(, $img)      = explode(',', $img);
         list(, $ext) = explode('/', $type);
 
         $img_name = $row->user_id . 'kyushu' . '.' . $ext;
         $imageData = base64_decode($img);
-        $imgFolder = '../../upload/';
+        $imgFolder = '../../upload/img/';
         $imgPath = $imgFolder . $img_name;
+        $previousExt = $ext;
+
+        if (isset($previousExt) && $previousExt != $ext) {
+            $i = 1; // Reset the counter if the extension changes
+        } else {
+            $i = 1; // Initialize the counter if it's the first iteration or extension is the same
+        }
 
         while (file_exists($imgPath)) {
             $i++;
@@ -77,7 +73,7 @@ foreach ($data as $row) {
     } else {
         $sns = $user_data['main']['sns_username'];
     }
-    // $i=0;
+
     $x++;
 
     $rowData = array(
@@ -89,10 +85,9 @@ foreach ($data as $row) {
         $user_data['main']['nationality'],
         $user_data['main']['occupation'],
         $user_data['main']['religion'],
-        // $user_data['main']['sns_username'],
         $sns,
         $user_data['main']['japan_before'],
-        $region ,
+        $region,
         $user_data['main']['restriction'],
         $user_data['main']['email'],
         $user_data['main']['ph_num'],
