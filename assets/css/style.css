@@ -92,6 +92,7 @@
   .form_container .f_container  .sub_txt {
   font-weight: normal;
   font-size: 16px;
+  margin-left: 16px;
   }
   .sms_text {
     margin-left: 10px;
@@ -571,12 +572,9 @@
       .form_container .f_container ul  {
       margin-top: calc(18 / 750 * 100vw);
       }
-      .form_container .f_container   .sub_txt {
-      margin-top: calc(9 / 750 * 100vw);
-      }
       .form_container .f_container  .sub_txt {
         font-size: calc(24 / 750 * 100vw);
-        margin-left: calc(10 / 750 * 100vw)
+        margin-left: calc(16 / 750 * 100vw);
         }
       /* title */
       .container .form_container span {
