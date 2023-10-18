@@ -223,6 +223,7 @@
   .container .form_container .files_upload .img_upload input {
   background-color: #fff;
   border-radius: 5px;
+  padding: 10px 20px;
   }
   .container .form_container .files_upload input::file-selector-button {
   padding: 10px;
@@ -650,6 +651,7 @@
       }
       .container .form_container .files_upload .img_upload input {
       border-radius: calc(5 / 750 * 100vw);
+      padding: calc(10 / 750 * 100vw) calc(20 / 750 * 100vw);
       }
       .form_container .fullname .first-item {
         margin-right: calc(20 / 750 * 100vw);
