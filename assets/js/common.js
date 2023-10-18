@@ -13,7 +13,8 @@ const c_form_radio = document.querySelectorAll(".c-form_radio");
 const all_input = document.querySelectorAll(".all_input");
 window.onload = function() {
     all_input.forEach((item) => {
-        if(item.checked && item.classList.contains("policy_input")){
+        if (item.checked && item.classList.contains("policy_input")) {
+            submit_btn.disabled = false;
             submit_btn.classList.add("show_pointer");
         }
         if(item.parentNode.nextElementSibling === null){
