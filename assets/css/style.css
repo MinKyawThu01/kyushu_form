@@ -508,8 +508,9 @@
   height: 16px;
   background-color: #8aed98;
  }
- .complete_container .f_container .inner_container .l_main {
-  margin: 45px 0 125px;
+ .complete_container .f_container .inner_container.l_main {
+  margin: 45px auto 125px;
+  max-width: 1040px;
  }
  .complete_container .f_container .inner_container h2 {
   font-size: 24px;
@@ -760,7 +761,7 @@
        .complete_container  .banner_color {
         height: calc(16   / 750 * 100vw);
        }
-       .complete_container .f_container .inner_container .l_main {
+       .complete_container .f_container .inner_container.l_main {
         margin: calc(45   / 750 * 100vw) 0 calc(125   / 750 * 100vw);
        }
        .complete_container .f_container .inner_container h2 {

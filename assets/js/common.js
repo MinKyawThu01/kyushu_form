@@ -34,9 +34,6 @@ window.onload = function() {
 call_frame.addEventListener("click", () => {
     vdo_upload.style.display = "block"
 })
-call_frame.addEventListener("click", () => {
-    vdo_upload.style.display = "block"
-})
 
 close_vdo_tag.addEventListener("click", () => {
     vdo_upload.style.display = "none"
