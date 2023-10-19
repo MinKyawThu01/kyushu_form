@@ -11,7 +11,14 @@ const never_input = document.querySelector("#never_input");
 const visited_japan = document.querySelector(".visited_japan");
 const c_form_radio = document.querySelectorAll(".c-form_radio");
 const all_input = document.querySelectorAll(".all_input");
-window.onload = function() {
+const inner_visited_japan_all_input = document.querySelectorAll(".visited_japan input[type=checkbox]");
+window.onload = function () {
+    if (never_input.checked) {
+        inner_visited_japan_all_input.forEach(item => {
+            item.checked = false;
+        })
+        visited_japan.classList.add("dis_ragion");
+    }
     all_input.forEach((item) => {
         if (item.checked && item.classList.contains("policy_input")) {
             submit_btn.disabled = false;
@@ -91,8 +98,7 @@ c_form_radio.forEach(item => {
     item.addEventListener("click", (event) => {
         if (event.target.id == 'never_input') {
             visited_japan.classList.add("dis_ragion");
-            const all_input = document.querySelectorAll(".visited_japan input[type=checkbox]");
-            all_input.forEach(item => {
+            inner_visited_japan_all_input.forEach(item => {
                 item.checked = false;
             })
         } else {
