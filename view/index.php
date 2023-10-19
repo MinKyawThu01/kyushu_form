@@ -27,15 +27,6 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
 </head>
 
 <body>
-    <?php
-    if (isset($_SESSION['old_custom_camp'])) {
-        // || isset($_SESSION['old_nati_cc'])) {
-        var_dump($_SESSION['old_custom_camp']);
-        // var_dump($_SESSION['old_nati_cc']);
-    } else {
-        echo 'no session';
-    }
-    ?>
     <div class="container">
         <div class="f_container">
             <div class="inner_container">
@@ -80,7 +71,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         <!-- Date of Birth -->
                         <div class="form_gp">
                             <h5 class="title">Date of Birth</h5>
-                            <input type="date" id="dateOfBirth" name="dob" value="<?php if (isset($_SESSION['old_dob'])) {
+                            <input type="date" max='<?= date('Y-m-d') ?>' id="dateOfBirth" name="dob" value="<?php if (isset($_SESSION['old_dob'])) {
                                                                                         echo $_SESSION['old_dob'];
                                                                                     } ?>" />
                             <?php if (isset($_SESSION['error']['dob'])) {
@@ -1200,7 +1191,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         <!-- Date of Birth -->
                         <div class="form_gp">
                             <h5 class="title">Date of Birth</h5>
-                            <input type="date" id="dateOfBirth" name="dob_tc" value="<?php if (isset($_SESSION['old_dob_tc'])) {
+                            <input type="date" max='<?= date('Y-m-d') ?>' id="dateOfBirth" name="dob_tc" value="<?php if (isset($_SESSION['old_dob_tc'])) {
                                                                                             echo $_SESSION['old_dob_tc'];
                                                                                         } ?>" />
                             <?php if (isset($_SESSION['error']['dob_tc'])) {

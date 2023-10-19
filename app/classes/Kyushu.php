@@ -384,11 +384,15 @@ class Kyushu extends DB
                 $_SESSION['old_ph'] = $post['ph_num'];
             }
 
-            if (!preg_match('/^([0-9]{11})$/', $post['ph_num']) && !empty($post['ph_num']) && !ctype_space($post['ph_num'])) {
-                $errors['ph_num'] = "Please fills the valid phone number.";
-            } 
-             if (strlen($post['ph_num']) > 100) {
-                $errors['ph_num'] = "Phone number can't be more than 100 characters.";
+            // phone validation with regx
+            // if (!preg_match('/^([0-9]{11})$/', $post['ph_num']) && !empty($post['ph_num']) && !ctype_space($post['ph_num'])) {
+            //     $errors['ph_num'] = "Please fills the valid phone number.";
+            // } 
+
+             if (strlen($post['ph_num']) > 25) {
+                $errors['ph_num'] = "Phone number can't be more than 25 characters.";
+            } else if (strlen($post['ph_num']) < 7 ) {
+                $errors['ph_num'] = "Phone number can't be less than 7 characters.";
             }
 
             if (empty($post['first_name_tc']) ||  ctype_space($post['first_name_tc'])) {

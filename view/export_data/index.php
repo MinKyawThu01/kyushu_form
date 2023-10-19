@@ -7,10 +7,16 @@ $kyushu = new Kyushu();
 $data = $kyushu->export();
 
 // data for excel 
-// $uploadDirectory = '../../upload/';
 $fileName = "../../upload/data.csv"; // Specify the path to the upload directory
 
 $titles = array('ID', 'User ID', 'Full Name', 'DOB', 'Gender', 'Nationality', 'Occupation', 'Religion', 'SNS Username', 'Japan Before', 'Region', 'Dietary Restrictions', 'Email', 'Phone Number', 'Full Name TC', 'DOB TC', 'Gender TC', 'Nationality TC', 'Relationship with applicant', 'Dietary Restrictions TC', 'Full Name(birthday gift)', 'Traveling Preiod', 'Know Campaign', 'Image Name', 'Area');
+
+$files = glob('../../upload/images/*');
+foreach ($files as $file) {
+    if (is_file($file)) {
+        unlink($file);
+    }
+}
 
 // Open the output stream to the file
 $fp = fopen($fileName, 'w');
@@ -20,15 +26,6 @@ fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF));
 
 fputcsv($fp, $titles);
 
-
-$files = glob('../../upload/img/*');
-foreach ($files as $file) {
-    if (is_file($file)) {
-        unlink($file);
-    }
-}
-
-// $i = 1;
 $x = 0;
 
 foreach ($data as $row) {
@@ -43,7 +40,7 @@ foreach ($data as $row) {
 
         $img_name = $row->user_id . 'kyushu' . '.' . $ext;
         $imageData = base64_decode($img);
-        $imgFolder = '../../upload/img/';
+        $imgFolder = '../../upload/images/';
         $imgPath = $imgFolder . $img_name;
         $previousExt = $ext;
 
@@ -109,4 +106,33 @@ foreach ($data as $row) {
 }
 
 fclose($fp);
-exit();
+
+$zip = new ZipArchive();
+$zip_name = 'data.zip';
+$pathdir = '../../upload/images';
+if ($zip->open($zip_name, ZipArchive::CREATE) === TRUE) {
+    // Add all files and subdirectories recursively
+    $files = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($pathdir),
+        RecursiveIteratorIterator::LEAVES_ONLY
+    );
+
+    foreach ($files as $name => $file) {
+        // Skip directories (they will be added automatically)
+        if (!$file->isDir()) {
+            $filePath = $file->getRealPath();
+            $relativePath = explode("\upload\\", $filePath)[1];
+            $zip->addFile($filePath, $relativePath);
+        }
+    };
+} 
+
+$zip->close();
+
+// Prompt download
+header('Content-Type: application/zip');
+header('Content-disposition: attachment; filename=' . $zip_name);
+header('Content-Length: ' . filesize($zip_name));
+readfile($zip_name);
+
+unlink($zip_name);
