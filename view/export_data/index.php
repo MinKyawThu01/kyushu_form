@@ -38,7 +38,7 @@ foreach ($data as $row) {
         list(, $img)      = explode(',', $img);
         list(, $ext) = explode('/', $type);
 
-        $img_name = $row->user_id . 'kyushu' . '.' . $ext;
+        $img_name = $row->user_id . 'kyushu' . '.' .  (($ext == "svg+xml") ? "svg" : $ext);
         $imageData = base64_decode($img);
         $imgFolder = '../../upload/images/';
         $imgPath = $imgFolder . $img_name;

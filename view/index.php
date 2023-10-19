@@ -7,6 +7,10 @@ session_start();
 
 $kyushu = new Kyushu();
 if ($kyushu->storeArray($_POST, $_FILES)) {
+    // echo "<pre>";
+    // var_dump($_SESSION['user_data']);
+    // echo "</pre>";
+    // die();
     echo '<script>location.href="confirmed/index.php"</script>';
 }
 
@@ -27,6 +31,18 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
 </head>
 
 <body>
+    <?php
+    if(isset($_SESSION['old_nati_cc'])) {
+        var_dump($_SESSION['old_nati_cc']);
+    }else {
+        echo 'no session';
+    } echo '<br>';
+    if(isset($_SESSION['old_nati_cc_tc'])) {
+        var_dump($_SESSION['old_nati_cc_tc']);
+    }else {
+        echo 'no session';
+    }
+    ?>
     <div class="container">
         <div class="f_container">
             <div class="inner_container">

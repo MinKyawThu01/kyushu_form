@@ -61,7 +61,7 @@ class Kyushu extends DB
                     $tmp_img_name = $files['image']['tmp_name'];
                     $image_data =  file_get_contents($files['image']['tmp_name']);
                     $image_ext = pathinfo($files["image"]["name"], PATHINFO_EXTENSION);
-                    $image_result = 'data:image/' . $image_ext . ';base64,' . base64_encode($image_data);
+                    $image_result = 'data:image/' .( ($image_ext =='svg')? $image_ext.'+xml' :$image_ext) . ';base64,' . base64_encode($image_data);
 
                     if ( isset($nationality) && $nationality == 'Other' && isset($custom_country)) {
                         $custom_data = $custom_country;
@@ -152,7 +152,7 @@ class Kyushu extends DB
             $image_size = $files['image']['size'];
             $image_name = $files['image']['name'];
             $image_ext = pathinfo($files["image"]["name"], PATHINFO_EXTENSION);
-            $ext = array('jepg', 'jpg', 'png');
+            $ext = array('jepg', 'jpg', 'png', 'svg', 'gif', 'webp');
             if ($image_name == "" && $tmp_img_name == "") {
                 $errors['image'] = 'Please upload a photo.';
             } else if (empty($image_name) && empty($tmp_img_name)) {
@@ -220,7 +220,7 @@ class Kyushu extends DB
             $inputDate = explode('-', $post['dob']);
             if (isset($post['dob']) && strlen($inputDate[0]) > 4) {
                 $errors['dob'] = 'Please insert the valid date.';
-            } else if ($post['dob'] >= date('Y-m-d')) {
+            } else if ($post['dob'] > date('Y-m-d')) {
                 $errors['dob'] = 'Date of birth cannot be today or future.';
             }
 
@@ -239,6 +239,13 @@ class Kyushu extends DB
                 $errors['nationality'] = "Please fills the required field.";
             } else if ($post['nationality'] == 'Other' && empty($post['custom_country'])) {
                 $errors['nationality'] = "Please fills your nationality in other field.";
+                if (isset($_SESSION['old_nati_cc'])) {
+                    unset($_SESSION['old_nati_cc']);
+                }
+            } else if ($post['nationality'] == 'Singaporean') {
+                if (isset($_SESSION['old_nati_cc'])) {
+                    unset($_SESSION['old_nati_cc']);
+                }
             } else if ($post['nationality'] == 'Other' && ctype_space($post['custom_country'])) {
                 $errors['nationality'] = "Please fills your nationality in other field.";
                 if (isset($_SESSION['old_nati_cc'])) {
@@ -389,9 +396,9 @@ class Kyushu extends DB
             //     $errors['ph_num'] = "Please fills the valid phone number.";
             // } 
 
-             if (strlen($post['ph_num']) > 25) {
+             if (strlen($post['ph_num']) > 25 && !empty($post['ph_num'])) {
                 $errors['ph_num'] = "Phone number can't be more than 25 characters.";
-            } else if (strlen($post['ph_num']) < 7 ) {
+            } else if (strlen($post['ph_num']) < 7  && !empty($post['ph_num'])) {
                 $errors['ph_num'] = "Phone number can't be less than 7 characters.";
             }
 
@@ -444,7 +451,7 @@ class Kyushu extends DB
 
             if (isset($post['dob_tc']) && strlen($inputDate[0]) > 4) {
                 $errors['dob_tc'] = 'Please insert the valid date.';
-            } else if ($post['dob_tc'] >= date('Y-m-d')) {
+            } else if ($post['dob_tc'] > date('Y-m-d')) {
                 $errors['dob_tc'] = 'Date of birth cannot be today or future.';
             }
 
@@ -462,6 +469,13 @@ class Kyushu extends DB
                 $errors['nationality_tc'] = "Please fills the required field.";
             } else if ($post['nationality_tc'] == 'Other' && empty($post['custom_country_tc'])) {
                 $errors['nationality_tc'] = "Please fills your nationality in other field.";
+                if(isset($_SESSION['old_nati_cc_tc'])) {
+                    unset($_SESSION['old_nati_cc_tc']);
+                }
+            }else if ($post['nationality_tc'] == 'Singaporean'){
+                if(isset($_SESSION['old_nati_cc_tc'])) {
+                    unset($_SESSION['old_nati_cc_tc']);
+                }
             } else if ($post['nationality_tc'] == 'Other' && ctype_space($post['custom_country_tc'])) {
                 $errors['nationality_tc'] = "Please fills your nationality in other field.";
                 if(isset($_SESSION['old_nati_cc_tc'])) {

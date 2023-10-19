@@ -149,7 +149,7 @@ if ($kyushu->store($_POST, $_FILES)) {
                         <div class="form_gp">
                             <h5 class="title">SNS username<span class="sub_txt">(Facebook/Instagram/Tiktok/Youtube)</h5>
                             <p>*Leave the option blank if you do not have any Social Media account</p>
-                            <input disabled type="text" id="sns" class="full_width reli_sns_input" placeholder="Type..." name="sns_username" value="<?php if (isset($_SESSION['old_sns'])) {
+                            <input disabled type="text" id="sns" class="full_width reli_sns_input" placeholder="" name="sns_username" value="<?php if (isset($_SESSION['old_sns'])) {
                                                                                                                                                         echo $_SESSION['old_sns'];
                                                                                                                                                     } ?>" />
 
