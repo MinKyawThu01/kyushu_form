@@ -14,7 +14,6 @@
   font-size: 20px;
   }
   .inner_container {
-  width: 100%;
   max-width: 627px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -26,10 +25,10 @@
   display: block;
   }
   figure {
-    line-height: 0;
+  line-height: 0;
   }
   li {
-    display: flex;
+  display: flex;
   }
   img {
   width: 100%;
@@ -41,7 +40,7 @@
     font-size: 16px;
   }
   .form_container .f_container p {
-    margin-top: 8px;
+  margin-top: 8px;
   }
   /* all input */
   .form_container .f_container input[type = "text"], input[type = "email"], input[type = "date"], input[type = "file"] {
@@ -62,7 +61,7 @@
   width: 100%;
   }
   .form_container .f_container .others label {
-    margin-bottom: 0;
+  margin-bottom: 0;
   }
   .form_container .f_container .others input {
   margin: 0;
@@ -100,20 +99,20 @@
   margin-left: 16px;
   }
   .sms_text {
-    margin-left: 10px;
+  margin-left: 10px;
   }
   .form_gp {
   margin-top: 70px;
   }
   .form_container .f_container hr {
-    border-top: 2px dashed #DADADA;
+  border-top: 2px dashed #DADADA;
   }
   /* title */
   .container .form_container h3 {
-    text-align: center;
+  text-align: center;
   }
   .container .form_container h3 span {
-    font-size: 28px;
+  font-size: 28px;
   }
   .inner_container .req  {
   text-align: center;
@@ -298,7 +297,7 @@
   transition: background-color .4s;
   }
   .container .form_container  .btn_submit .show_pointer:hover, a:hover {
-    opacity: 0.7;
+  opacity: 0.7;
   }
   .container .form_container  .btn_submit .back_link {
   font-size: 24px;
@@ -339,7 +338,7 @@
   background-color: #2b2b2b;
   padding: 42px 0px;
   }
-    .container .jnto .f_container {
+  .container .jnto .f_container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -548,6 +547,9 @@
       max-width: 100%;
       margin: 0 auto;
       padding: 0 calc(20 / 750 * 100vw);
+      }
+      .inner_container {
+        max-width: 100%;
       }
       /* common */
       .form_container .f_container .for_err {
@@ -760,32 +762,32 @@
       }
       .complete_container .container .banner .banner_content {
         background: url("../img/kyushu_kv_sp.png") 50%/cover;
-       }
-       .complete_container .banner .banner_content .inner_container .banner_text {
-        padding: calc(48   / 750 * 100vw) 0 calc(70   / 750 * 100vw);
-        max-width: 68.53333vw;
-        width: 100%;
-       }
-       .complete_container  .banner_color {
-        height: calc(16   / 750 * 100vw);
-       }
-       .complete_container .f_container .inner_container.l_main {
-        margin: calc(45   / 750 * 100vw) 0 calc(125   / 750 * 100vw);
-       }
-       .complete_container .f_container .inner_container h2 {
-        font-size: calc(30   / 750 * 100vw);
-        line-height: calc(33   / 750 * 100vw);
-        margin-bottom: calc(59   / 750 * 100vw);
-       }
-       .complete_container .f_container .inner_container p {
-        font-size: calc(28   / 750 * 100vw);
-        line-height: calc(47   / 750 * 100vw);
-       }
-       .complete_container .f_container .inner_container .btn_m_top {
-        margin-top: calc(82   / 750 * 100vw);
-       }
-       .complete_container .f_container .inner_container .btn_m_top a {
-        font-size: calc(30   / 750 * 100vw);
-        line-height: calc(27   / 750 * 100vw);
-       }
+      }
+      .complete_container .banner .banner_content .inner_container .banner_text {
+      padding: calc(48   / 750 * 100vw) 0 calc(70   / 750 * 100vw);
+      max-width: 68.53333vw;
+      width: 100%;
+      }
+      .complete_container  .banner_color {
+      height: calc(16   / 750 * 100vw);
+      }
+      .complete_container .f_container .inner_container.l_main {
+      margin: calc(45   / 750 * 100vw) 0 calc(125   / 750 * 100vw);
+      }
+      .complete_container .f_container .inner_container h2 {
+      font-size: calc(30   / 750 * 100vw);
+      line-height: calc(33   / 750 * 100vw);
+      margin-bottom: calc(59   / 750 * 100vw);
+      }
+      .complete_container .f_container .inner_container p {
+      font-size: calc(28   / 750 * 100vw);
+      line-height: calc(47   / 750 * 100vw);
+      }
+      .complete_container .f_container .inner_container .btn_m_top {
+      margin-top: calc(82   / 750 * 100vw);
+      }
+      .complete_container .f_container .inner_container .btn_m_top a {
+      font-size: calc(30   / 750 * 100vw);
+      line-height: calc(27   / 750 * 100vw);
+      }
   }
