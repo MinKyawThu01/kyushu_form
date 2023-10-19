@@ -14,9 +14,6 @@ const all_input = document.querySelectorAll(".all_input");
 const inner_visited_japan_all_input = document.querySelectorAll(".visited_japan input[type=checkbox]");
 window.onload = function () {
     if (never_input.checked) {
-        inner_visited_japan_all_input.forEach(item => {
-            item.checked = false;
-        })
         visited_japan.classList.add("dis_ragion");
     }
     all_input.forEach((item) => {
