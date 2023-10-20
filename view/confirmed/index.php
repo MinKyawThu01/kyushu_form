@@ -442,7 +442,7 @@ if ($kyushu->store($_POST, $_FILES)) {
             <div class="jnto ">
                 <div class="f_container">
                   <a href="#"  class="logo">
-                    <img src="../assets/img/JNTO_logo.png" alt="JNTO" />
+                    <img src="../../assets/img/JNTO_logo.png" alt="JNTO" />
                   </a>
                   <ul class="contact">
                     <li ><a href="#">Home</a></li>

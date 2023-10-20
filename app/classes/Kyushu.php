@@ -655,21 +655,4 @@ class Kyushu extends DB
         }
     }
 
-    //userid , flag (kyushu) .extension
-    // 1Kyushu.jpg
-
-    public function export()
-    {
-        try {
-            $sql = "SELECT * FROM `users_table` WHERE `deleted_date` IS NULL";
-            $stmt = $this->con->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-            return  $result;
-
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-    }
 }
