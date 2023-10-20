@@ -170,7 +170,6 @@ class Export extends DB
                 );
 
                 foreach ($files as $name => $file) {
-                    // Skip directories (they will be added automatically)
                     if (!$file->isDir()) {
                         $filePath = $file->getRealPath();
                         $relativePath = explode("\upload\\", $filePath)[1];
@@ -188,7 +187,9 @@ class Export extends DB
             readfile($zip_name);
 
             unlink($zip_name);
+
             return true;
+
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

@@ -172,6 +172,9 @@ class Kyushu extends DB
             $age = $dob->diff($current)->y;
             $age_tc = $dob_tc->diff($current)->y;
 
+            $reg_num = '/^\d\w+$/';
+            $reg_special = '/^[^!@#$%^&*()"?\/><|-]+$/';
+
             if (empty($post['first_name']) || ctype_space($post['first_name'])) {
                 $errors['first_name'] = "Please fills the required field.";
                 if(isset($_SESSION['old_fn'])){
@@ -181,8 +184,10 @@ class Kyushu extends DB
                 $_SESSION['old_fn'] = htmlspecialchars($post['first_name']);
             }
 
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['first_name']) && !empty($post['first_name'])) {
-                $errors['first_name'] = "First name should not be include number, special character.";
+            if (preg_match($reg_num, $post['first_name']) && !empty($post['first_name'])) {
+                $errors['first_name'] = "First name should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['first_name']) && !empty($post['first_name'])) {
+                $errors['first_name'] = "First name should not be include special characters.";
             }
 
             if (strlen($post['first_name']) > 128) {
@@ -195,11 +200,13 @@ class Kyushu extends DB
                     unset($_SESSION['old_ln']);
                 }
             } else {
-                $_SESSION['old_ln'] = $post['last_name'];
+                $_SESSION['old_ln'] = htmlspecialchars($post['last_name']);
             }
 
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['last_name']) && !empty($post['last_name'])) {
-                $errors['last_name'] = "Last name should not be include number, special character.";
+           if (preg_match($reg_num, $post['last_name']) && !empty($post['last_name'])) {
+                $errors['last_name'] = "Last name should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['last_name']) && !empty($post['last_name'])) {
+                $errors['last_name'] = "Last name should not be include special characters.";
             }
 
             if (strlen($post['last_name']) > 128) {
@@ -232,7 +239,7 @@ class Kyushu extends DB
             }
 
             if (isset($post['nationality'])  && $post['nationality'] == 'Other' && isset($post['custom_country'])) {
-                $_SESSION['old_nati_cc'] = $post['custom_country'];
+                $_SESSION['old_nati_cc'] = htmlspecialchars($post['custom_country']);
             }
 
             if (empty($post['nationality'])) {
@@ -257,8 +264,10 @@ class Kyushu extends DB
                 $errors['nationality'] = "Nationality character can't be more than 128.";
             }
 
-            if (!empty($post['custom_country']) && !preg_match('/^[a-zA-Z\s]+$/', $post['custom_country']) && $post['nationality'] == 'Other' && isset($post['nationality'])) {
-                $errors['nationality'] = "Nationality character can't be inclued numbers or special characters.";
+            if (!empty($post['custom_country']) && preg_match($reg_num, $post['custom_country']) && $post['nationality'] == 'Other' && isset($post['nationality'])) {
+                $errors['nationality'] = "Nationality character can't be start with numbers.";
+            }else if (!empty($post['custom_country']) && !preg_match($reg_special, $post['custom_country']) && $post['nationality'] == 'Other' && isset($post['nationality'])) {
+                $errors['nationality'] = "Nationality character can't be include special characters.";
             }
 
             if (!empty($post['nationality'])) {
@@ -272,15 +281,17 @@ class Kyushu extends DB
                     unset($_SESSION['old_occ']);
                  }
             } else {
-                $_SESSION['old_occ'] = $post['occupation'];
+                $_SESSION['old_occ'] = htmlspecialchars($post['occupation']);
             }
 
             if (strlen($post['occupation']) > 400) {
                 $errors['occupation'] = "Occupation character can't be more than 400.";
             }
            
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['occupation']) && !empty($post['occupation'])) {
-                $errors['occupation'] = "Occupation should not be include number, special character.";
+            if (preg_match($reg_num, $post['occupation']) && !empty($post['occupation'])) {
+                $errors['occupation'] = "Occupation should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['occupation']) && !empty($post['occupation'])) {
+                $errors['occupation'] = "Occupation should not be include special characters.";
             }
 
             if (empty($post['religion']) || ctype_space($post['religion']) ) {
@@ -289,15 +300,17 @@ class Kyushu extends DB
                     unset($_SESSION['old_reli']);
                 }
             } else {
-                $_SESSION['old_reli'] = $post['religion'];
+                $_SESSION['old_reli'] = htmlspecialchars($post['religion']);
             }
             
             if (strlen($post['religion']) > 400) {
                 $errors['religion'] = "Religion character can't be more than 400.";
             }
 
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['religion']) && !empty($post['religion'])) {
-                $errors['religion'] = "Religion should not be include number, special character.";
+            if (preg_match($reg_num, $post['religion']) && !empty($post['religion'])) {
+                $errors['religion'] = "Religion should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['religion']) && !empty($post['religion'])) {
+                $errors['religion'] = "Religion should not be include special characters.";
             }
 
              if(isset($post['sns_username']) && ctype_space($post['sns_username'])) {
@@ -306,7 +319,7 @@ class Kyushu extends DB
                     unset($_SESSION['old_sns']);
                 }
             }else if (!empty($post['sns_username'])) {
-                $_SESSION['old_sns'] = $post['sns_username'];
+                $_SESSION['old_sns'] = htmlspecialchars($post['sns_username']);
             }else if (empty($post['sns_username'])){
                 if(isset($_SESSION['old_sns'])) {
                     unset($_SESSION['old_sns']);
@@ -357,7 +370,7 @@ class Kyushu extends DB
                 unset($_SESSION['old_restri']);
                }
             } else {
-                $_SESSION['old_restri'] = $post['restriction'];
+                $_SESSION['old_restri'] = htmlspecialchars($post['restriction']);
             }
 
 
@@ -365,8 +378,10 @@ class Kyushu extends DB
                 $errors['restriction'] = "Character can't be more than 400.";
             }
 
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['restriction']) && !empty($post['restriction'])) {
-                $errors['restriction'] = "Restriction should not be include number, special character.";
+            if (preg_match($reg_num, $post['restriction']) && !empty($post['restriction'])) {
+                $errors['restriction'] = "Restriction should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['restriction']) && !empty($post['restriction'])) {
+                $errors['restriction'] = "Restriction should not be include special characters.";
             }
 
             if (empty($post['email']) ||  ctype_space($post['email']) ) {
@@ -375,7 +390,7 @@ class Kyushu extends DB
                     unset($_SESSION['old_email']);
                 }
             } else {
-                $_SESSION['old_email'] = $post['email'];
+                $_SESSION['old_email'] = htmlspecialchars($post['email']);
             }
 
             if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL) && !empty($post['email']) && !ctype_space($post['email']) ) {
@@ -388,7 +403,7 @@ class Kyushu extends DB
                     unset($_SESSION['old_ph']);
                 }
             } else {
-                $_SESSION['old_ph'] = $post['ph_num'];
+                $_SESSION['old_ph'] = htmlspecialchars($post['ph_num']);
             }
 
              if (strlen($post['ph_num']) > 25 && !empty($post['ph_num']) && is_numeric($post['ph_num'])) {
@@ -405,11 +420,13 @@ class Kyushu extends DB
                     unset($_SESSION['old_fn_tc']);
                 }
             } else {
-                $_SESSION['old_fn_tc'] = $post['first_name_tc'];
+                $_SESSION['old_fn_tc'] = htmlspecialchars($post['first_name_tc']);
             }
 
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['first_name_tc']) && !empty($post['first_name_tc'])) {
-                $errors['first_name_tc'] = "First name should not be include number, special character.";
+            if (preg_match($reg_num, $post['first_name_tc']) && !empty($post['first_name_tc'])) {
+                $errors['first_name_tc'] = "First name should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['first_name_tc']) && !empty($post['first_name_tc'])) {
+                $errors['first_name_tc'] = "First name should not be include special characters.";
             }
 
             if (strlen($post['first_name_tc']) > 128) {
@@ -422,11 +439,13 @@ class Kyushu extends DB
                     unset($_SESSION['old_ln_tc']);
                 }
             } else {
-                $_SESSION['old_ln_tc'] = $post['last_name_tc'];
+                $_SESSION['old_ln_tc'] = htmlspecialchars($post['last_name_tc']);
             }
 
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['last_name_tc']) && !empty($post['last_name_tc'])) {
-                $errors['last_name_tc'] = "Last name should not be include number, special character.";
+            if (preg_match($reg_num, $post['last_name_tc']) && !empty($post['last_name_tc'])) {
+                $errors['last_name_tc'] = "Last name should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['last_name_tc']) && !empty($post['last_name_tc'])) {
+                $errors['last_name_tc'] = "Last name should not be include special characters.";
             }
  
             if (strlen($post['last_name_tc']) > 128) {
@@ -459,7 +478,7 @@ class Kyushu extends DB
             }
 
             if (isset($post['nationality_tc']) && $post['nationality_tc'] == 'Other' && isset($post['custom_country_tc'])) {
-                $_SESSION['old_nati_cc_tc'] = $post['custom_country_tc'];
+                $_SESSION['old_nati_cc_tc'] = htmlspecialchars($post['custom_country_tc']);
             }
 
             if (empty($post['nationality_tc'])) {
@@ -483,8 +502,10 @@ class Kyushu extends DB
             if (!empty($post['custom_country_tc']) && strlen($post['custom_country_tc']) > 128) {
                 $errors['nationality_tc'] = "Nationality can't be more than 128.";
             }
-            if (!empty($post['custom_country_tc']) && !preg_match('/^[a-zA-Z\s]+$/', $post['custom_country_tc']) && $post['nationality_tc'] == 'Other' && isset($post['nationality_tc'])) {
-                $errors['nationality_tc'] = "Nationality should not be include number, special character.";
+            if (!empty($post['custom_country_tc']) && preg_match($reg_num, $post['custom_country_tc']) && $post['nationality_tc'] == 'Other' && isset($post['nationality_tc'])) {
+                $errors['nationality_tc'] = "Nationality can't be start with numbers.";
+            } if (!empty($post['custom_country_tc']) && !preg_match($reg_special, $post['custom_country_tc']) && $post['nationality_tc'] == 'Other' && isset($post['nationality_tc'])) {
+                $errors['nationality_tc'] = "Nationality should not be include special character.";
             }
 
             if (!empty($post['nationality_tc'])) {
@@ -497,11 +518,13 @@ class Kyushu extends DB
                     unset($_SESSION['old_rs_tc']);
                 }
             } else {
-                $_SESSION['old_rs_tc'] = $post['relationship_tc'];
+                $_SESSION['old_rs_tc'] = htmlspecialchars($post['relationship_tc']);
             }
 
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['relationship_tc']) && !empty($post['relationship_tc'])) {
-                $errors['relationship_tc'] = "Relationship status should not be include number, special character.";
+            if (preg_match($reg_num, $post['relationship_tc']) && !empty($post['relationship_tc'])) {
+                $errors['relationship_tc'] = "Relationship should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['relationship_tc']) && !empty($post['relationship_tc'])) {
+                $errors['relationship_tc'] = "Relationship should not be include special characters.";
             }
 
             if (strlen($post['relationship_tc']) > 128) {
@@ -514,11 +537,13 @@ class Kyushu extends DB
                     unset($_SESSION['old_res_tc']);
                 }
             } else {
-                $_SESSION['old_res_tc'] = $post['restriction_tc'];
+                $_SESSION['old_res_tc'] = htmlspecialchars($post['restriction_tc']);
             }
 
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['restriction_tc']) && !empty($post['restriction_tc'])) {
-                $errors['restriction_tc'] = "Restriction status should not be include number, special character.";
+            if (preg_match($reg_num, $post['restriction_tc']) && !empty($post['restriction_tc'])) {
+                $errors['restriction_tc'] = "Restriction should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['restriction_tc']) && !empty($post['restriction_tc'])) {
+                $errors['restriction_tc'] = "Restriction should not be include special characters.";
             }
 
             if (strlen($post['restriction_tc']) > 400) {
@@ -531,15 +556,17 @@ class Kyushu extends DB
                     unset($_SESSION['old_fn_jp']);
                 }
             } else {
-                $_SESSION['old_fn_jp'] = $post['first_name_jp'];
+                $_SESSION['old_fn_jp'] = htmlspecialchars($post['first_name_jp']);
             }
 
             if (strlen($post['first_name_jp']) > 128) {
                 $errors['first_name_jp'] = "First Name character can't be more than 128.";
             }
 
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['first_name_jp']) && !empty($post['first_name_jp'])) {
-                $errors['first_name_jp'] = "First name should not be include number, special character.";
+            if (preg_match($reg_num, $post['first_name_jp']) && !empty($post['first_name_jp'])) {
+                $errors['first_name_jp'] = "First name should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['first_name_jp']) && !empty($post['first_name_jp'])) {
+                $errors['first_name_jp'] = "First name should not be include special characters.";
             }
 
             if (empty($post['last_name_jp']) ||  ctype_space($post['last_name_jp']) ) {
@@ -548,15 +575,17 @@ class Kyushu extends DB
                     unset($_SESSION['old_ln_jp']);
                 }
             } else {
-                $_SESSION['old_ln_jp'] = $post['last_name_jp'];
+                $_SESSION['old_ln_jp'] = htmlspecialchars($post['last_name_jp']);
             }
 
             if (strlen($post['last_name_jp']) > 128) {
                 $errors['last_name_jp'] = "Last Name character can't be more than 128.";
             }
 
-            if (!preg_match('/^[a-zA-Z\s]+$/', $post['last_name_jp']) && !empty($post['last_name_jp'])) {
-                $errors['last_name_jp'] = "Last name should not be include number, special character.";
+            if (preg_match($reg_num, $post['last_name_jp']) && !empty($post['last_name_jp'])) {
+                $errors['last_name_jp'] = "Last name should not be start with numbers.";
+            }else if (!preg_match($reg_special, $post['last_name_jp']) && !empty($post['last_name_jp'])) {
+                $errors['last_name_jp'] = "Last name should not be include special characters.";
             }
 
             if (empty($post['period'])) {
@@ -580,7 +609,7 @@ class Kyushu extends DB
             }
 
             if (isset($post['campaign']) && in_array('Other', $post['campaign']) && isset($post['custom_campaign'])) {
-                $_SESSION['old_custom_camp'] = $post['custom_campaign'];
+                $_SESSION['old_custom_camp'] = htmlspecialchars($post['custom_campaign']);
             } else {
                 if (isset($_SESSION['old_custom_camp'])) {
                     unset($_SESSION['old_custom_camp']);
@@ -601,8 +630,10 @@ class Kyushu extends DB
                 }
             } else if (!empty($post['custom_campaign']) && strlen($post['custom_campaign']) > 128) {
                 $errors['campaign'] = "Campaign can't be more than 128.";
-            } else if (!empty($post['custom_campaign']) && !preg_match('/^[a-zA-Z\s]+$/', $post['custom_campaign'])) {
-                $errors['campaign'] = "Campaign should not be include number, special character.";
+            } else if (!empty($post['custom_campaign']) && preg_match($reg_num, $post['custom_campaign'])) {
+                $errors['campaign'] = "Campaign can't be start with numbers.";
+            }else if (!empty($post['custom_campaign']) && !preg_match($reg_special, $post['custom_campaign'])) {
+                $errors['campaign'] = "Campaign should not be include special character.";
             }
 
             if (!empty($post['campaign'])) {
