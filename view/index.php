@@ -47,9 +47,9 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                             <h5 class="title">Full Name</h5>
                             <div class="fullname">
                                 <div class="first-item">
-                                    <input type="text" id="name" class="fname" placeholder="First Name" name="first_name" value="<?php if (isset($_SESSION['old_fn'])) {
+                                    <input type="text" id="name" class="fname" placeholder="First Name"  name="first_name" value="<?php if (isset($_SESSION['old_fn'])) {
                                                                                                                                         echo $_SESSION['old_fn'];
-                                                                                                                                    }  ?>" />
+                                                                                                                                    }  ?>">
                                     <?php if (isset($_SESSION['error']['first_name'])) {
                                     ?>
                                         <span class="for_err"> <?php echo $_SESSION['error']['first_name']; ?></span>
@@ -61,7 +61,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                 <div class="second-item">
                                     <input type="text" placeholder="Last Name" name="last_name" value="<?php if (isset($_SESSION['old_ln'])) {
                                                                                                             echo $_SESSION['old_ln'];
-                                                                                                        } ?>" />
+                                                                                                        } ?>" >
                                     <?php if (isset($_SESSION['error']['last_name'])) {
                                     ?>
                                         <span class="for_err"> <?php echo $_SESSION['error']['last_name']; ?></span>
@@ -1329,7 +1329,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                         <!-- Relationship with applicate -->
                         <div class="form_gp">
                             <h5 class="title">Relationship with applicant</h5>
-                            <input type="text" id="relationship" placeholder="Type" name="relationship_tc" value="<?php if (isset($_SESSION['old_rs_tc'])) {
+                            <input type="text" id="relationship" placeholder="Type..." name="relationship_tc" value="<?php if (isset($_SESSION['old_rs_tc'])) {
                                                                                                                         echo $_SESSION['old_rs_tc'];
                                                                                                                     } ?>" />
                             <?php if (isset($_SESSION['error']['relationship_tc'])) {
@@ -1379,7 +1379,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                     <div class="first-item">
                                         <input type="text" id="person" class="fname" placeholder="First Name" name="first_name_jp" value="<?php if (isset($_SESSION['old_fn_jp'])) {
                                                                                                                                                 echo $_SESSION['old_fn_jp'];
-                                                                                                                                            } ?>" />
+                                                                                                                                            } ?>">
                                         <?php if (isset($_SESSION['error']['first_name_jp'])) {
                                         ?>
                                             <span class="for_err"> <?php echo $_SESSION['error']['first_name_jp']; ?></span>
@@ -1391,7 +1391,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                     <div class="second-item">
                                         <input type="text" placeholder="Last Name" name="last_name_jp" value="<?php if (isset($_SESSION['old_ln_jp'])) {
                                                                                                                     echo $_SESSION['old_ln_jp'];
-                                                                                                                } ?>" />
+                                                                                                                } ?>">
                                         <?php if (isset($_SESSION['error']['last_name_jp'])) {
                                         ?>
                                             <span class="for_err"> <?php echo $_SESSION['error']['last_name_jp']; ?></span>

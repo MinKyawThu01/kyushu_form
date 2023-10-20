@@ -26,6 +26,18 @@ class Export extends DB
         }
     }
 
+    public function createFolder()
+    {
+        try {
+            if (!is_dir('../../upload/')) {
+                mkdir( '../../upload/', 0777, true);    
+                mkdir( '../../upload/images', 0777, true);    
+           }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     public function dataExport()
     {
         try {
@@ -42,6 +54,7 @@ class Export extends DB
 
             fputcsv($fp, $titles);
             $x = 0;
+
             foreach ($data as $row) {
                 $user_data = json_decode($row->user_data, true);
                 if (isset($user_data['other']['uploaded_image']) && isset($user_data['main']['first_name'])) {
@@ -69,9 +82,10 @@ class Export extends DB
                         $img_name = $row->user_id . 'kyushu' . '_' . $i . '.' . $ext;
                         $imgPath = $imgFolder . $img_name;
                     }
-                    // array_push($this->img_name_arr, $img_name);
+                    
                     file_put_contents($imgPath, $imageData);
                 }
+
                 if (isset($user_data['main']['region']) && $user_data['main']['region'] !== NULL) {
                     $region = implode(', ', $user_data['main']['region']);
                 } else if (!isset($user_data['main']['region'])) {
@@ -85,6 +99,7 @@ class Export extends DB
                 }
 
                 $x++;
+
                 $rowData = array(
                     $x,
                     $row->user_id,
@@ -110,14 +125,15 @@ class Export extends DB
                     implode(', ', $user_data['other']['travel_period']),
                     implode(', ', $user_data['other']['know_campaign']),
                     $img_name,
-                    // 'img',
                     'Kyushu',
                 );
                 fputcsv($fp, $rowData);
             }
+
             fclose($fp);
 
             return true;
+
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -134,6 +150,7 @@ class Export extends DB
             }
 
             return true;
+
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -171,6 +188,7 @@ class Export extends DB
             readfile($zip_name);
 
             unlink($zip_name);
+            return true;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

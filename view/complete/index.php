@@ -20,8 +20,7 @@
         </div>
         <div class="banner_color"></div>
         <div class="f_container">
-            <div class="inner_container">
-                <div class="l_main">
+            <div class="inner_container l_main">
                     <h2>Thank you!<br> We have received your application. </h2>
                     <p>If you have been shortlisted, you will be notified via the email address below. 
                         <br>Please check your email periodically. (Do make sure to check your spam folder as well) <br>
@@ -30,7 +29,6 @@
                     <div class="btn_m_top">
                         <a href="../index.php">Back to top</a>
                     </div>
-                </div>
             </div>
         </div>
         <div class="covid_contact">
@@ -51,7 +49,7 @@
         <div class="jnto ">
             <div class="f_container">
               <a href="#"  class="logo">
-                <img src="../assets/img/JNTO_logo.png" alt="JNTO" />
+                <img src="../../assets/img/JNTO_logo.png" alt="JNTO" />
               </a>
               <ul class="contact">
                 <li ><a href="#">Home</a></li>
