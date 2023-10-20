@@ -42,16 +42,6 @@ call_frame.addEventListener("click", () => {
 close_vdo_tag.addEventListener("click", () => {
     vdo_upload.style.display = "none"
 })
-//  checkbox handler
-const checkbox_handler = (items) => {
-    if (items && remove_dim_class.value == "") {
-        remove_dim_class.disabled = false;
-        remove_dim_class.classList.remove("dim");
-    } else {
-        remove_dim_class.value = ""
-        remove_dim_class.classList.add("dim");
-    }
-}
 // radio handler
 const radio_handler = (event) => {
     if (event.target.parentNode.nextElementSibling == null) {
@@ -68,6 +58,17 @@ const radio_handler = (event) => {
         event.target.parentNode.nextElementSibling.classList.remove("dim");
       }
 }
+//  checkbox handler
+const checkbox_handler = (items) => {
+    if (items && remove_dim_class.value == "") {
+        remove_dim_class.disabled = false;
+        remove_dim_class.classList.remove("dim");
+    } else {
+        remove_dim_class.value = ""
+        remove_dim_class.classList.add("dim");
+    }
+}
+
 other_input.forEach(item => {
     item.addEventListener("click", event => {
         if (event.target.tagName == "INPUT") {
