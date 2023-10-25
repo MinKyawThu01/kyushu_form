@@ -159,7 +159,7 @@ class Kyushu extends DB
                 $errors['image'] = 'Please upload a photo.';
             } else if (in_array($image_ext, $ext) === false && !empty($image_name)) {
                 $errors['image'] = 'Image file not support. Please upload JEPG, JPG, PNG.';
-            } else if ($image_size > 500000 && isset($image_name)) {
+            } else if ($image_size > 5000000 && isset($image_name)) {
                 $errors['image'] = 'Image file size not more than 5MB.';
             }
             $_SESSION['image_name'] = $files['image']['name'];

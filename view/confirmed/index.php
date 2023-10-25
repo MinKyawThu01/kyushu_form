@@ -43,76 +43,53 @@ if ($kyushu->store($_POST, $_FILES)) {
                             <h5 class="title">Full Name</h5>
                             <div class="fullname">
                                 <div class="first-item">
-                                    <input disabled type="text" id="name" class="fname" placeholder="First Name" disabled name="first_name" value="<?php if (isset($_SESSION['old_fn'])) {
-                                                                                                                                                        echo $_SESSION['old_fn'];
-                                                                                                                                                    }  ?>" />
-                                    <?php if (isset($_SESSION['error']['first_name'])) {
-                                    ?>
+                                    <input disabled type="text" id="name" class="fname" placeholder="First Name" disabled name="first_name" value="<?php if (isset($_SESSION['old_fn'])) { echo $_SESSION['old_fn']; }  ?>" />
+                                    <?php if (isset($_SESSION['error']['first_name'])) { ?>
                                         <span class="for_err"> <?php echo $_SESSION['error']['first_name']; ?></span>
-                                    <?php
-                                    }
-                                    unset($_SESSION['error']['first_name']);
-                                    ?>
+                                    <?php } unset($_SESSION['error']['first_name']); ?>
                                 </div>
                                 <div class="lname">
-                                    <input disabled type="text" placeholder="Last Name" name="last_name" disabled value="<?php if (isset($_SESSION['old_ln'])) {
-                                                                                                                                echo $_SESSION['old_ln'];
-                                                                                                                            } ?>" />
-                                    <?php if (isset($_SESSION['error']['last_name'])) {
-                                    ?>
+                                    <input disabled type="text" placeholder="Last Name" name="last_name" disabled value="<?php if (isset($_SESSION['old_ln'])) { echo $_SESSION['old_ln']; } ?>" />
+                                    <?php if (isset($_SESSION['error']['last_name'])) { ?>
                                         <span class="for_err"> <?php echo $_SESSION['error']['last_name']; ?></span>
-                                    <?php
-                                    }
-                                    unset($_SESSION['error']['last_name']);
-                                    ?>
+                                    <?php } unset($_SESSION['error']['last_name']); ?>
                                 </div>
                             </div>
                         </div>
                         <!-- Date of Birth -->
                         <div class="form_gp">
                             <h5 class="title">Date of Birth</h5>
-                            <input disabled type="date" id="dateOfBirth" name="dob" disabled value="<?php if (isset($_SESSION['old_dob'])) {
-                                                                                                        echo $_SESSION['old_dob'];
-                                                                                                    } ?>" />
-                            <?php if (isset($_SESSION['error']['dob'])) {
-                            ?>
+                            <input disabled type="date" id="dateOfBirth" name="dob" disabled value="<?php if (isset($_SESSION['old_dob'])) { echo $_SESSION['old_dob']; } ?>" />
+                            <?php if (isset($_SESSION['error']['dob'])) { ?>
                                 <span class="for_err"> <?php echo $_SESSION['error']['dob']; ?></span>
-                            <?php
-                            }
-                            unset($_SESSION['error']['dob']);
-                            ?>
+                            <?php } unset($_SESSION['error']['dob']);  ?>
                         </div>
                         <!-- Gender -->
                         <div class="form_gp">
                             <h5 class="title">Gender</h5>
                             <ul>
-                                <?php if (isset($_SESSION['old_gender'])) {
-                                ?>
+                                <?php if (isset($_SESSION['old_gender'])) { ?>
                                     <li>
                                         <label class="all_checks_radio"><?= $_SESSION['old_gender']; ?>
                                             <input disabled type="radio" name="gender" value="<?= $_SESSION['old_gender'] ?>" disabled checked>
                                             <span class="checkmark"></span>
                                         </label>
                                     </li>
-                                <?php }
-                                ?>
+                                <?php } ?>
                             </ul>
                         </div>
                         <!-- Nationality -->
                         <div class="form_gp">
                             <h5 class="title">Nationality</h5>
                             <ul>
-                                <?php if (isset($_SESSION['old_nati']) && !isset($_SESSION['old_nati_cc'])) {
-                                ?>
+                                <?php if (isset($_SESSION['old_nati']) && !isset($_SESSION['old_nati_cc'])) { ?>
                                     <li>
                                         <label class="all_checks_radio others-input"><?= $_SESSION['old_nati'] ?>
                                             <input disabled type="radio" name="nationality" value="<?= $_SESSION['old_nati'] ?>" checked>
                                             <span class="checkmark"></span>
                                         </label>
                                     </li>
-                                <?php
-                                } else if (isset($_SESSION['old_nati']) && isset($_SESSION['old_nati_cc'])) {
-                                ?>
+                                <?php } else if (isset($_SESSION['old_nati']) && isset($_SESSION['old_nati_cc'])) { ?>
                                     <div class="others">
                                         <label class="all_checks_radio others-input"><?= $_SESSION['old_nati'] ?>:
                                             <input disabled type="radio" name="nationality" value="<?= $_SESSION['old_nati'] ?>" checked>
@@ -123,101 +100,73 @@ if ($kyushu->store($_POST, $_FILES)) {
                                         <input disabled type="text" class=" all_input" id="nation_opt1" name="custom_country" value="<?php echo $_SESSION['old_nati_cc']; ?>">
                                     </div>
                                     </li>
-                                <?php
-                                } ?>
+                                <?php } ?>
                             </ul>
-
                         </div>
                         <!-- Occupation -->
                         <div class="form_gp">
                             <h5 class="title">Occupation</h5>
-                            <input disabled type="text" id="occupation" placeholder="Type..." name="occupation" value="<?php if (isset($_SESSION['old_occ'])) {
-                                                                                                                            echo $_SESSION['old_occ'];
-                                                                                                                        } ?>" />
-
+                            <input disabled type="text"  placeholder="Type..." name="occupation" value="<?php if (isset($_SESSION['old_occ'])) { echo $_SESSION['old_occ']; } ?>" />
                         </div>
                         <!-- Religion -->
                         <div class="form_gp">
                             <h5 class="title">Religion</h5>
                             <p>(We will try to caster to religion preferences, but should you not wish to specify, please answer "prefer not to say")</p>
-                            <input disabled type="text" id="religion" class="full_width reli_sns_input" placeholder="Type..." name="religion" value="<?php if (isset($_SESSION['old_reli'])) {
-                                                                                                                                                            echo $_SESSION['old_reli'];
-                                                                                                                                                        } ?>" />
-
+                            <input disabled type="text"  class="full_width reli_sns_input" placeholder="Type..." name="religion" value="<?php if (isset($_SESSION['old_reli'])) { echo $_SESSION['old_reli']; } ?>" />
                         </div>
                         <!-- SNS username -->
                         <div class="form_gp">
                             <h5 class="title">SNS username<span class="sub_txt">(Facebook/Instagram/Tiktok/Youtube)</h5>
                             <p>*Leave the option blank if you do not have any Social Media account</p>
-                            <input disabled type="text" id="sns" class="full_width reli_sns_input" placeholder="" name="sns_username" value="<?php if (isset($_SESSION['old_sns'])) {
-                                                                                                                                                        echo $_SESSION['old_sns'];
-                                                                                                                                                    } ?>" />
+                            <input disabled type="text"  class="full_width reli_sns_input" placeholder="" name="sns_username" value="<?php if (isset($_SESSION['old_sns'])) { echo $_SESSION['old_sns']; } ?>" />
 
                         </div>
                         <div class="form_gp">
                             <h5 class="title">Have you been to Japan before?</h5>
                             <ul>
-                                <?php if (isset($_SESSION['old_before'])) {
-                                ?>
+                                <?php if (isset($_SESSION['old_before'])) { ?>
                                     <li>
                                         <label class="all_checks_radio"><?= $_SESSION['old_before'] ?>
                                             <input disabled type="radio" name="japan_before" id="never_input" class="c-form_radio" value="<?= $_SESSION['old_before'] ?>" checked>
                                             <span class="checkmark"></span>
                                         </label>
                                     </li>
-                                <?php
-                                } ?>
-
+                                <?php } ?> 
                             </ul>
-
                         </div>
                         <!-- Region visited in past Japan travels -->
-                        <?php if (isset($_SESSION['old_reg']) && $_SESSION['old_before'] != "Never") {
-                        ?>
+                        <?php if (isset($_SESSION['old_reg']) && $_SESSION['old_before'] != "Never") { ?>
                             <div class="visited_japan form_gp">
                                 <h5 class="title">Region(s) visited in past Japan travels</h5>
                                 <div class="region">
                                     <ul class="custom-checkbox">
-                                        <?php foreach ($_SESSION['old_reg'] as $old_reg) {
-                                        ?>
+                                        <?php foreach ($_SESSION['old_reg'] as $old_reg) { ?>
                                             <li>
                                                 <label class="all_checks_label"><?= $old_reg ?>
                                                     <input disabled type="checkbox" name="region[]" value="<?= $old_reg ?>" checked>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
-                                        <?php
-                                        } ?>
-
+                                        <?php } ?>
                                     </ul>
                                 </div>
                             </div>
-                        <?php
-                        } ?>
+                        <?php } ?>
 
                         <!-- Dietary  Restrictions-->
                         <div class="form_gp">
                             <h5 class="title">Dietary Restrictions <span class="sub_txt">(Including Alcohol)</span> </h5>
-                            <input disabled type="text" id="dietary" placeholder="Type..." name="restriction" value="<?php if (isset($_SESSION['old_restri'])) {
-                                                                                                                            echo $_SESSION['old_restri'];
-                                                                                                                        } ?>" />
-
+                            <input disabled type="text" placeholder="Type..." name="restriction" value="<?php if (isset($_SESSION['old_restri'])) { echo $_SESSION['old_restri']; } ?>" />
                         </div>
                         <!-- Email -->
                         <div class="form_gp">
                             <h5 class="title">Email Address</h5>
-                            <input disabled type="text" id="email" placeholder="Email" name="email" value="<?php if (isset($_SESSION['old_email'])) {
-                                                                                                                echo $_SESSION['old_email'];
-                                                                                                            } ?>" />
-
+                            <input disabled type="text" placeholder="Email" name="email" value="<?php if (isset($_SESSION['old_email'])) { echo $_SESSION['old_email']; } ?>" />
                         </div>
                         <!-- Phone Number -->
                         <div class="form_gp">
                             <h5 class="title">Phone Number</h5>
-                            <input disabled type="text" id="phone" placeholder="Phone Number" name="ph_num" value="<?php if (isset($_SESSION['old_ph'])) {
-                                                                                                                        echo $_SESSION['old_ph'];
-                                                                                                                    } ?>" />
-
+                            <input disabled type="text" placeholder="Phone Number" name="ph_num" value="<?php if (isset($_SESSION['old_ph'])) { echo $_SESSION['old_ph']; } ?>" />
                         </div>
 
                         <hr class="form_gp">
@@ -229,51 +178,37 @@ if ($kyushu->store($_POST, $_FILES)) {
                             <h5 class="title">Full Name</h5>
                             <div class="fullname">
                                 <div class="first-item">
-                                    <input disabled type="text" id="name" class="first-name" placeholder="First Name" name="first_name_tc" value="<?php if (isset($_SESSION['old_fn_tc'])) {
-                                                                                                                                                        echo $_SESSION['old_fn_tc'];
-                                                                                                                                                    } ?>" />
-
+                                    <input disabled type="text" class="first-name" placeholder="First Name" name="first_name_tc" value="<?php if (isset($_SESSION['old_fn_tc'])) { echo $_SESSION['old_fn_tc']; } ?>" />
                                 </div>
                                 <div class="second-item">
-                                    <input disabled type="text" placeholder="Last Name" name="last_name_tc" value="<?php if (isset($_SESSION['old_ln_tc'])) {
-                                                                                                                        echo $_SESSION['old_ln_tc'];
-                                                                                                                    } ?>" />
-
+                                    <input disabled type="text" placeholder="Last Name" name="last_name_tc" value="<?php if (isset($_SESSION['old_ln_tc'])) { echo $_SESSION['old_ln_tc']; } ?>" />
                                 </div>
                             </div>
                         </div>
                         <!-- Date of Birth -->
                         <div class="form_gp">
                             <h5 class="title">Date of Birth</h5>
-                            <input disabled type="date" id="dateOfBirth" name="dob_tc" value="<?php if (isset($_SESSION['old_dob_tc'])) {
-                                                                                                    echo $_SESSION['old_dob_tc'];
-                                                                                                } ?>" />
-
+                            <input disabled type="date" name="dob_tc" value="<?php if (isset($_SESSION['old_dob_tc'])) { echo $_SESSION['old_dob_tc']; } ?>" />
                         </div>
                         <!-- Gender -->
                         <div class="form_gp">
                             <h5 class="title">Gender</h5>
                             <ul>
-                                <?php if (isset($_SESSION['old_gender_tc'])) {
-                                ?>
-
+                                <?php if (isset($_SESSION['old_gender_tc'])) { ?>
                                     <li>
                                         <label class="all_checks_radio"><?= $_SESSION['old_gender_tc']; ?>
                                             <input disabled type="radio" name="gender_tc" value="$_SESSION['old_gender_tc']" checked>
                                             <span class="checkmark"></span>
                                         </label>
                                     </li>
-                                <?php
-                                } ?>
-                            </ul>
-
+                                <?php } ?>
+                            </ul> 
                         </div>
                         <!-- Nationality -->
                         <div class="form_gp">
                             <h5 class="title">Nationality</h5>
                             <ul>
-                                <?php if (isset($_SESSION['old_nati_tc']) && !isset($_SESSION['old_nati_cc_tc'])) {
-                                ?>
+                                <?php if (isset($_SESSION['old_nati_tc']) && !isset($_SESSION['old_nati_cc_tc'])) { ?>
                                     <li>
                                         <label class="all_checks_radio others-input"><?= $_SESSION['old_nati_tc']; ?>
                                             <input disabled type="radio" name="nationality_tc" value="<?= $_SESSION['old_nati_tc']; ?>" checked>
@@ -287,30 +222,21 @@ if ($kyushu->store($_POST, $_FILES)) {
                                                 <input disabled type="radio" name="nationality_tc" value="<?= $_SESSION['old_nati_tc']; ?>" checked>
                                                 <span class="checkmark"></span>
                                             </label>
-
                                             <!-- test 2 reomve disable  -->
                                             <input disabled type="text" class=" all_input" id="nation_opt2" name="custom_country_tc" value="<?= $_SESSION['old_nati_cc_tc']; ?>">
                                     </li>
-                                <?php
-                                }  ?>
-
+                                <?php }  ?>
                             </ul>
-
                         </div>
                         <!-- Relationship with applicate -->
                         <div class="form_gp">
                             <h5 class="title">Relationship with applicant</h5>
-                            <input disabled type="text" id="relationship" placeholder="Type" name="relationship_tc" value="<?php if (isset($_SESSION['old_rs_tc'])) {
-                                                                                                                                echo $_SESSION['old_rs_tc'];
-                                                                                                                            } ?>" />
+                            <input disabled type="text" placeholder="Type" name="relationship_tc" value="<?php if (isset($_SESSION['old_rs_tc'])) { echo $_SESSION['old_rs_tc']; } ?>" />
                         </div>
                         <!-- Dietary  Restrictions-->
                         <div class="form_gp">
                             <h5 class="title">Dietary Restrictions <span class="sub_txt">(Including Alcohol)</span></h5>
-                            <input disabled type="text" id="dietary" placeholder="Type..." name="restriction_tc" value="<?php if (isset($_SESSION['old_res_tc'])) {
-                                                                                                                            echo $_SESSION['old_res_tc'];
-                                                                                                                        } ?>" />
-
+                            <input disabled type="text" placeholder="Type..." name="restriction_tc" value="<?php if (isset($_SESSION['old_res_tc'])) { echo $_SESSION['old_res_tc']; } ?>" />
                         </div>
                     </div>
                 </div>
@@ -326,22 +252,16 @@ if ($kyushu->store($_POST, $_FILES)) {
                                     <img src="<?php echo $_SESSION['imgBase64']; ?>" alt="Your Uploaded Photo"">
                                 <?php } ?>
                                 </figure>
-                               
                             </div>
                             <!-- Birthday  -->
                             <div class="form_gp">
                                 <h5 class="title">The full name of the name who will receives the trip to Japan as their birthday gift</h5>
                                 <div class="fullname">
                                     <div class="first-item">
-                                        <input disabled type="text" id="person" class="fname" placeholder="First Name" name="first_name_jp" value="<?php if (isset($_SESSION['old_fn_jp'])) {
-                                                                                                                                                        echo $_SESSION['old_fn_jp'];
-                                                                                                                                                    } ?>" />
+                                        <input disabled type="text" class="fname" placeholder="First Name" name="first_name_jp" value="<?php if (isset($_SESSION['old_fn_jp'])) { echo $_SESSION['old_fn_jp']; } ?>" />
                                     </div>
                                     <div class="second-item">
-                                        <input disabled type="text" placeholder="Last Name" name="last_name_jp" value="<?php if (isset($_SESSION['old_ln_jp'])) {
-                                                                                                                            echo $_SESSION['old_ln_jp'];
-                                                                                                                        } ?>" />
-
+                                        <input disabled type="text" placeholder="Last Name" name="last_name_jp" value="<?php if (isset($_SESSION['old_ln_jp'])) { echo $_SESSION['old_ln_jp']; } ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -350,18 +270,16 @@ if ($kyushu->store($_POST, $_FILES)) {
                                 <h5 class="title">Please let us know your preferred traveling period</h5>
                                 <ul>
                                     <?php if (isset($_SESSION['old_period'])) {
-                                        foreach ($_SESSION['old_period'] as $old_period) {
-                                    ?>
+                                        foreach ($_SESSION['old_period'] as $old_period) { ?>
                                             <li>
                                                 <label class="all_checks_label"><?= $old_period ?>
                                                     <input disabled type="checkbox" name="period[]" value="<?= $old_period ?>" checked>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
-                                    <?php
-                                        }
+                                         <?php
+                                        } 
                                     }  ?>
-
                                 </ul>
                             </div>
                             <!-- campagin  -->
@@ -387,9 +305,7 @@ if ($kyushu->store($_POST, $_FILES)) {
                                                     } ?>
                                             <?php if ($old_camp == 'Other') {echo "</div>"; } ?>
                                             </li>
-                                    <?php
-                                        }
-                                    }  ?>
+                                    <?php } }  ?>
                                 </ul>
                             </div>
                         </div>
@@ -403,15 +319,11 @@ if ($kyushu->store($_POST, $_FILES)) {
                                     <?php if (isset($_SESSION['old_terms'])) {
                                     ?>
                                         <label class="all_checks_label">By checking this box, you agree to the campaign’s <a href="#">Terms and Conditions</a> and confirm that you have read JAPAN by Japan’s <a href="#">Privacy Policy</a>.
-                                            <input disabled type="checkbox" name="termsConditions" value="yes" class="policy_input all_input" <?php if ($_SESSION['old_terms'] == 'yes') {
-                                                                                                                                                    echo 'checked';
-                                                                                                                                                } ?>>
+                                            <input disabled type="checkbox" name="termsConditions" value="yes" class="policy_input all_input" <?php if ($_SESSION['old_terms'] == 'yes') { echo 'checked'; } ?>>
                                             <span class="checkmark"></span>
                                         </label>
-                                    <?php }
-                                    ?>
+                                    <?php } ?>
                                 </div>
-
                                 <!-- hid confirm -->
                                 <div class="btn_submit">
                                     <a href="../index.php" class="back_link">Back</a>
