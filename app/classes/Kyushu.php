@@ -128,6 +128,7 @@ class Kyushu extends DB
                         ];
 
                     $_SESSION['user_data'] = $user_data;
+                    $_SESSION['confirm'] = "confirm";
                     return  $_SESSION['user_data'];
                 
                 }
@@ -679,6 +680,6 @@ class Kyushu extends DB
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-    }
+    }    
 
 }

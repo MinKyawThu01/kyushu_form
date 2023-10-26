@@ -1,20 +1,23 @@
 <?php
 
 include('../app/classes/Kyushu.php');
-// include('../app/classes/Test.php');
 
 session_start();
 
 $kyushu = new Kyushu();
+
 if ($kyushu->storeArray($_POST, $_FILES)) {
-    // echo "<pre>";
-    // var_dump($_SESSION['user_data']);
-    // echo "</pre>";
-    // die();
     echo '<script>location.href="confirmed/index.php"</script>';
 }
 
-
+if(isset($_SESSION['confirm']) && $_SESSION['confirm'] == 'confirm') {
+    $_SESSION['confirm'] = "";
+    unset($_SESSIONp['confirm']);
+} else if (isset($_SESSION['confirm']) && $_SESSION['confirm'] == '') {
+    session_destroy();
+} else if (!isset($_SESSION['confirm']) && !isset($_POST['submit'])) {
+    session_unset();
+}
 
 ?>
 
@@ -490,8 +493,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                         <li>
                                             <label class="all_checks_label">Hiroshima
-                                                <input type="checkbox" name="region[]" value="Hiroshima" <?php if (in_array('Hiroshima', $_SESSION['old_reg'])) { echo 'checked';
-                                                                                                            } ?>>
+                                                <input type="checkbox" name="region[]" value="Hiroshima" <?php if (in_array('Hiroshima', $_SESSION['old_reg'])) { echo 'checked';} ?>>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
@@ -561,9 +563,7 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                         </li>
                                         <li>
                                             <label class="all_checks_label">Oita
-                                                <input type="checkbox" name="region[]" value="Oita" <?php if (in_array('Oita', $_SESSION['old_reg'])) {
-                                                                                                        echo 'checked';
-                                                                                                    } ?>>
+                                                <input type="checkbox" name="region[]" value="Oita" <?php if (in_array('Oita', $_SESSION['old_reg'])) {echo 'checked'; } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
@@ -1048,7 +1048,6 @@ if ($kyushu->storeArray($_POST, $_FILES)) {
                                                 <input type="radio" name="nationality_tc" class=" all_input" value="Other" <?php if ($_SESSION['old_nati_tc'] == 'Other') { echo 'checked'; } ?>>
                                                 <span class="checkmark"></span>
                                             </label>
-
                                             <!-- test 2 reomve disable  -->
                                             <input type="text" id="nation_opt2" name="custom_country_tc" value="<?php if (isset($_SESSION['old_nati_cc_tc'])) {  echo $_SESSION['old_nati_cc_tc']; } ?>">
                                     </li>

@@ -42,7 +42,8 @@ class Export extends DB
     {
         try {
             $data = $this->index();
-            $fileName = "../../upload/data.csv"; // Specify the path to the upload directory
+            // $fileName = "../../upload/data.csv"; // Specify the path to the upload directory
+            $fileName = "../../upload/data.xls"; // Specify the path to the upload directory
 
             $titles = array('ID', 'User ID', 'Full Name', 'DOB', 'Gender', 'Nationality', 'Occupation', 'Religion', 'SNS Username', 'Japan Before', 'Region', 'Dietary Restrictions', 'Email', 'Phone Number', 'Full Name TC', 'DOB TC', 'Gender TC', 'Nationality TC', 'Relationship with applicant', 'Dietary Restrictions TC', 'Full Name(birthday gift)', 'Traveling Preiod', 'Know Campaign', 'Image Name', 'Area');
 
